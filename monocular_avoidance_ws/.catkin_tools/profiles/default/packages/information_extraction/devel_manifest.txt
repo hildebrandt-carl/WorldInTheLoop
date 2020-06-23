@@ -1,0 +1,5 @@
+information_extraction
+/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/information_extraction/cmake.lock /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/./cmake.lock
+/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/information_extraction/share/information_extraction/cmake/information_extractionConfig.cmake /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/share/information_extraction/cmake/information_extractionConfig.cmake
+/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/information_extraction/share/information_extraction/cmake/information_extractionConfig-version.cmake /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/share/information_extraction/cmake/information_extractionConfig-version.cmake
+/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/information_extraction/lib/pkgconfig/information_extraction.pc /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/lib/pkgconfig/information_extraction.pc
