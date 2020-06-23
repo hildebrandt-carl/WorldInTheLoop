@@ -90,7 +90,6 @@ $ cd ~/code/parrot-groundsdk
 $ ./build.sh -p olympe-linux -A all final -j
 ```
 
-
 ## Installing OPENCV for Python3
 
 You can install opencv on ubuntu 18.04 using:
@@ -115,7 +114,7 @@ The main problem is that ROS runs in Python2. Olympe works in Python3. Additiona
 First we are going to need to install a bunch of Python packages so that Olympe can work in the main path. To do that you can run the following:
 ```
 $ python3 -m pip install --upgrade pip
-$ python3 -m pip install rospkg colorlog future aenum boltons yapf tzlocal numpy websocket websocket-client pygame EmPy
+$ python3 -m pip install scipy rospkg colorlog future aenum boltons yapf tzlocal numpy websocket websocket-client pygame EmPy
 ```
 
 Next we need to create the following script inside (`~/code/parrot-groundsdk`) our Olympe package. Call the file `olympe_custom_env.sh`. You can do this using:
@@ -153,7 +152,32 @@ Then we need to source it each time we want to run olympe, by running:
 source ~/code/parrot-groundsdk/olympe_custom_env.sh
 ```
 
-At this point you now should be able to use ROS, OpenCV and Olympe all in python3. Run the following test:
+## Installing CV_Bridge
+
+We need to install a bunch of dependencies for CV_Bridge. You can install then using:
+```
+$ sudo apt-get install python-catkin-tools python3-dev python3-catkin-pkg-modules python3-numpy python3-yaml ros-kinetic-cv-bridge
+```
+
+**Note:** For Ubunut 16.04 I had to make changes to the file `src/vision_opencv/cv_bridge/CMakeLists.txt`. I did the following:
+```
+if(NOT ANDROID)
+  find_package(PythonLibs)
+  if(PYTHONLIBS_VERSION_STRING VERSION_LESS 3)
+    find_package(Boost REQUIRED python)
+  else()
+    # SWITCH THESE LINES FOR UBUNTU 18.04
+    # find_package(Boost REQUIRED python3) 
+    find_package(Boost REQUIRED python-py35)
+  endif()
+else()
+```
+
+# Executing
+
+## Testing everything works
+
+To start lets make sure we are able to access everything we need in Python. To do that run the following command:
 ```
 $ python3
 >>> import rospy
@@ -161,95 +185,46 @@ $ python3
 >>> import olympe
 ```
 
-
-
-
-
-
-
-
-
-
-
-# Installing OPENCV
-
-To install open CV you can run:
+If you get no errors, the next thing to check is Sphinx. To test sphinx run the following commands:
 ```
-$ sudo apt update
-$ sudo apt install python-opencv
+$ sudo systemctl start firmwared.service
+$ fdc ping
+>>> PONG
+$ cd ~/MixedRealityTesting/monocular_avoidance_ws/simulator_launch_scripts
+$ ./simulation.sh
 ```
 
-# Installing SCIPY
+You will be presented with two drones at this point.
 
-To install scipt run:
-```
-$ sudo apt-get install python-pip
-$ python -m pip install scipy
-$ 
-```
+## Building the project
 
-# gt-cp-2017-project
-
-To run this you can use the following:
+Finally we are ready to build the entire project. To do that lets config catkin build to use python3. We can do that using:
 ```
-$ python main.py --debug True --skip 1 --video ../../videos/CameraFeed.mp4
+$ cd ~/MixedRealityTesting/monocular_avoidance_ws
+$ catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.5m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.5m.so -DPYTHON_VERSION=3.5
+$ catkin config --no-install
 ```
 
-# YOLO for ROS
-
-Installation
+We are now ready to build. We can do that using
 ```
-$ mkdir -p catkin_workspace/src
-$ cd catkin_workspace/src
-$ git clone --recursive git@github.com:leggedrobotics/darknet_ros.git
-$ cd ../
-$ catkin build darknet_ros -DCMAKE_BUILD_TYPE=Release
-$ catkin build darknet_ros --no-deps --verbose --catkin-make-args run_tests
-$ catkin build
-```
-
-To run it use the following:
-```
-$ source ./devel/setup.zsh
-$ roslaunch controller main.launch
+$ catkin build -DCMAKE_BUILD_TYPE=Release
 ```
 
 
-# Making CV_Bridge work with Python3
 
-You have to do the following. Note you need to change the catkin config command to include the python version you are using. so for example I am using python3.6.9 so I ran the command python3.6m
-You also need to change the ros version to melodic in the grep command
 
-```
-# `python-catkin-tools` is needed for catkin tool
-# `python3-dev` and `python3-catkin-pkg-modules` is needed to build cv_bridge
-# `python3-numpy` and `python3-yaml` is cv_bridge dependencies
-# `ros-kinetic-cv-bridge` is needed to install a lot of cv_bridge deps. Probaply you already have it installed.
-sudo apt-get install python-catkin-tools python3-dev python3-catkin-pkg-modules python3-numpy python3-yaml ros-kinetic-cv-bridge
-# Create catkin workspace
-mkdir catkin_workspace
-cd catkin_workspace
-catkin init
-# Instruct catkin to set cmake variables
-catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.5m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.5m.so
-# Instruct catkin to install built packages into install place. It is $CATKIN_WORKSPACE/install folder
-catkin config --install
-# Clone cv_bridge src
-git clone https://github.com/ros-perception/vision_opencv.git src/vision_opencv
-# Find version of cv_bridge in your repository
-apt-cache show ros-kinetic-cv-bridge | grep Version
-    Version: 1.12.8-0xenial-20180416-143935-0800
-# Checkout right version in git repo. In our case it is 1.12.8
-cd src/vision_opencv/
-git checkout 1.12.8
-cd ../../
-# Build
-catkin build cv_bridge
-# Extend environment with new package
-source install/setup.bash --extend
-```
 
-I also needed to use catkin config --no-install
+
+
+
+
+
+
+
+
+
+
+
 
 
 

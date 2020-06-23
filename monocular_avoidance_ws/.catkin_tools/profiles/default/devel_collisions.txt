@@ -1,1 +1,0 @@
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/./cmake.lock 123

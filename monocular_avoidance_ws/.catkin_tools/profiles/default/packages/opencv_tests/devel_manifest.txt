@@ -1,5 +1,0 @@
-vision_opencv/opencv_tests
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/opencv_tests/cmake.lock /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/./cmake.lock
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/opencv_tests/share/opencv_tests/cmake/opencv_testsConfig-version.cmake /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/share/opencv_tests/cmake/opencv_testsConfig-version.cmake
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/opencv_tests/share/opencv_tests/cmake/opencv_testsConfig.cmake /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/share/opencv_tests/cmake/opencv_testsConfig.cmake
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/opencv_tests/lib/pkgconfig/opencv_tests.pc /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/lib/pkgconfig/opencv_tests.pc

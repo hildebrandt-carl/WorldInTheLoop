@@ -1,7 +1,0 @@
-darknet_ros/darknet_ros
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/darknet_ros/cmake.lock /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/./cmake.lock
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/darknet_ros/share/darknet_ros/cmake/darknet_rosConfig-version.cmake /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/share/darknet_ros/cmake/darknet_rosConfig-version.cmake
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/darknet_ros/share/darknet_ros/cmake/darknet_rosConfig.cmake /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/share/darknet_ros/cmake/darknet_rosConfig.cmake
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/darknet_ros/lib/libdarknet_ros_lib.so /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/lib/libdarknet_ros_lib.so
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/darknet_ros/lib/darknet_ros/darknet_ros /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/lib/darknet_ros/darknet_ros
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/darknet_ros/lib/pkgconfig/darknet_ros.pc /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/lib/pkgconfig/darknet_ros.pc

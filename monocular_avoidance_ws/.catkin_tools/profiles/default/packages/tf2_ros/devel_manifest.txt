@@ -1,9 +1,0 @@
-geometry2/tf2_ros
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/tf2_ros/cmake.lock /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/./cmake.lock
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/tf2_ros/share/tf2_ros/cmake/tf2_rosConfig-version.cmake /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/share/tf2_ros/cmake/tf2_rosConfig-version.cmake
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/tf2_ros/share/tf2_ros/cmake/tf2_rosConfig.cmake /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/share/tf2_ros/cmake/tf2_rosConfig.cmake
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/tf2_ros/lib/libtf2_ros.so /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/lib/libtf2_ros.so
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/tf2_ros/lib/tf2_ros/buffer_server /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/lib/tf2_ros/buffer_server
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/tf2_ros/lib/tf2_ros/static_transform_publisher /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/lib/tf2_ros/static_transform_publisher
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/tf2_ros/lib/python3/dist-packages/tf2_ros/__init__.py /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/lib/python3/dist-packages/tf2_ros/__init__.py
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/tf2_ros/lib/pkgconfig/tf2_ros.pc /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/lib/pkgconfig/tf2_ros.pc

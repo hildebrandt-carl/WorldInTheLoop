@@ -1,6 +1,6 @@
 <package format="2">
   <name>image_geometry</name>
-  <version>1.13.0</version>
+  <version>1.12.8</version>
   <description>
     `image_geometry` contains C++ and Python libraries for interpreting images
     geometrically. It interfaces the calibration parameters in sensor_msgs/CameraInfo
@@ -16,13 +16,12 @@
     <rosdoc config="rosdoc.yaml" />
   </export>
 
-  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
 
-  <build_depend>libopencv-dev</build_depend>
+  <build_depend>opencv3</build_depend>
   <build_depend>sensor_msgs</build_depend>
 
-  <exec_depend>libopencv-dev</exec_depend>
-  <build_export_depend>libopencv-dev</build_export_depend>
+  <exec_depend>opencv3</exec_depend>
   <build_export_depend>sensor_msgs</build_export_depend>
 
   <doc_depend>dvipng</doc_depend>

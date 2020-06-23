@@ -1,7 +1,0 @@
-gazebo_ros_pkgs/gazebo_ros_control
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/gazebo_ros_control/cmake.lock /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/./cmake.lock
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/gazebo_ros_control/share/gazebo_ros_control/cmake/gazebo_ros_controlConfig-version.cmake /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/share/gazebo_ros_control/cmake/gazebo_ros_controlConfig-version.cmake
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/gazebo_ros_control/share/gazebo_ros_control/cmake/gazebo_ros_controlConfig.cmake /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/share/gazebo_ros_control/cmake/gazebo_ros_controlConfig.cmake
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/gazebo_ros_control/lib/libdefault_robot_hw_sim.so /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/lib/libdefault_robot_hw_sim.so
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/gazebo_ros_control/lib/libgazebo_ros_control.so /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/lib/libgazebo_ros_control.so
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/.private/gazebo_ros_control/lib/pkgconfig/gazebo_ros_control.pc /home/carl/MixedReality/monocular_avoidance/catkin_ws/devel/lib/pkgconfig/gazebo_ros_control.pc
