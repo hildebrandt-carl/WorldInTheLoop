@@ -1,1 +1,6 @@
 .catkin_tools/
+monocular_avoidance_ws/build/
+monocular_avoidance_ws/devel/
+monocular_avoidance_ws/logs/
+__pycache__
+

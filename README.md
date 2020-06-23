@@ -28,6 +28,12 @@ $ sudo apt-get update
 $ sudo apt-get install ros-kinetic-desktop-full
 ```
 
+Update Rosdep
+```
+$ sudo rosdep init
+$ rosdep update
+```
+
 Add the commands to your shell. I personally use ZSH, thus to add ROS to your shell you can run the following command:
 ```
 $ echo "source /opt/ros/kinetic/setup.zsh" >> ~/.zshrc
@@ -156,11 +162,12 @@ source ~/code/parrot-groundsdk/olympe_custom_env.sh
 
 We need to install a bunch of dependencies for CV_Bridge. You can install then using:
 ```
-$ sudo apt-get install python-catkin-tools python3-dev python3-catkin-pkg-modules python3-numpy python3-yaml ros-kinetic-cv-bridge
+$ sudo apt-get install python-catkin-tools python3-dev python3-catkin-pkg-modules python3-numpy python3-yaml ros-kinetic-cv-bridge python3-catkin-pkg-modules python3-rospkg-modules python3-empy
 ```
 
 **Note:** For Ubunut 16.04 I had to make changes to the file `src/vision_opencv/cv_bridge/CMakeLists.txt`. I did the following:
 ```
+...
 if(NOT ANDROID)
   find_package(PythonLibs)
   if(PYTHONLIBS_VERSION_STRING VERSION_LESS 3)
@@ -171,6 +178,7 @@ if(NOT ANDROID)
     find_package(Boost REQUIRED python-py35)
   endif()
 else()
+...
 ```
 
 # Executing
@@ -205,14 +213,48 @@ $ catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/i
 $ catkin config --no-install
 ```
 
+Make sure we have all the correct dependencies:
+```
+$ cd ~/MixedRealityTesting/monocular_avoidance_ws
+$ rosdep install --from-paths src --ignore-src -r -y
+```
+
 We are now ready to build. We can do that using
 ```
 $ catkin build -DCMAKE_BUILD_TYPE=Release
 ```
 
+## Putting everything together
+
+Finally lets test the avoidance demo. To do that you will need to open two terminals and run the following commands in each:
+
+Terminal 1:
+```
+$ sudo systemctl start firmwared.service
+$ cd ~/MixedRealityTesting/monocular_avoidance_ws/simulator_launch_scripts
+$ ./simulation.sh
+```
+
+Terminal 2:
+```
+$ source ~/code/parrot-groundsdk/olympe_custom_env.sh
+$ cd ~/Desktop/MixedRealityTesting/monocular_avoidance_ws
+$ source devel/setup.zsh
+```
 
 
 
+
+
+
+
+
+
+
+
+
+
+# Ignore from this point
 
 
 
@@ -229,6 +271,8 @@ $ catkin build -DCMAKE_BUILD_TYPE=Release
 
 
 # Installing CUDA
+
+**Note:** These instructions are tested on Ubuntu 18.04 and not Ubuntu 16.04.
 
 You can install Cuda using the following commands:
 Add NVIDIA package repositories
@@ -296,30 +340,6 @@ catkin build
 ```
 
 
-# Installing TF2 packages for Python3
-
-Start by installing the dependencies
-```
-sudo apt update
-sudo apt install python3-catkin-pkg-modules python3-rospkg-modules python3-empy
-```
-
-download the source code
-```
-mkdir -p ~/catkin_ws/src; cd ~/catkin_ws
-catkin_make
-source devel/setup.bash
-wstool init
-wstool set -y src/geometry2 --git https://github.com/ros/geometry2 -v 0.6.5
-wstool up
-rosdep install --from-paths src --ignore-src -y -r
-```
-
-Build the file
-```
-catkin build
-```
-
 
 
 # installing requirements to create your own pluging for sphinx
@@ -341,7 +361,12 @@ sudo apt-get install gazebo7
 sudo apt-get install libgazebo7-dev
 ```
 
+
+
 # Creating a plugin
+
+
+
 
 
 # Running the software
