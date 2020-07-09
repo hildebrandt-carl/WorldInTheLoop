@@ -81,6 +81,7 @@ class UnityRosConnection():
             # Wait for a message from Unity
             message = self.socket.recv()
             data = json.loads(message)
+            # data = message
             img_bytes = np.array(data["image"], dtype=np.uint8)
 
             # Get the image
