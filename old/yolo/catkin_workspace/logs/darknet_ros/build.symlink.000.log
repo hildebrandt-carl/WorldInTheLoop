@@ -1,0 +1,24 @@
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/darknet_ros/cmake/darknet_rosConfig.cmake
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/darknet_ros/cmake/darknet_rosConfig-version.cmake
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/libdarknet_ros_lib.so
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/pkgconfig/darknet_ros.pc
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/darknet_ros/darknet_ros
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros/cmake.lock, /home/parallels/MixedReality/catkin_workspace/devel/./cmake.lock)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros/share/darknet_ros/cmake/darknet_rosConfig.cmake, /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros/cmake/darknet_rosConfig.cmake)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros/share/darknet_ros/cmake/darknet_rosConfig-version.cmake, /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros/cmake/darknet_rosConfig-version.cmake)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros/lib/libdarknet_ros_lib.so, /home/parallels/MixedReality/catkin_workspace/devel/lib/libdarknet_ros_lib.so)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros/lib/pkgconfig/darknet_ros.pc, /home/parallels/MixedReality/catkin_workspace/devel/lib/pkgconfig/darknet_ros.pc)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros/lib/darknet_ros/darknet_ros, /home/parallels/MixedReality/catkin_workspace/devel/lib/darknet_ros/darknet_ros)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros/lib/darknet_ros/darknet_ros_object_detection-test, /home/parallels/MixedReality/catkin_workspace/devel/lib/darknet_ros/darknet_ros_object_detection-test)
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros/cmake/darknet_rosConfig.cmake
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros/cmake/darknet_rosConfig-version.cmake
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/lib/libdarknet_ros_lib.so
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/lib/pkgconfig/darknet_ros.pc
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/lib/darknet_ros/darknet_ros
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/lib/darknet_ros/darknet_ros_object_detection-test
+Already unlinked: {}

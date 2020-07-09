@@ -1,0 +1,13 @@
+[35m[1mScanning dependencies of target video_stream_node[0m
+[35m[1mScanning dependencies of target video_stream_opencv_gencfg[0m
+[ 20%] [34m[1mGenerating dynamic reconfigure files from cfg/VideoStream.cfg: /home/parallels/MixedReality/yolo/catkin_workspace/devel/.private/video_stream_opencv/include/video_stream_opencv/VideoStreamConfig.h /home/parallels/MixedReality/yolo/catkin_workspace/devel/.private/video_stream_opencv/lib/python2.7/dist-packages/video_stream_opencv/cfg/VideoStreamConfig.py[0m
+[ 40%] [32mBuilding CXX object CMakeFiles/video_stream_node.dir/src/video_stream_node.cpp.o[0m
+Generating reconfiguration files for VideoStream in video_stream_opencv
+Wrote header file in /home/parallels/MixedReality/yolo/catkin_workspace/devel/.private/video_stream_opencv/include/video_stream_opencv/VideoStreamConfig.h
+[ 40%] Built target video_stream_opencv_gencfg
+[35m[1mScanning dependencies of target video_stream_opencv[0m
+[ 60%] [32mBuilding CXX object CMakeFiles/video_stream_opencv.dir/src/video_stream.cpp.o[0m
+[ 80%] [32m[1mLinking CXX executable /home/parallels/MixedReality/yolo/catkin_workspace/devel/.private/video_stream_opencv/lib/video_stream_opencv/video_stream[0m
+[ 80%] Built target video_stream_node
+[100%] [32m[1mLinking CXX shared library /home/parallels/MixedReality/yolo/catkin_workspace/devel/.private/video_stream_opencv/lib/libvideo_stream_opencv.so[0m
+[100%] Built target video_stream_opencv

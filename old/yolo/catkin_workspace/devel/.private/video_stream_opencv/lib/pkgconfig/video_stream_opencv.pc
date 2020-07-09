@@ -1,0 +1,8 @@
+prefix=/home/parallels/MixedReality/yolo/catkin_workspace/devel/.private/video_stream_opencv
+
+Name: video_stream_opencv
+Description: Description of video_stream_opencv
+Version: 1.1.5
+Cflags: -I/home/parallels/MixedReality/yolo/catkin_workspace/devel/.private/video_stream_opencv/include
+Libs: -L${prefix}/lib 
+Requires: 

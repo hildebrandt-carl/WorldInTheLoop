@@ -1,0 +1,8 @@
+prefix=/home/parallels/MixedReality/yolo/catkin_workspace/devel/.private/controller
+
+Name: controller
+Description: Description of controller
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

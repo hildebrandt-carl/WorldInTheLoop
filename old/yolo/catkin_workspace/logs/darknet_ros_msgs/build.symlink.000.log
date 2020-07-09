@@ -1,0 +1,317 @@
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/include/darknet_ros_msgs/BoundingBox.h
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsActionResult.h
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsGoal.h
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/include/darknet_ros_msgs/BoundingBoxes.h
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsAction.h
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsActionGoal.h
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/include/darknet_ros_msgs/ObjectCount.h
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsResult.h
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsFeedback.h
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsActionFeedback.h
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/darknet_ros_msgs/cmake/darknet_ros_msgs-msg-paths.cmake
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/darknet_ros_msgs/cmake/darknet_ros_msgsConfig.cmake
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/darknet_ros_msgs/cmake/darknet_ros_msgsConfig-version.cmake
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/darknet_ros_msgs/cmake/darknet_ros_msgs-msg-extras.cmake
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsActionResult.msg
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsActionFeedback.msg
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsResult.msg
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsActionGoal.msg
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsGoal.msg
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsAction.msg
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsFeedback.msg
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/ObjectCount.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsResult.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsAction.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsGoal.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/BoundingBox.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsFeedback.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/darknet_ros_msgs-msg.asd
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsResult.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_BoundingBoxes.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsActionFeedback.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsFeedback.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsGoal.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsActionResult.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsActionFeedback.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_ObjectCount.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsActionGoal.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsActionResult.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_BoundingBox.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsActionGoal.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/BoundingBoxes.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsAction.lisp
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/manifest.l
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsGoal.l
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/BoundingBoxes.l
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsAction.l
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsResult.l
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/ObjectCount.l
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsActionResult.l
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsActionGoal.l
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsFeedback.l
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsActionFeedback.l
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/BoundingBox.l
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/_index.js
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsGoal.js
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsFeedback.js
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsAction.js
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/BoundingBox.js
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsActionResult.js
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/ObjectCount.js
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsActionGoal.js
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/BoundingBoxes.js
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsActionFeedback.js
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/_index.js
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsResult.js
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/pkgconfig/darknet_ros_msgs.pc
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/__init__.py
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsActionGoal.py
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/__init__.py
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_BoundingBoxes.py
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsResult.py
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_BoundingBox.py
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsFeedback.py
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_ObjectCount.py
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsAction.py
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsGoal.py
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsActionFeedback.py
+Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsActionResult.py
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/cmake.lock, /home/parallels/MixedReality/catkin_workspace/devel/./cmake.lock)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/include/darknet_ros_msgs/BoundingBox.h, /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/BoundingBox.h)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/include/darknet_ros_msgs/CheckForObjectsActionResult.h, /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsActionResult.h)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/include/darknet_ros_msgs/CheckForObjectsGoal.h, /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsGoal.h)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/include/darknet_ros_msgs/BoundingBoxes.h, /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/BoundingBoxes.h)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/include/darknet_ros_msgs/CheckForObjectsAction.h, /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsAction.h)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/include/darknet_ros_msgs/CheckForObjectsActionGoal.h, /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsActionGoal.h)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/include/darknet_ros_msgs/ObjectCount.h, /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/ObjectCount.h)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/include/darknet_ros_msgs/CheckForObjectsResult.h, /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsResult.h)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/include/darknet_ros_msgs/CheckForObjectsFeedback.h, /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsFeedback.h)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/include/darknet_ros_msgs/CheckForObjectsActionFeedback.h, /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsActionFeedback.h)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/darknet_ros_msgs/cmake/darknet_ros_msgs-msg-paths.cmake, /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/cmake/darknet_ros_msgs-msg-paths.cmake)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/darknet_ros_msgs/cmake/darknet_ros_msgsConfig.cmake, /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/cmake/darknet_ros_msgsConfig.cmake)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/darknet_ros_msgs/cmake/darknet_ros_msgsConfig-version.cmake, /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/cmake/darknet_ros_msgsConfig-version.cmake)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/darknet_ros_msgs/cmake/darknet_ros_msgs-msg-extras.cmake, /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/cmake/darknet_ros_msgs-msg-extras.cmake)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/darknet_ros_msgs/msg/CheckForObjectsActionResult.msg, /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsActionResult.msg)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/darknet_ros_msgs/msg/CheckForObjectsActionFeedback.msg, /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsActionFeedback.msg)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/darknet_ros_msgs/msg/CheckForObjectsResult.msg, /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsResult.msg)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/darknet_ros_msgs/msg/CheckForObjectsActionGoal.msg, /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsActionGoal.msg)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/darknet_ros_msgs/msg/CheckForObjectsGoal.msg, /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsGoal.msg)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/darknet_ros_msgs/msg/CheckForObjectsAction.msg, /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsAction.msg)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/darknet_ros_msgs/msg/CheckForObjectsFeedback.msg, /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsFeedback.msg)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/ObjectCount.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/ObjectCount.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsResult.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsResult.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsAction.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsAction.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsGoal.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsGoal.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/BoundingBox.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/BoundingBox.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsFeedback.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsFeedback.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/darknet_ros_msgs-msg.asd, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/darknet_ros_msgs-msg.asd)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsResult.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsResult.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/_package_BoundingBoxes.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_BoundingBoxes.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsActionFeedback.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsActionFeedback.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsFeedback.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsFeedback.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsGoal.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsGoal.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsActionResult.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsActionResult.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsActionFeedback.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsActionFeedback.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/_package.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/_package_ObjectCount.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_ObjectCount.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsActionGoal.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsActionGoal.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsActionResult.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsActionResult.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/_package_BoundingBox.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_BoundingBox.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsActionGoal.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsActionGoal.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/BoundingBoxes.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/BoundingBoxes.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsAction.lisp, /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsAction.lisp)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/roseus/ros/darknet_ros_msgs/manifest.l, /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/manifest.l)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsGoal.l, /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsGoal.l)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/roseus/ros/darknet_ros_msgs/msg/BoundingBoxes.l, /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/BoundingBoxes.l)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsAction.l, /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsAction.l)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsResult.l, /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsResult.l)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/roseus/ros/darknet_ros_msgs/msg/ObjectCount.l, /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/ObjectCount.l)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsActionResult.l, /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsActionResult.l)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsActionGoal.l, /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsActionGoal.l)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsFeedback.l, /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsFeedback.l)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsActionFeedback.l, /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsActionFeedback.l)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/roseus/ros/darknet_ros_msgs/msg/BoundingBox.l, /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/BoundingBox.l)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/gennodejs/ros/darknet_ros_msgs/_index.js, /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/_index.js)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsGoal.js, /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsGoal.js)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsFeedback.js, /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsFeedback.js)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsAction.js, /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsAction.js)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/gennodejs/ros/darknet_ros_msgs/msg/BoundingBox.js, /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/BoundingBox.js)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsActionResult.js, /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsActionResult.js)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/gennodejs/ros/darknet_ros_msgs/msg/ObjectCount.js, /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/ObjectCount.js)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsActionGoal.js, /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsActionGoal.js)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/gennodejs/ros/darknet_ros_msgs/msg/BoundingBoxes.js, /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/BoundingBoxes.js)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsActionFeedback.js, /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsActionFeedback.js)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/gennodejs/ros/darknet_ros_msgs/msg/_index.js, /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/_index.js)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsResult.js, /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsResult.js)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/lib/pkgconfig/darknet_ros_msgs.pc, /home/parallels/MixedReality/catkin_workspace/devel/lib/pkgconfig/darknet_ros_msgs.pc)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/lib/python2.7/dist-packages/darknet_ros_msgs/__init__.py, /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/__init__.py)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsActionGoal.py, /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsActionGoal.py)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/lib/python2.7/dist-packages/darknet_ros_msgs/msg/__init__.py, /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/__init__.py)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_BoundingBoxes.py, /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_BoundingBoxes.py)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsResult.py, /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsResult.py)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_BoundingBox.py, /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_BoundingBox.py)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsFeedback.py, /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsFeedback.py)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_ObjectCount.py, /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_ObjectCount.py)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsAction.py, /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsAction.py)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsGoal.py, /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsGoal.py)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsActionFeedback.py, /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsActionFeedback.py)
+Cleaning: (/home/parallels/MixedReality/catkin_workspace/devel/.private/darknet_ros_msgs/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsActionResult.py, /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsActionResult.py)
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/BoundingBox.h
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsActionResult.h
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsGoal.h
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/BoundingBoxes.h
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsAction.h
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsActionGoal.h
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/ObjectCount.h
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsResult.h
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsFeedback.h
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/include/darknet_ros_msgs/CheckForObjectsActionFeedback.h
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/cmake/darknet_ros_msgs-msg-paths.cmake
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/cmake/darknet_ros_msgsConfig.cmake
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/cmake/darknet_ros_msgsConfig-version.cmake
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/cmake/darknet_ros_msgs-msg-extras.cmake
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsActionResult.msg
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsActionFeedback.msg
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsResult.msg
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsActionGoal.msg
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsGoal.msg
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsAction.msg
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/darknet_ros_msgs/msg/CheckForObjectsFeedback.msg
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/ObjectCount.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsResult.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsAction.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsGoal.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/BoundingBox.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsFeedback.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/darknet_ros_msgs-msg.asd
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsResult.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_BoundingBoxes.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsActionFeedback.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsFeedback.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsGoal.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsActionResult.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsActionFeedback.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_ObjectCount.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsActionGoal.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/CheckForObjectsActionResult.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_BoundingBox.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsActionGoal.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/BoundingBoxes.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/common-lisp/ros/darknet_ros_msgs/msg/_package_CheckForObjectsAction.lisp
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/manifest.l
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsGoal.l
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/BoundingBoxes.l
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsAction.l
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsResult.l
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/ObjectCount.l
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsActionResult.l
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsActionGoal.l
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsFeedback.l
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/CheckForObjectsActionFeedback.l
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/roseus/ros/darknet_ros_msgs/msg/BoundingBox.l
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/_index.js
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsGoal.js
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsFeedback.js
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsAction.js
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/BoundingBox.js
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsActionResult.js
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/ObjectCount.js
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsActionGoal.js
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/BoundingBoxes.js
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsActionFeedback.js
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/_index.js
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/share/gennodejs/ros/darknet_ros_msgs/msg/CheckForObjectsResult.js
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/lib/pkgconfig/darknet_ros_msgs.pc
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/__init__.py
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsActionGoal.py
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/__init__.py
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_BoundingBoxes.py
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsResult.py
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_BoundingBox.py
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsFeedback.py
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_ObjectCount.py
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsAction.py
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsGoal.py
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsActionFeedback.py
+Already unlinked: {}
+Unlinking: /home/parallels/MixedReality/catkin_workspace/devel/lib/python2.7/dist-packages/darknet_ros_msgs/msg/_CheckForObjectsActionResult.py
+Already unlinked: {}

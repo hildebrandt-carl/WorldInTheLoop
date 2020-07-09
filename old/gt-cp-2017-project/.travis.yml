@@ -1,0 +1,22 @@
+language: python
+python:
+  - "2.7"
+cache: pip
+install:
+  - pip install -r requirements.txt
+script:
+  - python visual_looming/test.py
+before_script:
+  # update aptitude
+  - sudo apt-get update
+  - sudo apt-get install -y python-opencv python-scipy python-numpy
+
+  # help python importing cv and/or cv2
+  - export PYTHONPATH=$PYTHONPATH:/usr/lib/pymodules/python2.7
+
+  # verify all requirements were met
+  - INSTALLDIR=$(python -c "import os; import numpy; import cv; import cv2; print(os.path.dirname(cv2.__file__))")
+
+  # sudo apt-get install libopencv-dev python-opencv libblas-dev liblapack-dev
+  # sudo apt-get update
+  #export PYTHONPATH=$PYTHONPATH:/usr/lib/python2.7/site-packages

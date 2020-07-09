@@ -4,3 +4,5 @@ monocular_avoidance_ws/devel/
 monocular_avoidance_ws/logs/
 __pycache__
 
+*.weights
+*.x86_64

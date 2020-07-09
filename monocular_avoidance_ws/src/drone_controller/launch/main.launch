@@ -2,16 +2,15 @@
 
 <launch>
 
-    <node pkg="drone_controller" name="main_drone_node" type="main_drone.py" output="screen"> 
-    </node>
-    <node pkg="drone_controller" name="second_drone_node" type="second_drone.py" output="screen"> 
-    </node>
-    <node pkg="drone_controller" name="avoidance_node" type="avoidance.py" output="screen">
-    </node> 
+  <node pkg="drone_controller" name="main_drone_node" type="main_drone.py" output="screen"> 
+  </node>
+  <node pkg="drone_controller" name="second_drone_node" type="second_drone.py" output="screen"> 
+  </node>
+  <node pkg="drone_controller" name="avoidance_node" type="avoidance.py" output="screen">
+  </node> 
 
-    <node pkg="rqt_image_view" type="rqt_image_view" name="image_view_debug1" args="/uav1/sensor/camera" output="screen"/>
-    <node pkg="rqt_image_view" type="rqt_image_view" name="image_view_debug2" args="/darknet_ros/detection_image" output="screen"/>
-
+  <node pkg="rqt_image_view" type="rqt_image_view" name="image_view_debug1" args="/uav1/sensor/camera" output="screen"/>
+  <node pkg="rqt_image_view" type="rqt_image_view" name="image_view_debug2" args="/darknet_ros/detection_image" output="screen"/>
 
   <!-- Launch darknet ros -->
   <include file="$(find darknet_ros)/launch/darknet_ros.launch">
@@ -22,5 +21,20 @@
   <node pkg="drone_controller" name="program_controller_node" type="scenario_controller.py" output="screen">
   </node>
 
+  <node pkg="information_extraction" name="extract_position" type="simulation_information.py" output="screen">
+  </node>
 
+  <node pkg="unity_communication" name="UnityRosConnection1" type="UnityRosConnection.py" output="screen">
+    <param name="/port" type="int" value="5555" />
+    <param name="/position_topic_name" type="string" value="/ground_truth/uav1/pose" />
+    <param name="/image_topic_name" type="string" value="/uav1/unity_sensors/camera" />
+  </node>
+
+  <node pkg="unity_communication" name="UnityRosConnection2" type="UnityRosConnection.py" output="screen">
+    <param name="/port" type="int" value="5556" />
+    <param name="/position_topic_name" type="string" value="/ground_truth/uav2/pose" />
+  </node>
+
+  <node pkg="rqt_image_view" type="rqt_image_view" name="unity_view" args="/uav1/unity_sensors/camera" output="screen"/>
+  
 </launch>
