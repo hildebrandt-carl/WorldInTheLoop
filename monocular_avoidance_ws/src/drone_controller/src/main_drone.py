@@ -59,6 +59,9 @@ class MainDroneController:
         # Set the move goal
         self._movegoal = np.zeros(4, dtype=int)
 
+        # Get the IP address
+        self.simulated_param = rospy.get_param(rospy.get_name() + '/simulated_ip', True)
+
         # Init all the publishers and subscribers
         self.state_sub = rospy.Subscriber("uav1/input/state", Int16, self._setstate)
         self.move_sub = rospy.Subscriber("uav1/input/move", Move, self._setmove)
@@ -67,7 +70,10 @@ class MainDroneController:
         # Init the drone variables
         self.drone_speed = min([speed, 100])
         self.drone_mtime = min([refresh_move, 1]) # move time
-        self.drone = olympe.Drone(MainDroneController.SIMULATED_IP)
+        if self.simulated_param == True:
+            self.drone = olympe.Drone(MainDroneController.SIMULATED_IP)
+        else:
+            self.drone = olympe.Drone(MainDroneController.PHYSICAL_IP)
 
         # Create the bridge used to send the ROS message
         self.bridge = CvBridge()

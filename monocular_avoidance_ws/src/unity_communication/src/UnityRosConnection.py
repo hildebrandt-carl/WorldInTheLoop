@@ -25,8 +25,8 @@ class UnityRosConnection():
 
         # Getting the PID parameters
         port = rospy.get_param(rospy.get_name() + '/port', '5555')
-        self.pub_topic = rospy.get_param(rospy.get_name() + '/position_topic_name', "/ground_truth/uav1/pose")
-        self.img_topic = rospy.get_param(rospy.get_name() + '/image_topic_name', "")
+        self.pos_topic_name = rospy.get_param(rospy.get_name() + '/position_topic_name', "/ground_truth/uav1/pose")
+        self.img_topic_name = rospy.get_param(rospy.get_name() + '/image_topic_name', "")
 
         # Set the rate
         self.rate = 100.0
@@ -39,14 +39,14 @@ class UnityRosConnection():
         # Display incoming parameters
         rospy.loginfo(str(rospy.get_name()) + ": Launching with the following parameters:")
         rospy.loginfo(str(rospy.get_name()) + ": port - " + str(port))
-        rospy.loginfo(str(rospy.get_name()) + ": position topic name - " + str(self.pub_topic))
-        rospy.loginfo(str(rospy.get_name()) + ": image topic name - " + str(self.img_topic))
+        rospy.loginfo(str(rospy.get_name()) + ": position topic name - " + str(self.pos_topic_name))
+        rospy.loginfo(str(rospy.get_name()) + ": image topic name - " + str(self.img_topic_name))
         rospy.loginfo(str(rospy.get_name()) + ": rate - " + str(self.rate))
 
         # Publishers and Subscribers
-        self.pos_sub = rospy.Subscriber(self.pub_topic, PoseStamped , self.position_callback)
-        if self.img_topic != "":
-            self.img_pub = rospy.Publisher(self.img_topic, Image, queue_size=10)
+        self.pos_sub = rospy.Subscriber(self.pos_topic_name, PoseStamped , self.position_callback)
+        if self.img_topic_name != "":
+            self.img_pub = rospy.Publisher(self.img_topic_name, Image, queue_size=10)
 
         # Create the CV Bridge so we can publish images
         self.bridge = CvBridge()

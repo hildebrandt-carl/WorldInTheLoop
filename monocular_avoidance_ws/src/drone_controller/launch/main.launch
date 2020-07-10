@@ -3,8 +3,10 @@
 <launch>
 
   <node pkg="drone_controller" name="main_drone_node" type="main_drone.py" output="screen"> 
+    <param name="/simulated_ip" type="bool" value="False" />
   </node>
   <node pkg="drone_controller" name="second_drone_node" type="second_drone.py" output="screen"> 
+    <param name="/simulated_ip" type="bool" value="True" />
   </node>
   <node pkg="drone_controller" name="avoidance_node" type="avoidance.py" output="screen">
   </node> 

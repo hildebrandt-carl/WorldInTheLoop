@@ -43,11 +43,18 @@ class SecondDroneController:
         self._quit = False
         self._state = DroneState.INACTIVE
 
+        # Get the IP address
+        self.simulated_param = rospy.get_param(rospy.get_name() + '/simulated_ip', True)
+
         # Init all the publishers and subscribers
         self.state_sub = rospy.Subscriber("uav2/input/state", Int16, self._setstate)
 
         # Connect to the drone
-        self.drone = olympe.Drone(SecondDroneController.SIMULATED_IP)
+        if self.simulated_param == True:
+            self.drone = olympe.Drone(SecondDroneController.SIMULATED_IP)
+        else:
+            print(str(rospy.get_name()) + ": UNTESTED FEATURE BEING USED!")
+            self.drone = olympe.Drone(SecondDroneController.PHYSICAL_IP)
         self.drone.connection()
         time.sleep(0.5)
 
