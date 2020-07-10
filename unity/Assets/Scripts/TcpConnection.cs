@@ -51,9 +51,7 @@ public class TcpConnection : RunAbleThread
 
             while(Running)
             {
-                // Debug.Log("Sending Message");
                 RosUnityMsg msg = new RosUnityMsg();
-                // Debug.Log("Current Image: " + current_image);
                 msg.image = current_image.ToArray();
                 string msg_json = JsonUtility.ToJson(msg);
 

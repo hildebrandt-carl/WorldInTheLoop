@@ -98,9 +98,12 @@ class Avoidance:
         while not self._quit:
             if self._inavoidancemode:
                 # Calculate what the drones current points
-                area  = np.average(self.object_size_arr)
-                cen_x = np.average(self.object_center_x_arr)
-                cen_y = np.average(self.object_center_y_arr)
+                try:
+                    area  = np.average(self.object_size_arr)
+                    cen_x = np.average(self.object_center_x_arr)
+                    cen_y = np.average(self.object_center_y_arr)
+                except:
+                    continue
 
                 if movement_f is None:
                     movement_f = np.full(delay, area)
@@ -121,22 +124,30 @@ class Avoidance:
                 if movement_f[-1] * 1.1 < movement_f[0]:
                     moving_towards = True
                 
+                
                 if moving_towards:
-                    if movement_x[-1] < movement_x[0]:
-                        direction_x = -1
-                        direction_x_str = "right"
-                    else:
-                        direction_x = 1
-                        direction_x_str = "left"
-                    if movement_y[-1] < movement_y[0]:
-                        direction_y = -1
-                        direction_y_str = "up"
-                    else:
-                        direction_y = 1
-                        direction_y_str = "down"
+                    # if movement_x[-1] < movement_x[0]:
+                    #     direction_y = -1
+                    #     direction_y_str = "left"
+                    # else:
+                    #     direction_y = 1
+                    #     direction_y_str = "right"
+                    # if movement_y[-1] < movement_y[0]:
+                    #     direction_x = -1
+                    #     direction_x_str = "up"
+                    # else:
+                    #     direction_x = 1
+                    #     direction_x_str = "down"
+
+                    # Always move up for now
+                    direction_x = -1
+                    direction_x_str = "up"
+                    direction_y = 0
                     
                 if moving_towards:
-                    self._log("Object moving towards drone detected! Moving: " + str(direction_y_str) + ", " + str(direction_x_str))
+                    # self._log("Object moving towards drone detected! Moving: " + str(direction_y_str) + ", " + str(direction_x_str))
+                    self._log("Object moving towards drone detected! Moving: " + str(direction_x_str))
+
 
                 msg = Move()
                 msg.left_right = direction_y * 100

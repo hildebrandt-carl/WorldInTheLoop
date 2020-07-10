@@ -4,6 +4,10 @@ import zmq
 import json
 import cv2
 import math
+import time
+
+import matplotlib
+import matplotlib.pyplot as plt
 
 import numpy as np
 
@@ -52,8 +56,13 @@ class UnityRosConnection():
         self.socket = self.context.socket(zmq.REP)
         self.socket.bind("tcp://*:" + str(port))
 
+        # # Used to plot fps
+        # self.y = []
+        # self.average_fps = []
+
         # Run the communication node
         self.MainLoop()
+
 
     # This is the main loop of this class
     def MainLoop(self):
@@ -65,6 +74,8 @@ class UnityRosConnection():
 
         # While running
         while not rospy.is_shutdown():
+            # Start the timer
+            start = time.time()
 
             # Create the TCP message
             msg = {
@@ -102,6 +113,15 @@ class UnityRosConnection():
             msg_json = msg_json.encode('utf8') 
             self.socket.send(msg_json)
 
+            time_taken = time.time() - start
+            fps = 1.0 / time_taken
+            # print("Current FPS: {}".format(fps))         
+            # if len(self.average_fps) > 10:
+            #     self.average_fps[:-1]
+
+            # self.average_fps.append(fps)
+            # self.y.append(np.average(self.average_fps))
+
             # Sleep away any remaining time
             rate.sleep()
 
@@ -119,6 +139,14 @@ class UnityRosConnection():
     # Called on ROS shutdown
     def shutdown_sequence(self):
         rospy.loginfo(str(rospy.get_name()) + ": Shutting Down")
+        # fig = plt.figure()
+        # ax = plt.subplot(111)
+        # ax.plot(self.y)
+        # plt.title('Unity Editor - Camera Size(2048, 1536)')
+        # # plt.title('External - Camera Size(2048, 1536)')
+        # plt.xlabel('TCP Message')
+        # plt.ylabel('Average FPS (Window Size 10)')
+        # fig.savefig('/home/carl/Documents/results/example2.png')
 
 
 if __name__ == '__main__':

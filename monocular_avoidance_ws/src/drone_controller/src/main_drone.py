@@ -133,8 +133,8 @@ class MainDroneController:
         cv2frame = cv2.cvtColor(yuv_frame.as_ndarray(), cv2_cvt_color_flag)
 
         # Use OpenCV to show this frame
-        cv2.imshow("Olympe Streaming Example", cv2frame)
-        cv2.waitKey(1)  # please OpenCV for 1 ms...
+        # cv2.imshow("Olympe Streaming Example", cv2frame)
+        # cv2.waitKey(1)  # please OpenCV for 1 ms...
 
         # Send the image on ROS
         image_message = self.bridge.cv2_to_imgmsg(cv2frame, encoding="rgb8")

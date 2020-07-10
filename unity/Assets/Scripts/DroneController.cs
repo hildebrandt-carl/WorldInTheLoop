@@ -46,9 +46,10 @@ public class DroneController : MonoBehaviour
         // Wait for the render to complete
         yield return new WaitForEndOfFrame();
 
-        // RenderTexture rt = RenderTexture.GetTemporary(512, 384);
-        RenderTexture rt = RenderTexture.GetTemporary(768, 576);
+        RenderTexture rt = RenderTexture.GetTemporary(512, 384);
+        // RenderTexture rt = RenderTexture.GetTemporary(768, 576);
         // RenderTexture rt = RenderTexture.GetTemporary(1024, 768);
+        // RenderTexture rt = RenderTexture.GetTemporary(2048, 1536);
 
         // Render to RenderTexture
         droneCamera.targetTexture = rt;
