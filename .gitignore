@@ -9,3 +9,5 @@ __pycache__
 
 Artifacts/
 Temp/
+
+*.bag
