@@ -5,6 +5,7 @@ from random import random
 from time import sleep
 from enum import Enum
 from std_msgs.msg import Int16
+from std_msgs.msg import Float64
 from sensor_msgs.msg import Image
 from drone_controller.msg import Move
 
@@ -20,6 +21,7 @@ import numpy as np
 from olympe.messages.ardrone3.GPSSettingsState import GPSFixStateChanged
 from olympe.messages.ardrone3.Piloting import TakeOff, Landing
 from olympe.messages.ardrone3.PilotingState import FlyingStateChanged
+from olympe.messages.ardrone3.PilotingState import AltitudeChanged
 import olympe
 
 
@@ -62,10 +64,16 @@ class MainDroneController:
         # Get the IP address
         self.simulated_param = rospy.get_param(rospy.get_name() + '/simulated_ip', True)
 
+        if self.simulated_param == True:
+            publish_topic_base = "/uav1/simulated_sensors/"
+        else:
+            publish_topic_base = "/uav1/physical_sensors/"
+
         # Init all the publishers and subscribers
-        self.state_sub = rospy.Subscriber("uav1/input/state", Int16, self._setstate)
-        self.move_sub = rospy.Subscriber("uav1/input/move", Move, self._setmove)
-        self.camera_pub = rospy.Publisher("uav1/sensor/camera", Image, queue_size=10)
+        self.state_sub = rospy.Subscriber("/uav1/input/state", Int16, self._setstate)
+        self.move_sub = rospy.Subscriber("/uav1/input/move", Move, self._setmove)
+        self.camera_pub = rospy.Publisher(publish_topic_base + "camera", Image, queue_size=10)
+        self.altitude_pub = rospy.Publisher(publish_topic_base + "altitude", Float64, queue_size=10)
 
         # Init the drone variables
         self.drone_speed = min([speed, 100])
@@ -195,17 +203,21 @@ class MainDroneController:
         self._close_conn()  # closes the connection
 
     def _takeoff(self):
+        # self.drone(
+        #     FlyingStateChanged(state="hovering", _policy="check")
+        #     | FlyingStateChanged(state="flying", _policy="check")
+        #     | (
+        #         GPSFixStateChanged(fixed=1, _timeout=5, _policy="check_wait")
+        #         >> (
+        #             TakeOff(_no_expect=True)
+        #             & FlyingStateChanged(
+        #                 state="hovering", _timeout=5, _policy="check_wait")
+        #         )
+        #     )
+        # ).wait()
         self.drone(
-            FlyingStateChanged(state="hovering", _policy="check")
-            | FlyingStateChanged(state="flying", _policy="check")
-            | (
-                GPSFixStateChanged(fixed=1, _timeout=5, _policy="check_wait")
-                >> (
-                    TakeOff(_no_expect=True)
-                    & FlyingStateChanged(
-                        state="hovering", _timeout=5, _policy="check_wait")
-                )
-            )
+            TakeOff(_no_expect=True)
+            & FlyingStateChanged(state="hovering", _timeout=5, _policy="check_wait")
         ).wait()
 
     def _land(self):
@@ -230,6 +242,12 @@ class MainDroneController:
             left_right, -front_back, yawl_yawr, -up_down,
             self.drone_mtime
         )
+
+        # Get the current altitude
+        altitude_dict = self.drone.get_state(AltitudeChanged)
+        alt = Float64()
+        alt.data = altitude_dict['altitude']
+        self.altitude_pub.publish(alt)
 
 
 if __name__ == "__main__":

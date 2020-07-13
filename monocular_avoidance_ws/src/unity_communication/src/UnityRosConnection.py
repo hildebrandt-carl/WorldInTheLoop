@@ -96,7 +96,7 @@ class UnityRosConnection():
             img_bytes = np.array(data["image"], dtype=np.uint8)
 
             # Get the image
-            if img_bytes.size > 1 and self.img_topic != "":
+            if img_bytes.size > 1 and self.img_topic_name != "":
                 img_np = cv2.imdecode(img_bytes, cv2.IMREAD_COLOR)
 
                 # Convert he image to a msg
