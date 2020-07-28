@@ -1,1 +1,2 @@
+camera_notused: '/uav1/unity_sensors/camera'
 camera: '/uav1/simulated_sensors/camera'

@@ -3,11 +3,11 @@
 from __future__ import print_function, absolute_import
 from random import random
 from time import sleep
-from enum import Enum
 from std_msgs.msg import Int16
 from std_msgs.msg import Float64
 from sensor_msgs.msg import Image
 from drone_controller.msg import Move
+from utility import DroneState
 
 import threading
 import pygame
@@ -23,15 +23,6 @@ from olympe.messages.ardrone3.Piloting import TakeOff, Landing
 from olympe.messages.ardrone3.PilotingState import FlyingStateChanged
 from olympe.messages.ardrone3.PilotingState import AltitudeChanged
 import olympe
-
-
-
-class DroneState(Enum):
-    INACTIVE    = 0
-    TAKEOFF     = 1
-    HOVERING    = 2
-    AVOIDING    = 3
-    LANDING     = 4
 
 
 class MainDroneController:
@@ -192,6 +183,13 @@ class MainDroneController:
             elif self._state == DroneState.AVOIDING:
                 if previous_state != self._state:
                     self._log("Obstacle Avoidance Initiated")
+                    previous_state = self._state
+                self._move(self._movegoal[0], self._movegoal[1], self._movegoal[2], self._movegoal[3])
+
+            # Navigation state
+            elif self._state == DroneState.GATENAVIGATION:
+                if previous_state != self._state:
+                    self._log("Gate Navigation Initiated")
                     previous_state = self._state
                 self._move(self._movegoal[0], self._movegoal[1], self._movegoal[2], self._movegoal[3])
 

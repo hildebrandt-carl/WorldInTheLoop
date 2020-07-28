@@ -7,6 +7,7 @@ from std_msgs.msg import Int16
 from drone_controller.msg import Move
 from darknet_ros_msgs.msg import BoundingBoxes
 import numpy as np
+from utility import DroneState
 
 import sys
 import rospy
@@ -41,7 +42,7 @@ class Avoidance:
 
         # Init all the publishers and subscribers
         self.move_pub = rospy.Publisher("uav1/input/move", Move, queue_size=10)
-        self.avoidance_sub = rospy.Subscriber("uav1/input/state", Int16, self._setstate)
+        self.drone_state_sub = rospy.Subscriber("uav1/input/state", Int16, self._getstate)
         # self.image_sub = rospy.Subscriber("darknet_ros/detection_image", Image, self._getimagedetails)
         self.bounding_sub = rospy.Subscriber("darknet_ros/bounding_boxes", BoundingBoxes, self._getbounding)
 
@@ -51,13 +52,15 @@ class Avoidance:
     def stop(self):
         self._quit = True
 
-    def _setstate(self, msg):
-        if msg.data == 3:
+    def _getstate(self, msg):
+        if msg.data == DroneState.AVOIDING.value:
             self._inavoidancemode = True
 
     def _getbounding(self, msg):
         for box in msg.bounding_boxes:
+            # If it is an airplane
             if box.id == 4:
+            # if box.id is not None:
                 len_side_x = box.xmax - box.xmin
                 len_side_y = box.ymax - box.ymin
 
@@ -77,11 +80,6 @@ class Avoidance:
                     self.object_center_x_arr[0] = obj_centre_x
                     self.object_center_y_arr[0] = obj_centre_y
                     self.object_size_arr[0] = obj_area
-                
-
-    def _setstate(self, msg):
-        if msg.data == 3:
-            self._inavoidancemode = True
 
     def _log(self, msg):
         print(str(rospy.get_name()) + ": " + str(msg))
