@@ -137,27 +137,30 @@ class GateNavigation:
 
                 percentage_updown       = (cen_x - self.camera_center_x) / self.camera_center_x
                 percentage_leftright    = (cen_y - self.camera_center_y) / self.camera_center_y
+
+                direction_y = percentage_updown
+                direction_x = percentage_leftright
+                direction_backforward = -1
  
                 if self._gatefound:
                     stop_counter = 0
                 else: 
                     stop_counter += 1
-
-                # Wait 2 seconds before stopping your action
-                if stop_counter <= self.rate * 1.5:
-                    direction_y = 0
-                    direction_x = 0
-                    direction_backforward = -1
-                else:
-                    direction_y = 0
-                    direction_x = 0
-                    direction_backforward = 0
+                    # Wait 2 seconds before stopping your action
+                    if stop_counter <= self.rate * 1.5:
+                        direction_y = 0
+                        direction_x = 0
+                        direction_backforward = -1
+                    else:
+                        direction_y = 0
+                        direction_x = 0
+                        direction_backforward = 0
                     
                 msg = Move()
-                msg.left_right = int(direction_y * 75)
+                msg.left_right = int(direction_y * 25)
                 msg.front_back = int(direction_backforward * 10)
                 msg.yawl_yawr = 0
-                msg.up_down = int(direction_x * 75)
+                msg.up_down = int(direction_x * 25)
                 self.move_pub.publish(msg)
             
             r.sleep()
