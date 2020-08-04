@@ -2,13 +2,9 @@
 
 <launch>
 
-    <node pkg="drone_controller" name="physical_main_drone_node" type="main_drone.py" output="screen"> 
-        <param name="/simulated_ip" type="bool" value="False" />
-    </node>
-    <node pkg="drone_controller" name="simulated_main_drone_node" type="main_drone.py" output="screen"> 
-        <param name="/simulated_ip" type="bool" value="True" />
-    </node>
-    <node pkg="drone_controller" name="second_drone_node" type="second_drone.py" output="screen"> 
+    <include file="$(find drone_controller)/launch/main_mixedreality.launch" />
+
+    <node pkg="drone_controller" name="obstacle_drone_node" type="obstacle_drone.py" output="screen"> 
         <param name="/simulated_ip" type="bool" value="True" />
     </node>
 
@@ -21,28 +17,12 @@
         <arg name="network_param_file" default="$(find darknet_ros)/config/yolov2-tiny.yaml"/>
     </include>
 
-    <node pkg="drone_controller" name="program_controller_node" type="avoidance_scenario_controller.py" output="screen">
-    </node>
-
-    <node pkg="information_extraction" name="extract_position_node" type="simulation_information.py" output="screen">
-    </node>
-
-    <node pkg="mixed_reality_control" name="mixer_node" type="mixer.py" output="screen">
-    </node>
-
-    <node pkg="unity_communication" name="UnityRosConnection1" type="UnityRosConnection.py" output="screen">
-        <param name="/port" type="int" value="44444" />
-        <param name="/position_topic_name" type="string" value="/ground_truth/uav1/pose" />
-        <param name="/image_topic_name" type="string" value="/uav1/unity_sensors/camera" />
-    </node>
 
     <node pkg="unity_communication" name="UnityRosConnection2" type="UnityRosConnection.py" output="screen">
         <param name="/port" type="int" value="55555" />
         <param name="/position_topic_name" type="string" value="/ground_truth/uav2/pose" />
     </node>
 
-    <node pkg="rqt_image_view" type="rqt_image_view" name="simulated_view" args="/uav1/simulated_sensors/camera" output="screen"/>
-    <node pkg="rqt_image_view" type="rqt_image_view" name="physical_view" args="/uav1/physical_sensors/camera" output="screen"/>
-    <node pkg="rqt_image_view" type="rqt_image_view" name="unity_view" args="/uav1/unity_sensors/camera" output="screen"/>
+
     
 </launch>

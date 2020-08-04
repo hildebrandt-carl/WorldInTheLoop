@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+    <include file="$(find drone_controller)/launch/main_mixedreality.launch" />
+
+    <node pkg="drone_controller" name="gate_navigation_node" type="gate_navigation.py" output="screen">
+    </node> 
+
+    <node pkg="rqt_image_view" type="rqt_image_view" name="gate_center" args="/gate_navigation/sensors/camera" output="screen"/>
+    <node pkg="rqt_image_view" type="rqt_image_view" name="physical_view" args="/uav1/physical_sensors/camera" output="screen"/>
+    
+</launch>
+

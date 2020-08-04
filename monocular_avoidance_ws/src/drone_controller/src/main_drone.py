@@ -142,7 +142,7 @@ class MainDroneController:
         # cv2.waitKey(1)  # please OpenCV for 1 ms...
 
         # Send the image on ROS
-        image_message = self.bridge.cv2_to_imgmsg(cv2frame, encoding="rgb8")
+        image_message = self.bridge.cv2_to_imgmsg(cv2frame, encoding="bgr8")
         self.camera_pub.publish(image_message)
 
 

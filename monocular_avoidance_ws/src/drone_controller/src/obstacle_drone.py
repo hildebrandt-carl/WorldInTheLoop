@@ -115,7 +115,7 @@ class SecondDroneController:
 
     def _fly(self):
         self.drone(moveBy(0,  0, 0, 0)).wait()
-        self.drone(moveBy(-10,  9, 0, 0)).wait()
+        self.drone(moveBy(-10,  0, 0, 0)).wait()
         
 
 if __name__ == "__main__":
