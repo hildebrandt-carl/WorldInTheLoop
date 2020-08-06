@@ -56,7 +56,7 @@ class MainDroneController:
         self.simulated_param = rospy.get_param(rospy.get_name() + '/simulated_ip', True)
 
         if self.simulated_param == True:
-            publish_topic_base = "/uav1/simulated_sensors/"
+            publish_topic_base = "/uav1/sphinx_sensors/"
         else:
             publish_topic_base = "/uav1/physical_sensors/"
 
@@ -120,7 +120,7 @@ class MainDroneController:
         This function will be called by Olympe for each decoded YUV frame.
             :type yuv_frame: olympe.VideoFrame
         """
-        # the VideoFrame.info() dictionary contains some useful informations
+        # the VideoFrame.info() dictionary contains some useful information
         # such as the video resolution
         info = yuv_frame.info()
         height, width = info["yuv"]["height"], info["yuv"]["width"]
@@ -131,15 +131,8 @@ class MainDroneController:
             olympe.PDRAW_YUV_FORMAT_NV12: cv2.COLOR_YUV2BGR_NV12,
         }[info["yuv"]["format"]]
 
-        # yuv_frame.as_ndarray() is a 2D numpy array with the proper "shape"
-        # i.e (3 * height / 2, width) because it's a YUV I420 or NV12 frame
-
         # Use OpenCV to convert the yuv frame to RGB
         cv2frame = cv2.cvtColor(yuv_frame.as_ndarray(), cv2_cvt_color_flag)
-
-        # Use OpenCV to show this frame
-        # cv2.imshow("Olympe Streaming Example", cv2frame)
-        # cv2.waitKey(1)  # please OpenCV for 1 ms...
 
         # Send the image on ROS
         image_message = self.bridge.cv2_to_imgmsg(cv2frame, encoding="bgr8")
@@ -193,6 +186,19 @@ class MainDroneController:
                     previous_state = self._state
                 self._move(self._movegoal[0], self._movegoal[1], self._movegoal[2], self._movegoal[3])
 
+            # Going towards stairs
+            elif self._state == DroneState.STAIRNAVIGATION:
+                if previous_state != self._state:
+                    self._log("Stair Navigation Initiated")
+                    previous_state = self._state
+                self._move(self._movegoal[0], self._movegoal[1], self._movegoal[2], self._movegoal[3])
+                
+            # Going towards stairs
+            elif self._state == DroneState.YAWNAVIGATION:
+                if previous_state != self._state:
+                    self._log("Stair Navigation Initiated")
+                    previous_state = self._state
+                self._move(self._movegoal[0], self._movegoal[1], self._movegoal[2], self._movegoal[3])
             # Mantain the rate
             r.sleep()
                   
@@ -201,18 +207,6 @@ class MainDroneController:
         self._close_conn()  # closes the connection
 
     def _takeoff(self):
-        # self.drone(
-        #     FlyingStateChanged(state="hovering", _policy="check")
-        #     | FlyingStateChanged(state="flying", _policy="check")
-        #     | (
-        #         GPSFixStateChanged(fixed=1, _timeout=5, _policy="check_wait")
-        #         >> (
-        #             TakeOff(_no_expect=True)
-        #             & FlyingStateChanged(
-        #                 state="hovering", _timeout=5, _policy="check_wait")
-        #         )
-        #     )
-        # ).wait()
         self.drone(
             TakeOff(_no_expect=True)
             & FlyingStateChanged(state="hovering", _timeout=5, _policy="check_wait")

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+    <include file="$(find drone_controller)/launch/main_simulation.launch" />
+
+    <node pkg="drone_controller" name="program_controller_node" type="stair_scenario_controller.py" output="screen">
+    </node>
+
+    <node pkg="drone_controller" name="stair_navigation_node" type="stair_navigation.py" output="screen">
+    </node> 
+    
+</launch>

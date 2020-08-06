@@ -133,7 +133,7 @@ class UnityRosConnection():
         rot = msg.pose.orientation
         euler = euler_from_quaternion(quaternion=(rot.x, rot.y, rot.z, rot.w))
         self.drone_ori[0] = math.degrees(euler[1])
-        self.drone_ori[1] = math.degrees(euler[2])
+        self.drone_ori[1] = math.degrees(-1 * euler[2])
         self.drone_ori[2] = math.degrees(-1 * euler[0])
 
     # Called on ROS shutdown

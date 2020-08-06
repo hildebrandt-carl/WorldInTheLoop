@@ -155,11 +155,6 @@ class GateNavigation:
                         direction_y = 0
                         direction_x = 0
                         direction_backforward = 0
-                    
-
-                direction_y = 0
-                direction_x = 0
-                direction_backforward = 0
 
                 msg = Move()
                 msg.left_right = int(direction_y * 25)

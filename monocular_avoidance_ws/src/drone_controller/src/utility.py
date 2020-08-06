@@ -14,4 +14,6 @@ class DroneState(Enum):
     AVOIDING        = 3
     WAYPOINT        = 4
     GATENAVIGATION  = 5
-    LANDING         = 6
+    STAIRNAVIGATION = 6
+    YAWNAVIGATION   = 7
+    LANDING         = 8

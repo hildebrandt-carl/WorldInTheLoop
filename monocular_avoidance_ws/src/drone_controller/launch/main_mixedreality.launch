@@ -9,13 +9,10 @@
         <param name="/simulated_ip" type="bool" value="True" />
     </node>
 
-    <node pkg="drone_controller" name="program_controller_node" type="gate_scenario_controller.py" output="screen">
-    </node>
-
     <node pkg="information_extraction" name="extract_position_node" type="simulation_information.py" output="screen">
     </node>
 
-    <node pkg="mixed_reality_control" name="mixer_node" type="mixer.py" output="screen">
+    <node pkg="mixed_reality" name="mixer_node" type="mixer.py" output="screen">
     </node>
 
     <node pkg="unity_communication" name="UnityRosConnection1" type="UnityRosConnection.py" output="screen">
@@ -24,7 +21,8 @@
         <param name="/image_topic_name" type="string" value="/uav1/unity_sensors/camera" />
     </node>
 
-    <node pkg="rqt_image_view" type="rqt_image_view" name="simulated_view" args="/uav1/simulated_sensors/camera" output="screen"/>
+    <node pkg="rqt_image_view" type="rqt_image_view" name="simulated_view" args="/uav1/sphinx_sensors/camera" output="screen"/>
     <node pkg="rqt_image_view" type="rqt_image_view" name="unity_view" args="/uav1/unity_sensors/camera" output="screen"/>
-
+    <node pkg="rqt_image_view" type="rqt_image_view" name="physical_view" args="/uav1/physical_sensors/camera" output="screen"/>
+    
 </launch>
