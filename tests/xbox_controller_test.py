@@ -244,8 +244,8 @@ class DroneController:
 
 
 if __name__ == "__main__":
-    drone = olympe.Drone(DroneController.SIMULATED_IP)
-    # drone = olympe.Drone(DroneController.PHYSICAL_IP)
+    # drone = olympe.Drone(DroneController.SIMULATED_IP)
+    drone = olympe.Drone(DroneController.PHYSICAL_IP)
 
     try:
         x = DroneController(drone)

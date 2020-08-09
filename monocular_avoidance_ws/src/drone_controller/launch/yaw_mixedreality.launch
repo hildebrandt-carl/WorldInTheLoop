@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+    <include file="$(find drone_controller)/launch/main_mixedreality.launch" />
+
+    <node pkg="drone_controller" name="program_controller_node" type="yaw_scenario_controller.py" output="screen">
+    </node>
+
+    <node pkg="drone_controller" name="yaw_navigation_node" type="yaw_navigation.py" output="screen">
+    </node> 
+
+    <node pkg="mixing_functions" name="color_threshold_node" type="color_threshold.py" output="screen">
+        <param name="lower_bound/H" type="int" value="0" />
+        <param name="lower_bound/S" type="int" value="0" />
+        <param name="lower_bound/V" type="int" value="40" />
+        <param name="upper_bound/H" type="int" value="20" />
+        <param name="upper_bound/S" type="int" value="200" />
+        <param name="upper_bound/V" type="int" value="200" />
+
+        <param name="input_topic" type="string" value="/uav1/sphinx_sensors/camera" />
+        <param name="output_topic" type="string" value="/uav1/overlay/camera" />
+    </node> 
+
+    <node pkg="rqt_image_view" type="rqt_image_view" name="overlay" args="/uav1/overlay/camera" output="screen"/>
+    <node pkg="rqt_image_view" type="rqt_image_view" name="mixer_img" args="/mixer/sensors/camera" output="screen"/>
+    
+</launch>
