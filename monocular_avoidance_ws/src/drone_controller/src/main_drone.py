@@ -4,9 +4,9 @@ from __future__ import print_function, absolute_import
 from random import random
 from time import sleep
 from std_msgs.msg import Int16
-from std_msgs.msg import Float64
 from sensor_msgs.msg import Image
 from drone_controller.msg import Move
+from drone_controller.msg import Attitude
 from utility import DroneState
 
 import threading
@@ -21,7 +21,7 @@ import numpy as np
 from olympe.messages.ardrone3.GPSSettingsState import GPSFixStateChanged
 from olympe.messages.ardrone3.Piloting import TakeOff, Landing
 from olympe.messages.ardrone3.PilotingState import FlyingStateChanged
-from olympe.messages.ardrone3.PilotingState import AltitudeChanged
+from olympe.messages.ardrone3.PilotingState import AltitudeChanged, AttitudeChanged
 import olympe
 
 
@@ -64,7 +64,7 @@ class MainDroneController:
         self.state_sub = rospy.Subscriber("/uav1/input/state", Int16, self._setstate)
         self.move_sub = rospy.Subscriber("/uav1/input/move", Move, self._setmove)
         self.camera_pub = rospy.Publisher(publish_topic_base + "camera", Image, queue_size=10)
-        self.altitude_pub = rospy.Publisher(publish_topic_base + "altitude", Float64, queue_size=10)
+        self.attitude_pub = rospy.Publisher(publish_topic_base + "attitude", Attitude, queue_size=10)
 
         # Init the drone variables
         self.drone_speed = min([speed, 100])
@@ -243,10 +243,18 @@ class MainDroneController:
         )
 
         # Get the current altitude
-        altitude_dict = self.drone.get_state(AltitudeChanged)
-        alt = Float64()
-        alt.data = altitude_dict['altitude']
-        self.altitude_pub.publish(alt)
+        att_dict = self.drone.get_state(AttitudeChanged)
+        alt_dict = self.drone.get_state(AltitudeChanged)
+        
+        #  Create the attitude message
+        att = Attitude()
+        att.roll     = att_dict['roll']
+        att.pitch    = att_dict['pitch']
+        att.yaw      = att_dict['yaw']
+        att.altitude = alt_dict['altitude']
+
+        # Publish the attitude
+        self.attitude_pub.publish(att)
 
 
 if __name__ == "__main__":

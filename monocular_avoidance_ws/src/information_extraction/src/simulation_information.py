@@ -12,11 +12,14 @@ import numpy as np
 import re
 from queue import Queue, Empty
 from tf.transformations import quaternion_from_euler
+from drone_controller.msg import Attitude
+import yaml
+import math
 
 
 class InformationExtraction:
 
-    def __init__(self):
+    def __init__(self, attitude_source):
         # Init the ROS node
         rospy.init_node('InformationExtractionNode')
         self._log("Node Initialized")
@@ -38,6 +41,11 @@ class InformationExtraction:
         # Init all the publishers and subscribers
         self.drone1_pub = rospy.Publisher("ground_truth/uav1/pose", PoseStamped, queue_size=10)
         self.drone2_pub = rospy.Publisher("ground_truth/uav2/pose", PoseStamped, queue_size=10)
+
+        self.att_sub = None
+        if attitude_source != "":
+            self.att_sub = rospy.Subscriber(attitude_source, Attitude , self.attitude_callback)
+
         time.sleep(0.5)
 
     def start(self):
@@ -46,9 +54,14 @@ class InformationExtraction:
     def stop(self):
         self._quit = True
 
+    def attitude_callback(self, msg):
+        att1[0] = float(msg.roll)
+        att1[1] = float(msg.pitch)
+        att1[2] = float(-1 * msg.yaw + math.radians(90))
+
     def _log(self, msg):
         print(str(rospy.get_name()) + ": " + str(msg))
-
+        
     def _mainloop(self):
 
         r = rospy.Rate(self.rate)
@@ -95,7 +108,7 @@ class InformationExtraction:
 
 
 # Process the output from the file
-def process_output(out, queue):
+def process_output(out, queue, att_source):
     for line in iter(out.readline, b''):
         line = str(line)
         if "_first.worldPosition" in line:
@@ -115,14 +128,15 @@ def process_output(out, queue):
             if ".z" in line:
                 pos2[2] = float(number)
 
-        if "_first.worldAttitude" in line:
-            number = re.findall(r"[-+]?\d*\.\d+|\d+", line)[0]
-            if ".x" in line:
-                att1[0] = float(number)
-            if ".y" in line:
-                att1[1] = float(number)
-            if ".z" in line:
-                att1[2] = float(number)
+        if att_source == "":
+            if "_first.worldAttitude" in line:
+                number = re.findall(r"[-+]?\d*\.\d+|\d+", line)[0]
+                if ".x" in line:
+                    att1[0] = float(number)
+                if ".y" in line:
+                    att1[1] = float(number)
+                if ".z" in line:
+                    att1[2] = float(number)
         if "_second.worldAttitude" in line:
             number = re.findall(r"[-+]?\d*\.\d+|\d+", line)[0]
             if ".x" in line:
@@ -143,19 +157,24 @@ if __name__ == "__main__":
     att2 = np.zeros(3)
     q = Queue()
 
+    # Get the source of the attitude from the config file
+    with open('/home/carl/Desktop/MixedRealityTesting/monocular_avoidance_ws/src/mixed_reality/config/config.yaml') as f:
+        config = yaml.load(f, Loader=yaml.FullLoader)
+    att_source = config["attitude_source"]
+
     # Run the command
     ON_POSIX = 'posix' in sys.builtin_module_names
     command = "tlm-data-logger -r 0 inet:127.0.0.1:9060"
     p = Popen(command, stdout=PIPE, bufsize=1, close_fds=ON_POSIX, shell=True)
     
     # Create a thread which dies with main program
-    t = Thread(target=process_output, args=(p.stdout, q))
+    t = Thread(target=process_output, args=(p.stdout, q, att_source))
     t.daemon = True 
     t.start()
 
     # Run the node
     try:
-        x = InformationExtraction()
+        x = InformationExtraction(att_source)
         x.start()
     except KeyboardInterrupt:
         print("Manually Aborted")

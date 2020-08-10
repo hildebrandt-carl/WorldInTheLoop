@@ -10,6 +10,7 @@
     </node>
 
     <node pkg="information_extraction" name="extract_position_node" type="simulation_information.py" output="screen">
+        <param name="/attitude_source" type="string" value="simulation" />
     </node>
 
     <node pkg="mixed_reality" name="mixer_node" type="mixer.py" output="screen">
