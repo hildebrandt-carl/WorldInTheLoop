@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<path name="test1_walk">
+
+  <loop>false</loop>
+  <auto_start>true</auto_start>
+  <delay_start>5</delay_start>
+
+  <waypoint>
+    <animation>walk</animation>
+    <velocity>1</velocity>
+    <xy>5 0</xy>
+  </waypoint>
+
+  <waypoint>
+    <animation>walk</animation>
+    <velocity>1</velocity>
+    <xy>8 0</xy>
+  </waypoint>
+
+  <waypoint>
+    <animation>run</animation>
+    <velocity>2</velocity>
+    <xy>8 0.1</xy>
+  </waypoint>
+
+  <waypoint>
+    <animation>run</animation>
+    <velocity>2</velocity>
+    <xy>8 -6</xy>
+  </waypoint>
+
+  <waypoint>
+    <animation>run</animation>
+    <velocity>2</velocity>
+    <xy>8 0</xy>
+  </waypoint>
+  <waypoint>
+
+    <animation>walk</animation>
+    <velocity>1</velocity>
+    <xy>8 -0.1</xy>
+  </waypoint>
+
+  <waypoint>
+    <animation>walk</animation>
+    <velocity>1</velocity>
+    <xy>8 2</xy>
+  </waypoint>
+
+</path>
