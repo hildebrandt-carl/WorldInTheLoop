@@ -16,4 +16,5 @@ class DroneState(Enum):
     GATENAVIGATION  = 5
     STAIRNAVIGATION = 6
     YAWNAVIGATION   = 7
-    LANDING         = 8
+    FOLLOWPERSON    = 8
+    LANDING         = 9

@@ -3,7 +3,7 @@
 
   <loop>false</loop>
   <auto_start>true</auto_start>
-  <delay_start>5</delay_start>
+  <delay_start>20</delay_start>
 
   <waypoint>
     <animation>walk</animation>

@@ -11,7 +11,7 @@
         <param name="/simulated_ip" type="bool" value="True" />
     </node>
 
-    <node pkg="drone_controller" name="avoidance_node" type="avoidance.py" output="screen">
+    <node pkg="drone_controller" name="avoidance_node" type="avoidance_navigation.py" output="screen">
     </node> 
 
     <!-- Launch darknet ros -->
