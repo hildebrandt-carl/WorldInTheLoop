@@ -34,11 +34,11 @@
     <velocity>1</velocity>
     <xy>-8 6</xy>
   </waypoint>
-  <waypoint>
 
+    <waypoint>
     <animation>walk</animation>
     <velocity>1</velocity>
-    <xy>8 0</xy>
+    <xy>5 6</xy>
   </waypoint>
 
   <waypoint>

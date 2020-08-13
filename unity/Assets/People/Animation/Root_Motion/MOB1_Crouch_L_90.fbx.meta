@@ -1,166 +1,476 @@
 fileFormatVersion: 2
 guid: 5981eb1eae4c8304e936bfc3874612e8
 ModelImporter:
-  serializedVersion: 22
-  fileIDToRecycleName:
-    100000: hand_l_wep
-    100002: hand_r_wep
-    100004: Head
-    100006: Hips
-    100008: LeafLeftArmRoll1
-    100010: LeafLeftForeArmRoll1
-    100012: LeafLeftLegRoll1
-    100014: LeafLeftUpLegRoll1
-    100016: LeafRightArmRoll1
-    100018: LeafRightForeArmRoll1
-    100020: LeafRightLegRoll1
-    100022: LeafRightUpLegRoll1
-    100024: LeftArm
-    100026: LeftFoot
-    100028: LeftForeArm
-    100030: LeftHand
-    100032: LeftHandIndex1
-    100034: LeftHandIndex2
-    100036: LeftHandIndex3
-    100038: LeftHandIndex4
-    100040: LeftHandMiddle1
-    100042: LeftHandMiddle2
-    100044: LeftHandMiddle3
-    100046: LeftHandMiddle4
-    100048: LeftHandPinky1
-    100050: LeftHandPinky2
-    100052: LeftHandPinky3
-    100054: LeftHandPinky4
-    100056: LeftHandRing1
-    100058: LeftHandRing2
-    100060: LeftHandRing3
-    100062: LeftHandRing4
-    100064: LeftHandThumb1
-    100066: LeftHandThumb2
-    100068: LeftHandThumb3
-    100070: LeftHandThumb4
-    100072: LeftLeg
-    100074: LeftShoulder
-    100076: LeftToeBase
-    100078: LeftUpLeg
-    100080: //RootNode
-    100082: MotusMan_v55
-    100084: Neck
-    100086: RightArm
-    100088: RightFoot
-    100090: RightForeArm
-    100092: RightHand
-    100094: RightHandIndex1
-    100096: RightHandIndex2
-    100098: RightHandIndex3
-    100100: RightHandIndex4
-    100102: RightHandMiddle1
-    100104: RightHandMiddle2
-    100106: RightHandMiddle3
-    100108: RightHandMiddle4
-    100110: RightHandPinky1
-    100112: RightHandPinky2
-    100114: RightHandPinky3
-    100116: RightHandPinky4
-    100118: RightHandRing1
-    100120: RightHandRing2
-    100122: RightHandRing3
-    100124: RightHandRing4
-    100126: RightHandThumb1
-    100128: RightHandThumb2
-    100130: RightHandThumb3
-    100132: RightHandThumb4
-    100134: RightLeg
-    100136: RightShoulder
-    100138: RightToeBase
-    100140: RightUpLeg
-    100142: Root
-    100144: Spine
-    100146: Spine1
-    100148: Spine2
-    400000: hand_l_wep
-    400002: hand_r_wep
-    400004: Head
-    400006: Hips
-    400008: LeafLeftArmRoll1
-    400010: LeafLeftForeArmRoll1
-    400012: LeafLeftLegRoll1
-    400014: LeafLeftUpLegRoll1
-    400016: LeafRightArmRoll1
-    400018: LeafRightForeArmRoll1
-    400020: LeafRightLegRoll1
-    400022: LeafRightUpLegRoll1
-    400024: LeftArm
-    400026: LeftFoot
-    400028: LeftForeArm
-    400030: LeftHand
-    400032: LeftHandIndex1
-    400034: LeftHandIndex2
-    400036: LeftHandIndex3
-    400038: LeftHandIndex4
-    400040: LeftHandMiddle1
-    400042: LeftHandMiddle2
-    400044: LeftHandMiddle3
-    400046: LeftHandMiddle4
-    400048: LeftHandPinky1
-    400050: LeftHandPinky2
-    400052: LeftHandPinky3
-    400054: LeftHandPinky4
-    400056: LeftHandRing1
-    400058: LeftHandRing2
-    400060: LeftHandRing3
-    400062: LeftHandRing4
-    400064: LeftHandThumb1
-    400066: LeftHandThumb2
-    400068: LeftHandThumb3
-    400070: LeftHandThumb4
-    400072: LeftLeg
-    400074: LeftShoulder
-    400076: LeftToeBase
-    400078: LeftUpLeg
-    400080: //RootNode
-    400082: MotusMan_v55
-    400084: Neck
-    400086: RightArm
-    400088: RightFoot
-    400090: RightForeArm
-    400092: RightHand
-    400094: RightHandIndex1
-    400096: RightHandIndex2
-    400098: RightHandIndex3
-    400100: RightHandIndex4
-    400102: RightHandMiddle1
-    400104: RightHandMiddle2
-    400106: RightHandMiddle3
-    400108: RightHandMiddle4
-    400110: RightHandPinky1
-    400112: RightHandPinky2
-    400114: RightHandPinky3
-    400116: RightHandPinky4
-    400118: RightHandRing1
-    400120: RightHandRing2
-    400122: RightHandRing3
-    400124: RightHandRing4
-    400126: RightHandThumb1
-    400128: RightHandThumb2
-    400130: RightHandThumb3
-    400132: RightHandThumb4
-    400134: RightLeg
-    400136: RightShoulder
-    400138: RightToeBase
-    400140: RightUpLeg
-    400142: Root
-    400144: Spine
-    400146: Spine1
-    400148: Spine2
-    2100000: MotusMan_Phong1
-    4300000: MotusMan_v55
-    7400000: MOB1_Crouch_L_90
-    9500000: //RootNode
-    13700000: MotusMan_v55
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: hand_l_wep
+  - first:
+      1: 100002
+    second: hand_r_wep
+  - first:
+      1: 100004
+    second: Head
+  - first:
+      1: 100006
+    second: Hips
+  - first:
+      1: 100008
+    second: LeafLeftArmRoll1
+  - first:
+      1: 100010
+    second: LeafLeftForeArmRoll1
+  - first:
+      1: 100012
+    second: LeafLeftLegRoll1
+  - first:
+      1: 100014
+    second: LeafLeftUpLegRoll1
+  - first:
+      1: 100016
+    second: LeafRightArmRoll1
+  - first:
+      1: 100018
+    second: LeafRightForeArmRoll1
+  - first:
+      1: 100020
+    second: LeafRightLegRoll1
+  - first:
+      1: 100022
+    second: LeafRightUpLegRoll1
+  - first:
+      1: 100024
+    second: LeftArm
+  - first:
+      1: 100026
+    second: LeftFoot
+  - first:
+      1: 100028
+    second: LeftForeArm
+  - first:
+      1: 100030
+    second: LeftHand
+  - first:
+      1: 100032
+    second: LeftHandIndex1
+  - first:
+      1: 100034
+    second: LeftHandIndex2
+  - first:
+      1: 100036
+    second: LeftHandIndex3
+  - first:
+      1: 100038
+    second: LeftHandIndex4
+  - first:
+      1: 100040
+    second: LeftHandMiddle1
+  - first:
+      1: 100042
+    second: LeftHandMiddle2
+  - first:
+      1: 100044
+    second: LeftHandMiddle3
+  - first:
+      1: 100046
+    second: LeftHandMiddle4
+  - first:
+      1: 100048
+    second: LeftHandPinky1
+  - first:
+      1: 100050
+    second: LeftHandPinky2
+  - first:
+      1: 100052
+    second: LeftHandPinky3
+  - first:
+      1: 100054
+    second: LeftHandPinky4
+  - first:
+      1: 100056
+    second: LeftHandRing1
+  - first:
+      1: 100058
+    second: LeftHandRing2
+  - first:
+      1: 100060
+    second: LeftHandRing3
+  - first:
+      1: 100062
+    second: LeftHandRing4
+  - first:
+      1: 100064
+    second: LeftHandThumb1
+  - first:
+      1: 100066
+    second: LeftHandThumb2
+  - first:
+      1: 100068
+    second: LeftHandThumb3
+  - first:
+      1: 100070
+    second: LeftHandThumb4
+  - first:
+      1: 100072
+    second: LeftLeg
+  - first:
+      1: 100074
+    second: LeftShoulder
+  - first:
+      1: 100076
+    second: LeftToeBase
+  - first:
+      1: 100078
+    second: LeftUpLeg
+  - first:
+      1: 100080
+    second: //RootNode
+  - first:
+      1: 100082
+    second: MotusMan_v55
+  - first:
+      1: 100084
+    second: Neck
+  - first:
+      1: 100086
+    second: RightArm
+  - first:
+      1: 100088
+    second: RightFoot
+  - first:
+      1: 100090
+    second: RightForeArm
+  - first:
+      1: 100092
+    second: RightHand
+  - first:
+      1: 100094
+    second: RightHandIndex1
+  - first:
+      1: 100096
+    second: RightHandIndex2
+  - first:
+      1: 100098
+    second: RightHandIndex3
+  - first:
+      1: 100100
+    second: RightHandIndex4
+  - first:
+      1: 100102
+    second: RightHandMiddle1
+  - first:
+      1: 100104
+    second: RightHandMiddle2
+  - first:
+      1: 100106
+    second: RightHandMiddle3
+  - first:
+      1: 100108
+    second: RightHandMiddle4
+  - first:
+      1: 100110
+    second: RightHandPinky1
+  - first:
+      1: 100112
+    second: RightHandPinky2
+  - first:
+      1: 100114
+    second: RightHandPinky3
+  - first:
+      1: 100116
+    second: RightHandPinky4
+  - first:
+      1: 100118
+    second: RightHandRing1
+  - first:
+      1: 100120
+    second: RightHandRing2
+  - first:
+      1: 100122
+    second: RightHandRing3
+  - first:
+      1: 100124
+    second: RightHandRing4
+  - first:
+      1: 100126
+    second: RightHandThumb1
+  - first:
+      1: 100128
+    second: RightHandThumb2
+  - first:
+      1: 100130
+    second: RightHandThumb3
+  - first:
+      1: 100132
+    second: RightHandThumb4
+  - first:
+      1: 100134
+    second: RightLeg
+  - first:
+      1: 100136
+    second: RightShoulder
+  - first:
+      1: 100138
+    second: RightToeBase
+  - first:
+      1: 100140
+    second: RightUpLeg
+  - first:
+      1: 100142
+    second: Root
+  - first:
+      1: 100144
+    second: Spine
+  - first:
+      1: 100146
+    second: Spine1
+  - first:
+      1: 100148
+    second: Spine2
+  - first:
+      4: 400000
+    second: hand_l_wep
+  - first:
+      4: 400002
+    second: hand_r_wep
+  - first:
+      4: 400004
+    second: Head
+  - first:
+      4: 400006
+    second: Hips
+  - first:
+      4: 400008
+    second: LeafLeftArmRoll1
+  - first:
+      4: 400010
+    second: LeafLeftForeArmRoll1
+  - first:
+      4: 400012
+    second: LeafLeftLegRoll1
+  - first:
+      4: 400014
+    second: LeafLeftUpLegRoll1
+  - first:
+      4: 400016
+    second: LeafRightArmRoll1
+  - first:
+      4: 400018
+    second: LeafRightForeArmRoll1
+  - first:
+      4: 400020
+    second: LeafRightLegRoll1
+  - first:
+      4: 400022
+    second: LeafRightUpLegRoll1
+  - first:
+      4: 400024
+    second: LeftArm
+  - first:
+      4: 400026
+    second: LeftFoot
+  - first:
+      4: 400028
+    second: LeftForeArm
+  - first:
+      4: 400030
+    second: LeftHand
+  - first:
+      4: 400032
+    second: LeftHandIndex1
+  - first:
+      4: 400034
+    second: LeftHandIndex2
+  - first:
+      4: 400036
+    second: LeftHandIndex3
+  - first:
+      4: 400038
+    second: LeftHandIndex4
+  - first:
+      4: 400040
+    second: LeftHandMiddle1
+  - first:
+      4: 400042
+    second: LeftHandMiddle2
+  - first:
+      4: 400044
+    second: LeftHandMiddle3
+  - first:
+      4: 400046
+    second: LeftHandMiddle4
+  - first:
+      4: 400048
+    second: LeftHandPinky1
+  - first:
+      4: 400050
+    second: LeftHandPinky2
+  - first:
+      4: 400052
+    second: LeftHandPinky3
+  - first:
+      4: 400054
+    second: LeftHandPinky4
+  - first:
+      4: 400056
+    second: LeftHandRing1
+  - first:
+      4: 400058
+    second: LeftHandRing2
+  - first:
+      4: 400060
+    second: LeftHandRing3
+  - first:
+      4: 400062
+    second: LeftHandRing4
+  - first:
+      4: 400064
+    second: LeftHandThumb1
+  - first:
+      4: 400066
+    second: LeftHandThumb2
+  - first:
+      4: 400068
+    second: LeftHandThumb3
+  - first:
+      4: 400070
+    second: LeftHandThumb4
+  - first:
+      4: 400072
+    second: LeftLeg
+  - first:
+      4: 400074
+    second: LeftShoulder
+  - first:
+      4: 400076
+    second: LeftToeBase
+  - first:
+      4: 400078
+    second: LeftUpLeg
+  - first:
+      4: 400080
+    second: //RootNode
+  - first:
+      4: 400082
+    second: MotusMan_v55
+  - first:
+      4: 400084
+    second: Neck
+  - first:
+      4: 400086
+    second: RightArm
+  - first:
+      4: 400088
+    second: RightFoot
+  - first:
+      4: 400090
+    second: RightForeArm
+  - first:
+      4: 400092
+    second: RightHand
+  - first:
+      4: 400094
+    second: RightHandIndex1
+  - first:
+      4: 400096
+    second: RightHandIndex2
+  - first:
+      4: 400098
+    second: RightHandIndex3
+  - first:
+      4: 400100
+    second: RightHandIndex4
+  - first:
+      4: 400102
+    second: RightHandMiddle1
+  - first:
+      4: 400104
+    second: RightHandMiddle2
+  - first:
+      4: 400106
+    second: RightHandMiddle3
+  - first:
+      4: 400108
+    second: RightHandMiddle4
+  - first:
+      4: 400110
+    second: RightHandPinky1
+  - first:
+      4: 400112
+    second: RightHandPinky2
+  - first:
+      4: 400114
+    second: RightHandPinky3
+  - first:
+      4: 400116
+    second: RightHandPinky4
+  - first:
+      4: 400118
+    second: RightHandRing1
+  - first:
+      4: 400120
+    second: RightHandRing2
+  - first:
+      4: 400122
+    second: RightHandRing3
+  - first:
+      4: 400124
+    second: RightHandRing4
+  - first:
+      4: 400126
+    second: RightHandThumb1
+  - first:
+      4: 400128
+    second: RightHandThumb2
+  - first:
+      4: 400130
+    second: RightHandThumb3
+  - first:
+      4: 400132
+    second: RightHandThumb4
+  - first:
+      4: 400134
+    second: RightLeg
+  - first:
+      4: 400136
+    second: RightShoulder
+  - first:
+      4: 400138
+    second: RightToeBase
+  - first:
+      4: 400140
+    second: RightUpLeg
+  - first:
+      4: 400142
+    second: Root
+  - first:
+      4: 400144
+    second: Spine
+  - first:
+      4: 400146
+    second: Spine1
+  - first:
+      4: 400148
+    second: Spine2
+  - first:
+      21: 2100000
+    second: MotusMan_Phong1
+  - first:
+      43: 4300000
+    second: MotusMan_v55
+  - first:
+      74: 7400000
+    second: MOB1_Crouch_L_90
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: MotusMan_v55
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -169,7 +479,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: 
+    motionNodeName: Root
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
@@ -177,6 +487,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 1
+    importConstraints: 0
     animationCompression: 0
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -188,6 +499,7 @@ ModelImporter:
     - serializedVersion: 16
       name: MOB1_Crouch_L_90
       takeName: MOB1_Crouch_L_90
+      internalID: 0
       firstFrame: 0
       lastFrame: 69
       wrapMode: 0
@@ -219,17 +531,23 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
@@ -241,10 +559,13 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 1
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human:
     - boneName: Hips
       humanName: Hips
@@ -1080,15 +1401,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: eadb4ba512015ea45a1b15fb9eec5ef1,
     type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 2
   additionalBone: 0
   userData: 
   assetBundleName: 

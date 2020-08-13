@@ -20,12 +20,6 @@
   <waypoint>
     <animation>run</animation>
     <velocity>2</velocity>
-    <xy>8 0.1</xy>
-  </waypoint>
-
-  <waypoint>
-    <animation>run</animation>
-    <velocity>2</velocity>
     <xy>8 -6</xy>
   </waypoint>
 
@@ -34,17 +28,17 @@
     <velocity>2</velocity>
     <xy>8 0</xy>
   </waypoint>
-  <waypoint>
 
+  <waypoint>
     <animation>walk</animation>
     <velocity>1</velocity>
-    <xy>8 -0.1</xy>
+    <xy>8 0.1</xy>
   </waypoint>
 
   <waypoint>
     <animation>walk</animation>
     <velocity>1</velocity>
-    <xy>8 2</xy>
+    <xy>5 0</xy>
   </waypoint>
 
 </path>

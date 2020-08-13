@@ -535,10 +535,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 293319108}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edfbb85c96542ffc0b273f131a847b67, type: 3}
+  m_Script: {fileID: 11500000, guid: ca62a9563fd44ef2f8be70237fc160a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
+  startDelay: 0
+  crouched: 0
+  loop: 0
+  actionType: 0
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,6 +635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 573736589}
   - component: {fileID: 573736590}
+  - component: {fileID: 573736591}
   m_Layer: 0
   m_Name: DroneCamera
   m_TagString: Untagged
@@ -696,6 +700,18 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &573736591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573736588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad955cb242d7ae276a0442f0629adb76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &797158562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -790,7 +806,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &880291768
 Transform:
   m_ObjectHideFlags: 0
@@ -916,10 +932,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 924830081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edfbb85c96542ffc0b273f131a847b67, type: 3}
+  m_Script: {fileID: 11500000, guid: ca62a9563fd44ef2f8be70237fc160a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
+  startDelay: 10
+  crouched: 0
+  loop: 1
+  actionType: 0
 --- !u!1 &956104672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1558,6 +1577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1249150531}
   - component: {fileID: 1249150532}
+  - component: {fileID: 1249150533}
   m_Layer: 0
   m_Name: DroneCamera
   m_TagString: Untagged
@@ -1622,6 +1642,18 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1249150533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249150530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad955cb242d7ae276a0442f0629adb76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1278382287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1725,6 +1757,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1297195893}
   - component: {fileID: 1297195894}
+  - component: {fileID: 1297195895}
   m_Layer: 0
   m_Name: DroneCamera
   m_TagString: Untagged
@@ -1789,6 +1822,18 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1297195895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297195892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad955cb242d7ae276a0442f0629adb76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1299146559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1802,7 +1847,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100094, guid: eadb4ba512015ea45a1b15fb9eec5ef1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400096, guid: eadb4ba512015ea45a1b15fb9eec5ef1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1814,7 +1859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400096, guid: eadb4ba512015ea45a1b15fb9eec5ef1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 400096, guid: eadb4ba512015ea45a1b15fb9eec5ef1, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1822,7 +1867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400096, guid: eadb4ba512015ea45a1b15fb9eec5ef1, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400096, guid: eadb4ba512015ea45a1b15fb9eec5ef1, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1830,7 +1875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400096, guid: eadb4ba512015ea45a1b15fb9eec5ef1, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400096, guid: eadb4ba512015ea45a1b15fb9eec5ef1, type: 3}
       propertyPath: m_RootOrder
@@ -1842,7 +1887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400096, guid: eadb4ba512015ea45a1b15fb9eec5ef1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400096, guid: eadb4ba512015ea45a1b15fb9eec5ef1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1854,6 +1899,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400096, guid: eadb4ba512015ea45a1b15fb9eec5ef1, type: 3}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400096, guid: eadb4ba512015ea45a1b15fb9eec5ef1, type: 3}
+      propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: eadb4ba512015ea45a1b15fb9eec5ef1, type: 3}
@@ -2629,6 +2678,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1643286152}
   - component: {fileID: 1643286153}
+  - component: {fileID: 1643286154}
   m_Layer: 0
   m_Name: DroneCamera
   m_TagString: Untagged
@@ -2693,6 +2743,18 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1643286154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643286151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad955cb242d7ae276a0442f0629adb76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1664440729
 GameObject:
   m_ObjectHideFlags: 0
@@ -2861,6 +2923,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1782863254}
   - component: {fileID: 1782863255}
+  - component: {fileID: 1782863256}
   m_Layer: 0
   m_Name: DroneCamera
   m_TagString: Untagged
@@ -2925,6 +2988,18 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1782863256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782863253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad955cb242d7ae276a0442f0629adb76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1783841549
 GameObject:
   m_ObjectHideFlags: 0
@@ -3070,6 +3145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1866859755}
   - component: {fileID: 1866859756}
+  - component: {fileID: 1866859757}
   m_Layer: 0
   m_Name: DroneCamera
   m_TagString: Untagged
@@ -3134,6 +3210,18 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1866859757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866859754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad955cb242d7ae276a0442f0629adb76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2012623184
 GameObject:
   m_ObjectHideFlags: 0
@@ -3371,12 +3459,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b71585772167495d78e79ee3d86d0887,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.0065160748
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b71585772167495d78e79ee3d86d0887,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.59389997
+      value: 0.59598386
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b71585772167495d78e79ee3d86d0887,
         type: 3}

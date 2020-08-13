@@ -2,12 +2,11 @@ sphinx_topic: '/uav1/sphinx_sensors/camera'
 unity_topic: '/uav1/unity_sensors/camera'
 real_topic: '/uav1/physical_sensors/camera'
 
-camera_overlay_source: '/uav1/unity_sensors/camera'
-
-camera_base: "/uav1/physical_sensors/camera"
-camera_overlay: True
+camera_overlay: False
+camera_overlay_source: '/uav1/sphinx_sensors/camera'
+camera_base: "/uav1/unity_sensors/camera"
 
 attitude_source_use_tlm: ""
 attitude_source_use_sphinx_firmware: "/uav1/sphinx_sensors/attitude"
 attitude_source_use_physical_firmware: "/uav1/physical_sensors/attitude"
-attitude_source: "/uav1/physical_sensors/attitude"
+attitude_source: ""
