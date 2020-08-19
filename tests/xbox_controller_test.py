@@ -222,8 +222,6 @@ class DroneController:
         ).wait()
 
 
-
-
     def move(self, joy_values):
         """
         Move in the desired direction given the (normalized) Joystick values:
@@ -244,8 +242,8 @@ class DroneController:
 
 
 if __name__ == "__main__":
-    # drone = olympe.Drone(DroneController.SIMULATED_IP)
-    drone = olympe.Drone(DroneController.PHYSICAL_IP)
+    drone = olympe.Drone(DroneController.SIMULATED_IP)
+    # drone = olympe.Drone(DroneController.PHYSICAL_IP)
 
     try:
         x = DroneController(drone)

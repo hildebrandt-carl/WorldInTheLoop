@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
- public enum State
+ public enum Scenarios
  {
     walking, running
  }
@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public bool crouched = false;
 
     public bool loop = false;
-    public State actionType ;
+    public Scenarios scenarioSelection ;
 
     private Animator anim;
     private int _state = -1;
@@ -44,12 +44,12 @@ public class PlayerController : MonoBehaviour
         // Wait to start
         if (Time.time - _start_time > startDelay)
         {
-            if (actionType == State.walking)
+            if (scenarioSelection == Scenarios.walking)
             {
                 update_walk(stateInfo, transInfo);
             }
 
-            if (actionType == State.running)
+            if (scenarioSelection == Scenarios.running)
             {
                 update_run(stateInfo, transInfo);
             }

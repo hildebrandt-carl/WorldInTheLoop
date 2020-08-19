@@ -11,3 +11,5 @@ Artifacts/
 Temp/
 
 *.bag
+*.pyc
+*.swp
