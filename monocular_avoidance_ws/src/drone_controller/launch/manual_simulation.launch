@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+    <include file="$(find drone_controller)/launch/main_simulation.launch" />
+
+    <node name="joy_node" pkg="joy" type="joy_node">
+    </node>
+
+    <node pkg="drone_controller" name="manual_control_node" type="manual_control.py" output="screen">
+    </node>
+
+    <node pkg="rqt_image_view" type="rqt_image_view" name="mixer_img" args="/mixer/sensors/camera" output="screen"/>
+    
+</launch>

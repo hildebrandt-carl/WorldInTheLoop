@@ -1,25 +1,28 @@
 #!/usr/bin/env python3
-# TODO Set the IP as a param
-# TODO set the waypoint as a subscribe
 from __future__ import print_function, absolute_import
-from geometry_msgs.msg import PoseStamped
-from subprocess import PIPE, Popen
-from threading  import Thread
+
 import rospy
 import sys
 import time
-import numpy as np
 import re
-from queue import Queue, Empty
-from tf.transformations import quaternion_from_euler
-from drone_controller.msg import Attitude
 import yaml
 import math
+
+from geometry_msgs.msg import PoseStamped
+from subprocess import PIPE, Popen
+from threading  import Thread
+import numpy as np
+
+from queue import Queue, Empty
+from tf.transformations import quaternion_from_euler
+
+from geometry_msgs.msg import Point
+from drone_controller.msg import Attitude
 
 
 class InformationExtraction:
 
-    def __init__(self, attitude_source):
+    def __init__(self, attitude_source, position_source):
         # Init the ROS node
         rospy.init_node('InformationExtractionNode')
         self._log("Node Initialized")
@@ -43,8 +46,11 @@ class InformationExtraction:
         self.drone2_pub = rospy.Publisher("ground_truth/uav2/pose", PoseStamped, queue_size=10)
 
         self.att_sub = None
+        self.pos_sub = None
         if attitude_source != "":
             self.att_sub = rospy.Subscriber(attitude_source, Attitude , self.attitude_callback)
+        if position_source != "":
+            self.pos_sub = rospy.Subscriber(position_source, Point , self.position_callback)
 
         time.sleep(0.5)
 
@@ -58,6 +64,11 @@ class InformationExtraction:
         att1[0] = float(msg.roll)
         att1[1] = float(msg.pitch)
         att1[2] = float(-1 * msg.yaw + math.radians(90))
+
+    def position_callback(self, msg):
+        pos1[0] = float(msg.x)
+        pos1[1] = float(msg.y)
+        pos1[2] = float(msg.z)
 
     def _log(self, msg):
         print(str(rospy.get_name()) + ": " + str(msg))
@@ -108,17 +119,18 @@ class InformationExtraction:
 
 
 # Process the output from the file
-def process_output(out, queue, att_source):
+def process_output(out, queue, att_source, pos_source):
     for line in iter(out.readline, b''):
         line = str(line)
-        if "_first.worldPosition" in line:
-            number = re.findall(r"[-+]?\d*\.\d+|\d+", line)[0]
-            if ".x" in line:
-                pos1[0] = float(number)
-            if ".y" in line:
-                pos1[1] = float(number)
-            if ".z" in line:
-                pos1[2] = float(number)
+        if pos_source == "":
+            if "_first.worldPosition" in line:
+                number = re.findall(r"[-+]?\d*\.\d+|\d+", line)[0]
+                if ".x" in line:
+                    pos1[0] = float(number)
+                if ".y" in line:
+                    pos1[1] = float(number)
+                if ".z" in line:
+                    pos1[2] = float(number)
         if "_second.worldPosition" in line:
             number = re.findall(r"[-+]?\d*\.\d+|\d+", line)[0]
             if ".x" in line:
@@ -161,6 +173,7 @@ if __name__ == "__main__":
     with open('/home/carl/Desktop/MixedRealityTesting/monocular_avoidance_ws/src/mixed_reality/config/config.yaml') as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
     att_source = config["attitude_source"]
+    pos_source = config["position_source"]
 
     # Run the command
     ON_POSIX = 'posix' in sys.builtin_module_names
@@ -168,13 +181,13 @@ if __name__ == "__main__":
     p = Popen(command, stdout=PIPE, bufsize=1, close_fds=ON_POSIX, shell=True)
     
     # Create a thread which dies with main program
-    t = Thread(target=process_output, args=(p.stdout, q, att_source))
+    t = Thread(target=process_output, args=(p.stdout, q, att_source, pos_source))
     t.daemon = True 
     t.start()
 
     # Run the node
     try:
-        x = InformationExtraction(att_source)
+        x = InformationExtraction(att_source, pos_source)
         x.start()
     except KeyboardInterrupt:
         print("Manually Aborted")

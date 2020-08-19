@@ -1,16 +1,20 @@
 #!/usr/bin/env python3
 # TODO Set the IP as a param
 from __future__ import print_function, absolute_import
+from matplotlib.colors import hsv_to_rgb
+from cv_bridge import CvBridge
+from matplotlib import colors
+from scipy import ndimage
 from time import sleep
+
+from pid_class import PID
+from utility import DroneState
+
 from std_msgs.msg import Int16
 from sensor_msgs.msg import Image
 from drone_controller.msg import Move
+
 import numpy as np
-from utility import DroneState
-from cv_bridge import CvBridge
-from matplotlib.colors import hsv_to_rgb
-from matplotlib import colors
-from scipy import ndimage
 
 import sys
 import rospy
@@ -46,6 +50,17 @@ class GateNavigation:
         self.gate_center_x_arr = None
         self.gate_center_y_arr = None
         self.object_arr_length = 10
+
+        # PID Class to navigate to the gate
+        gains = rospy.get_param(rospy.get_name() + '/gains', {'p': 1.0, 'i': 0.0, 'd': 0.0})
+        Kp, Ki, Kd = gains['p'], gains['i'], gains['d']
+        self.z_controller = PID(Kp, Ki, Kd, self.rate)
+        self.y_controller = PID(Kp, Ki, Kd, self.rate)
+
+        # Display the variables
+        self._log(": p - " + str(Kp))
+        self._log(": i - " + str(Ki))
+        self._log(": d - " + str(Kd))
 
         # Create the bridge
         self.bridge = CvBridge()
@@ -135,32 +150,53 @@ class GateNavigation:
                 except:
                     continue
 
-                percentage_updown       = (cen_x - self.camera_center_x) / self.camera_center_x
-                percentage_leftright    = (cen_y - self.camera_center_y) / self.camera_center_y
+                # Calculate the error
+                percentage_leftright       = (cen_x - self.camera_center_x) / self.camera_center_x
+                percentage_updown    = (cen_y - self.camera_center_y) / self.camera_center_y
 
-                direction_y = percentage_updown
-                direction_x = percentage_leftright
+                # Put the error into the corresponding PID controller
+                leftright   = self.y_controller.get_output(0, -1 * percentage_leftright)
+                updown      = self.z_controller.get_output(0, -1 * percentage_updown)
+                
+                # Set the output
+                direction_y = leftright
+                direction_z = updown
                 direction_backforward = -1
  
+                # If you can't see a gate anymore reset PID and send stop command
                 if self._gatefound:
                     stop_counter = 0
                 else: 
+                    self.z_controller.remove_buildup()
+                    self.y_controller.remove_buildup()
                     stop_counter += 1
                     # Wait 2 seconds before stopping your action
                     if stop_counter <= self.rate * 1.5:
                         direction_y = 0
-                        direction_x = 0
+                        direction_z = 0
                         direction_backforward = -1
                     else:
                         direction_y = 0
-                        direction_x = 0
+                        direction_z = 0
                         direction_backforward = 0
 
+                # We want to move slowly forward
+                direction_backforward = direction_backforward * 10
+
+                # Make sure the commands are int's between -100 and 100
+                direction_y = int(round(max(min(direction_y, 100), -100),0))
+                direction_z = int(round(max(min(direction_z, 100), -100),0))
+                direction_backforward = int(round(max(min(direction_backforward, 100), -100),0))
+
+                direction_y = 0
+                direction_z = 0
+
+                # Publish the message
                 msg = Move()
-                msg.left_right = int(direction_y * 25)
-                msg.front_back = int(direction_backforward * 10)
+                msg.left_right = direction_y
+                msg.up_down = direction_z
+                msg.front_back = direction_backforward
                 msg.yawl_yawr = 0
-                msg.up_down = int(direction_x * 25)
                 self.move_pub.publish(msg)
             
             r.sleep()

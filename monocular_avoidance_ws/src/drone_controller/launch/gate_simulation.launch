@@ -7,7 +7,11 @@
     <node pkg="drone_controller" name="program_controller_node" type="gate_scenario_controller.py" output="screen">
     </node>
 
+    <!-- Error is a value between -1 an 1, and the output is a value between -100, 100 -->
     <node pkg="drone_controller" name="gate_navigation_node" type="gate_navigation.py" output="screen">
+        <param name="gains/p" type="double" value="27" />
+        <param name="gains/i" type="double" value="0" />
+        <param name="gains/d" type="double" value="15" />
     </node> 
 
     <node pkg="mixing_functions" name="color_threshold_node" type="color_threshold.py" output="screen">

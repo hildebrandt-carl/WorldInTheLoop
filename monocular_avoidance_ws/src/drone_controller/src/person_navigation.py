@@ -42,7 +42,7 @@ class PersonNavigation:
         self.image_size = None
 
         # PID Class to keep the person in view
-        gains = rospy.get_param('person_navigation_node/gains', {'p': 1.0, 'i': 0.0, 'd': 0.0})
+        gains = rospy.get_param(rospy.get_name() + '/gains', {'p': 1.0, 'i': 0.0, 'd': 0.0})
         Kp, Ki, Kd = gains['p'], gains['i'], gains['d']
         self.distance_controller = PID(Kp, Ki, Kd, self.rate)
 

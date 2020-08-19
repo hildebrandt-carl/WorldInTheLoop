@@ -5,6 +5,7 @@ from random import random
 from time import sleep
 from std_msgs.msg import Int16
 from sensor_msgs.msg import Image
+from geometry_msgs.msg import Point
 from drone_controller.msg import Move
 from drone_controller.msg import Attitude
 from utility import DroneState
@@ -15,13 +16,17 @@ import sys
 import rospy
 import cv2
 import time
+import math
+import copy
+
 from cv_bridge import CvBridge
 import numpy as np
 
 from olympe.messages.ardrone3.GPSSettingsState import GPSFixStateChanged
 from olympe.messages.ardrone3.Piloting import TakeOff, Landing
 from olympe.messages.ardrone3.PilotingState import FlyingStateChanged
-from olympe.messages.ardrone3.PilotingState import AltitudeChanged, AttitudeChanged
+from olympe.messages.ardrone3.PilotingState import AltitudeChanged, AttitudeChanged, GpsLocationChanged
+from olympe.messages.ardrone3.GPSSettingsState import HomeChanged
 import olympe
 
 
@@ -65,6 +70,7 @@ class MainDroneController:
         self.move_sub = rospy.Subscriber("/uav1/input/move", Move, self._setmove)
         self.camera_pub = rospy.Publisher(publish_topic_base + "camera", Image, queue_size=10)
         self.attitude_pub = rospy.Publisher(publish_topic_base + "attitude", Attitude, queue_size=10)
+        self.location_pub = rospy.Publisher(publish_topic_base + "position", Point, queue_size=10)
 
         # Init the drone variables
         self.drone_speed = min([speed, 100])
@@ -79,6 +85,9 @@ class MainDroneController:
 
         # Connect to the drone
         self.drone.connection()
+        # Check if we have a home location
+        self.home_loc = None
+        self.home_loc = self.drone.get_state(HomeChanged)
         time.sleep(0.5)
         # Setup the callback function to get the live video
         self.drone.set_streaming_callbacks(raw_cb=self.yuv_frame_cb)
@@ -171,6 +180,13 @@ class MainDroneController:
                     self._log("Hovering Initiated")
                     previous_state = self._state
                 self._move(0, 0, 0, 0)
+
+            # Manual Control state
+            elif self._state == DroneState.MANUAL:
+                if previous_state != self._state:
+                    self._log("Manual Control Initiated")
+                    previous_state = self._state
+                self._move(self._movegoal[0], self._movegoal[1], self._movegoal[2], self._movegoal[3])
                 
             # Avoding state
             elif self._state == DroneState.AVOIDING:
@@ -244,8 +260,25 @@ class MainDroneController:
 
         # Get the current altitude
         att_dict = self.drone.get_state(AttitudeChanged)
+        # Note altitude is above takeoff point in m
         alt_dict = self.drone.get_state(AltitudeChanged)
+        # Note GPS gives altitude above sea level
+        gps_dict = self.drone.get_state(GpsLocationChanged)
         
+        # If we have no home location, assume it is the first GPS location
+        if self.home_loc == None:
+            self.home_loc = copy.deepcopy(gps_dict)
+        elif ((self.home_loc['latitude'] == 500) or (self.home_loc['longitude'] == 500) or (self.home_loc['altitude'] == 500)):
+            self.home_loc = copy.deepcopy(gps_dict)
+
+        # Compute the delta values
+        delta_lat   = (gps_dict['latitude'] - self.home_loc['latitude'])
+        delta_lon   = (gps_dict['longitude'] - self.home_loc['longitude'])
+
+        # Convert to m
+        pos_x = delta_lon * 40075160.0 * math.cos(math.radians(self.home_loc['latitude'])) / 360.0
+        pos_y = delta_lat * 40008000.0 / 360.0
+
         #  Create the attitude message
         att = Attitude()
         att.roll     = att_dict['roll']
@@ -253,8 +286,15 @@ class MainDroneController:
         att.yaw      = att_dict['yaw']
         att.altitude = alt_dict['altitude']
 
-        # Publish the attitude
+        # Create the position message
+        loc = Point()
+        loc.x = pos_x
+        loc.y = pos_y
+        loc.z = alt_dict['altitude']
+
+        # Publish the attitude and location
         self.attitude_pub.publish(att)
+        self.location_pub.publish(loc)
 
 
 if __name__ == "__main__":
