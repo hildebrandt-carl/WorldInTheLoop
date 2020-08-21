@@ -2,7 +2,11 @@
 
 <launch>
 
-    <include file="$(find drone_controller)/launch/main_simulation.launch" />
+    <arg name="unity" default="true"/>
+
+    <include file="$(find drone_controller)/launch/main_simulation.launch">
+        <arg name="launch_unity" value="$(arg unity)" />
+    </include>
 
     <node pkg="drone_controller" name="program_controller_node" type="gate_scenario_controller.py" output="screen">
     </node>
