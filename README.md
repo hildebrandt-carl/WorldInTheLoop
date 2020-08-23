@@ -40,7 +40,11 @@ $ rosdep update
 # Add SSH Key
 $ ssh-keygen -t rsa -b 4096 -C "hildebrandt.carl@outlook.com"
 $ eval "$(ssh-agent -s)"
-$ ssh-add ~/.ssh/id_rsasudo apt-get install xclip -y
+$ ssh-add ~/.ssh/id_rsa
+$ sudo apt-get install xclip -y
+$ xclip -sel clip < ~/.ssh/id_rsa.pub
+
+# Paste the key into your github settings
 
 # Install VS code
 $ sudo snap install --classic code
