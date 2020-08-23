@@ -119,7 +119,7 @@ E: Unable to locate package libclang-11.-dev
 You need to run the following commands (ONLY IF YOU GOT THE ERROR ABOVE)
 ```zsh
 # Install correct version of clang
-$ sudo python3 -m pip uninstall clang
+$ sudo python3 -m pip uninstall clang -y
 $ sudo python3 -m pip install clang==6.0.0.2
 # Rerun the process that used to throw the error
 $ cd code/parrot-groundsdk
