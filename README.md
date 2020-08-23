@@ -83,10 +83,7 @@ Test that sphinx was install correctly by starting the Firmware you installed us
 $ sudo systemctl start firmwared.service
 $ fdc ping
 >>> PONG
-$ sphinx /opt/parrot-sphinx/usr/share/sphinx/drones/anafi4k.drone
 ```
-
-TODO: For some reason after this I get the error: `Probable cause for this error: the requested stolen interface (wlan0:eth0:192.168.42.1/24) does not exist`
 
 ### Installing Olympe
 
@@ -184,8 +181,20 @@ source ~/code/parrot-groundsdk/olympe_custom_env.sh
 Install some of the packages which are used by ROS and python3
 ```zsh
 $ sudo apt update
-$ sudo apt install python3-catkin-pkg-modules python3-rospkg-modules python3-empy```
+$ sudo apt install python3-catkin-pkg-modules python3-rospkg-modules python3-empy python-catkin-tools python3-dev python3-catkin-pkg-modules python3-numpy python3-yaml ros-kinetic-cv-bridge -y
 ```
+
+Next instruct catkin build to use python 3. To do that you can run the following commands:
+
+```zsh
+cd ~/Desktop/MixedRealityTesting/monocular_avoidance_ws/
+# Instruct catkin to set cmake variables
+catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.6m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.6m.so
+# Instruct catkin to install built packages into install place. It is $CATKIN_WORKSPACE/install folder
+catkin config --install
+```
+
+HERE BUT I CANT SEEM TO GET THIS DAMN THING TO RUN>>> WTF
 
 ## Running the Code
 

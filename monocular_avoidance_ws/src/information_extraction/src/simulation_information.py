@@ -7,6 +7,7 @@ import time
 import re
 import yaml
 import math
+import os
 
 from geometry_msgs.msg import PoseStamped
 from subprocess import PIPE, Popen
@@ -170,6 +171,9 @@ if __name__ == "__main__":
     q = Queue()
 
     # Get the source of the attitude from the config file
+    print("IOUADHSGOIUBDSGIUBDSGJDSBFGJDHSBGJDHSBGDHJKSBGDHKSBGDKSJBGDKSBGJKS")
+    print(os.path.abspath(os.curdir))
+    print("IOUADHSGOIUBDSGIUBDSGJDSBFGJDHSBGJDHSBGDHJKSBGDHKSBGDKSJBGDKSBGJKS")
     with open('/home/carl/Desktop/MixedRealityTesting/monocular_avoidance_ws/src/mixed_reality/config/config.yaml') as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
     att_source = config["attitude_source"]
