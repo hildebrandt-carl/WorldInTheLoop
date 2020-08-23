@@ -9,6 +9,7 @@ import yaml
 import sys
 import copy
 import cv2
+import os
 
 class Mixer:
 
@@ -67,7 +68,8 @@ class Mixer:
             r.sleep()
 
     def _readConfig(self):
-        with open('/home/carl/Desktop/MixedRealityTesting/monocular_avoidance_ws/src/mixed_reality/config/config.yaml') as f:
+        home_dir = os.path.abspath(os.curdir)[:-4]
+        with open(home_dir + '/Desktop/MixedRealityTesting/monocular_avoidance_ws/src/mixed_reality/config/config.yaml') as f:
             self.config = yaml.load(f, Loader=yaml.FullLoader)
 
     def _getPhysicalParrotImage(self, msg):

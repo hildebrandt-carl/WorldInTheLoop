@@ -9,6 +9,7 @@ import sys
 import rospy
 import cv2
 import yaml
+import os
 
 
 class ColorThreshold:
@@ -48,7 +49,8 @@ class ColorThreshold:
         self.img_pub = rospy.Publisher(topic_out, Image, queue_size=10)
 
     def _readConfig(self):
-        with open('/home/carl/Desktop/MixedRealityTesting/monocular_avoidance_ws/src/mixed_reality/config/config.yaml') as f:
+        home_dir = os.path.abspath(os.curdir)[:-4]
+        with open(home_dir + '/Desktop/MixedRealityTesting/monocular_avoidance_ws/src/mixed_reality/config/config.yaml') as f:
             self.config = yaml.load(f, Loader=yaml.FullLoader)
 
     def start(self):

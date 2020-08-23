@@ -171,10 +171,8 @@ if __name__ == "__main__":
     q = Queue()
 
     # Get the source of the attitude from the config file
-    print("IOUADHSGOIUBDSGIUBDSGJDSBFGJDHSBGJDHSBGDHJKSBGDHKSBGDKSJBGDKSBGJKS")
-    print(os.path.abspath(os.curdir))
-    print("IOUADHSGOIUBDSGIUBDSGJDSBFGJDHSBGJDHSBGDHJKSBGDHKSBGDKSJBGDKSBGJKS")
-    with open('/home/carl/Desktop/MixedRealityTesting/monocular_avoidance_ws/src/mixed_reality/config/config.yaml') as f:
+    home_dir = os.path.abspath(os.curdir)[:-4]
+    with open(home_dir + '/Desktop/MixedRealityTesting/monocular_avoidance_ws/src/mixed_reality/config/config.yaml') as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
     att_source = config["attitude_source"]
     pos_source = config["position_source"]
