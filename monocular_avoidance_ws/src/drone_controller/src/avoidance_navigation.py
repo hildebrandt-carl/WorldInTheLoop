@@ -41,7 +41,7 @@ class AvoidanceNavigation:
         self.object_arr_length = 10
 
         # Init all the publishers and subscribers
-        self.move_pub = rospy.Publisher("uav1/input/move", Move, queue_size=10)
+        self.move_pub = rospy.Publisher("/uav1/input/beforeyawcorrection/move", Move, queue_size=10)
         self.drone_state_sub = rospy.Subscriber("uav1/input/state", Int16, self._getstate)
         # self.image_sub = rospy.Subscriber("darknet_ros/detection_image", Image, self._getimagedetails)
         self.bounding_sub = rospy.Subscriber("darknet_ros/bounding_boxes", BoundingBoxes, self._getbounding)

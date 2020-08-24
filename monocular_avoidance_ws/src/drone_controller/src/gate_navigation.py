@@ -70,7 +70,7 @@ class GateNavigation:
         self.upper_bound = (20, 200, 200)
 
         # Init all the publishers and subscribers
-        self.move_pub = rospy.Publisher("uav1/input/move", Move, queue_size=10)
+        self.move_pub = rospy.Publisher("/uav1/input/beforeyawcorrection/move", Move, queue_size=10)
         self.drone_state_sub = rospy.Subscriber("uav1/input/state", Int16, self._getstate)
         self.image_sub = rospy.Subscriber("/mixer/sensors/camera", Image, self._getImage)
 

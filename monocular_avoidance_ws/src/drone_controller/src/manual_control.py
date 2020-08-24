@@ -37,7 +37,7 @@ class ManualControl:
         self.dt = 1.0 / self.rate
 
         # Init all the publishers and subscribers
-        self.move_pub = rospy.Publisher("uav1/input/move", Move, queue_size=10)
+        self.move_pub = rospy.Publisher("/uav1/input/beforeyawcorrection/move", Move, queue_size=10)
         self.drone_state_pub = rospy.Publisher("uav1/input/state", Int16, queue_size=10)
         self.joy_sub = rospy.Subscriber("/joy", Joy, self._getCommand)
 

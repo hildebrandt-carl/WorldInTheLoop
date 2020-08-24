@@ -41,7 +41,7 @@ class GateNavigation:
         self._innavigationmode = False     
      
         # Init all the publishers and subscribers
-        self.move_pub = rospy.Publisher("uav1/input/move", Move, queue_size=10)
+        self.move_pub = rospy.Publisher("/uav1/input/beforeyawcorrection/move", Move, queue_size=10)
         self.drone_state_sub = rospy.Subscriber("uav1/input/state", Int16, self._getstate)
 
 
