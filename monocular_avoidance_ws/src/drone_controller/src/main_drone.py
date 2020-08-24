@@ -87,7 +87,7 @@ class MainDroneController:
         self.drone.connection()
         # Check if we have a home location
         self.home_loc = None
-        self.home_loc = self.drone.get_state(HomeChanged)
+        # self.home_loc = self.drone.get_state(HomeChanged)
         time.sleep(0.5)
         # Setup the callback function to get the live video
         self.drone.set_streaming_callbacks(raw_cb=self.yuv_frame_cb)

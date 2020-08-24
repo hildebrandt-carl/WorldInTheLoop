@@ -3,15 +3,17 @@
 
 
 <launch>
-
+    <arg name="launch_shinx" default="true" />
     <arg name="launch_unity" default="true" />
 
-    <node pkg="drone_controller" name="simulated_main_drone_node" type="main_drone.py" output="screen"> 
-        <param name="/simulated_ip" type="bool" value="True" />
-    </node>
+    <group if="$(arg launch_shinx)">
+        <node pkg="drone_controller" name="simulated_main_drone_node" type="main_drone.py" output="screen"> 
+            <param name="/simulated_ip" type="bool" value="True" />
+        </node>
 
-    <node pkg="information_extraction" name="extract_position_node" type="simulation_information.py" output="screen">
-    </node>
+        <node pkg="information_extraction" name="extract_position_node" type="simulation_information.py" output="screen">
+        </node>
+    </group>
 
     <node pkg="mixed_reality" name="mixer_node" type="mixer.py" output="screen">
     </node>

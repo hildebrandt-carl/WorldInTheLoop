@@ -388,3 +388,25 @@ sudo apt-get install -y --no-install-recommends libnvinfer6=6.0.1-1+cuda10.1 \
 
 
 
+
+
+
+## Setting up Vicon
+
+Build on the vicon machine
+
+ping from your machine then run the following commands:
+
+Vicon Machine
+```zsh
+$ export ROS_IP=<VICONMACHINEIP>
+$ export ROS_HOSTNAME=<VICONMACHINEIP>
+$ export ROS_MASTER_URI=<YOURMACHINEIP:11311>
+```
+
+YOUR Machine
+```zsh
+$ export ROS_IP=<YOURMACHINEIP>
+$ export ROS_HOSTNAME=<YOURMACHINEIP>
+$ export ROS_MASTER_URI=http://<YOURMACHINEIP:11311>
+```

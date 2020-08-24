@@ -6,6 +6,7 @@ from std_msgs.msg import Int8
 
 import sys
 import copy
+import rospy
 
 
 class MoveCorrection:
@@ -22,7 +23,10 @@ class MoveCorrection:
         self._yaw = 0
 
         # Param to use the corrrection or not
-        self._use_yaw_correction = rospy.get_param(rospy.get_name() + '/yaw_correction', False)
+        self._use_yaw_correction = rospy.get_param(rospy.get_name() + '/yaw_correction', True)
+
+        # Display the variables
+        self._log(": Yaw Correction - " + str(self._use_yaw_correction))
 
         # Set the rate
         self.rate = 30.0
@@ -44,18 +48,19 @@ class MoveCorrection:
 
     def _setmove(self, msg):
         msg_out = Move()
-        msg_out.left_right = int(round(msg.left_right), 0)
-        msg_out.front_back = int(round(msg.front_back), 0)
-        msg_out.up_down = int(round(msg.up_down), 0)
-        msg_out.yawl_yawr = int(round(msg.yawl_yawr), 0)
+        msg_out.left_right = int(round(msg.left_right, 0))
+        msg_out.front_back = int(round(msg.front_back, 0))
+        msg_out.up_down = int(round(msg.up_down, 0))
 
         if self._use_yaw_correction:
             msg_out.yawl_yawr = self._yaw
+        else:
+            msg_out.yawl_yawr = int(round(msg.yawl_yawr, 0))
             
-        self.move_pub.Publish(msg_out)
+        self.move_pub.publish(msg_out)
 
     def _setyaw(self, msg):
-        self._yaw= copy.deepcopy(int(round(msg.data), 0))
+        self._yaw = copy.deepcopy(int(round(msg.data, 0)))
 
     def _log(self, msg):
         print(str(rospy.get_name()) + ": " + str(msg))
