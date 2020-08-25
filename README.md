@@ -185,7 +185,7 @@ source ~/code/parrot-groundsdk/olympe_custom_env.sh
 Install some of the packages which are used by ROS and python3
 ```zsh
 $ sudo apt update
-$ sudo apt install python3-catkin-pkg-modules python3-rospkg-modules python3-empy python-catkin-tools python3-dev python3-catkin-pkg-modules python3-numpy python3-yaml ros-kinetic-cv-bridge libgazebo9-dev libopencv-dev protobuf-compiler -y
+$ sudo apt install python3-catkin-pkg-modules python3-rospkg-modules python3-empy python-catkin-tools python3-dev python3-catkin-pkg-modules python3-numpy python3-yaml ros-melodic-cv-bridge libgazebo9-dev libopencv-dev protobuf-compiler -y
 ```
 
 Next instruct catkin build to use python 3. To do that you can run the following commands:
