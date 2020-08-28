@@ -209,13 +209,6 @@ class MainDroneController:
                     previous_state = self._state
                 self._move(self._movegoal[0], self._movegoal[1], self._movegoal[2], self._movegoal[3])
                 
-            # Going yaw test mode
-            elif self._state == DroneState.YAWNAVIGATION:
-                if previous_state != self._state:
-                    self._log("Stair Navigation Initiated")
-                    previous_state = self._state
-                self._move(self._movegoal[0], self._movegoal[1], self._movegoal[2], self._movegoal[3])
-
             # Going person following mode
             elif self._state == DroneState.FOLLOWPERSON:
                 if previous_state != self._state:

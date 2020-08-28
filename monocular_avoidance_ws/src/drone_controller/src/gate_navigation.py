@@ -188,9 +188,6 @@ class GateNavigation:
                 direction_z = int(round(max(min(direction_z, 100), -100),0))
                 direction_backforward = int(round(max(min(direction_backforward, 100), -100),0))
 
-                direction_y = 0
-                direction_z = 0
-
                 # Publish the message
                 msg = Move()
                 msg.left_right = direction_y

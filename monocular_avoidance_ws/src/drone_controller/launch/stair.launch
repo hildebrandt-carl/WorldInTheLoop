@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+    <arg name="sphinx" default="true"/>
+    <arg name="unity" default="true"/>
+
+    <include file="$(find drone_controller)/launch/main.launch">
+        <arg name="launch_unity" value="$(arg unity)" />
+        <arg name="launch_shinx" value="$(arg sphinx)" />
+        <arg name="launch_physical" value="false" />
+        <arg name="launch_vicon" value="false" />
+    </include>
+
+    <node pkg="drone_controller" name="program_controller_node" type="stair_scenario_controller.py" output="screen">
+    </node>
+
+    <node pkg="drone_controller" name="stair_navigation_node" type="stair_navigation.py" output="screen">
+    </node> 
+    
+</launch>

@@ -198,7 +198,47 @@ catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/inc
 catkin config --no-install
 ```
 
-## Running the Code
+### Installing Custom Sphinx Models
+
+Some of our sphinx simulations rely on custom object models. To make them available to sphinx we can do the following:
+
+```
+sudo cp ~/Desktop/MixedRealityTesting/monocular_avoidance_ws/src/drone_controller/worlds/GateModels /opt/parrot-sphinx/usr/share/sphinx/models -r
+```
+
+## Optional Installation
+
+The following packages are optional and are not required to run the base project. I however recommend installing most of them as it will allow full functionality.
+
+### Unity
+
+If you want to run any of the unity simulations, you will need to install unity. To do that visit the [Unity Download Center](https://unity3d.com/get-unity/download). I would recommend downloading Unity Hub
+
+![Download Unity Hub from their website](images/readme/UnityHub.png)
+
+This will download a file `UnityHub.AppImage`. Move that to your documents folder and give it execution permision. You can do that by running:
+
+```zsh
+$ cd ~/Documents
+$ mv ~/Downloads/UnityHub.AppImage ./UnityHub.AppImage
+$ chmod +x UnityHub.AppImage
+```
+
+Next sign into unity and activate your licence.
+
+![Sign into Unity](images/readme/signin.png)
+
+Once you have activated your license, we need to import our project. To do that go to the `projects` tab and click add. Navigate to `~/Desktop/MixedRealityTesting/unity` and click **ok**:
+
+![Add the new project](images/readme/project.png)
+
+Once you have added your project, you will notice an error which states that it is missing the correct unity editor. Click on the yellow warning symbol and then click install to download the correct version of the Unity Editor. Make sure to add **Linux Build Support**.
+
+![Install the Unity Editor](images/readme/install.png)
+
+Once the Unity Editor has finished installing, open the Unity project. It will take some time to import and autogenerate the lighting.
+
+# Running the Code
 
 Running the code can be done by first building it and then launching the simulators and ROS code.
 
@@ -241,6 +281,33 @@ $ roslaunch drone_controller manual_simulation.launch
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+# Old instructions
 
 
 

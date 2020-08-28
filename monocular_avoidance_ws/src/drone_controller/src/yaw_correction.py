@@ -2,9 +2,6 @@
 # TODO Set the IP as a param
 from __future__ import print_function, absolute_import
 from drone_controller.msg import Move
-from geometry_msgs.msg import TransformStamped
-from tf.transformations import euler_from_quaternion
-from pid_class import PID 
 from std_msgs.msg import Int8
 
 import sys
@@ -23,30 +20,25 @@ class YawCorrection:
         rospy.on_shutdown(self.stop)
 
         # Set the move goal
-        self._true_yaw = 0
-        self._desired_yaw = None
-        self._desired_yaw_wait_count = 100
+        self._yaw = 0
 
-        # Set the rate
-        self.rate = 15.0
-        self.dt = 1.0 / self.rate
-
-        # Get the PID
-        gains = rospy.get_param(rospy.get_name() + '/gains', {'p': 10.0, 'i': 0.0, 'd': 0.0})
-        Kp, Ki, Kd = gains['p'], gains['i'], gains['d']
-        self.yaw_controller = PID(Kp, Ki, Kd, self.rate)
+        # Param to use the corrrection or not
+        self._use_yaw_correction = rospy.get_param(rospy.get_name() + '/yaw_correction', True)
 
         # Display the variables
-        self._log(": p - " + str(Kp))
-        self._log(": i - " + str(Ki))
-        self._log(": d - " + str(Kd))
+        self._log(": Yaw Correction - " + str(self._use_yaw_correction))
+
+        # Set the rate
+        self.rate = 30.0
+        self.dt = 1.0 / self.rate
 
         # Init the drone and program state
         self._quit = False
 
         # Create the publishers and subscribers
-        self.yaw_pub = rospy.Publisher("/uav1/input/yawcorrection", Int8, queue_size=10)
-        self.true_yaw_sub = rospy.Subscriber("/vicon/ANAFI/ANAFI", TransformStamped, self._getvicon)
+        self.yaw_sub = rospy.Subscriber("/uav1/input/yawcorrection", Int8, self._setyaw)
+        self.move_sub = rospy.Subscriber("/uav1/input/beforeyawcorrection/move", Move, self._setmove)
+        self.move_pub = rospy.Publisher("uav1/input/move", Move, queue_size=10)
 
     def start(self):
         self._mainloop()
@@ -54,9 +46,21 @@ class YawCorrection:
     def stop(self):
         self._quit = True
 
-    def _getvicon(self, msg):
-        rot = msg.transform.rotation
-        self._true_yaw = euler_from_quaternion(quaternion=(rot.x, rot.y, rot.z, rot.w))[2]
+    def _setmove(self, msg):
+        msg_out = Move()
+        msg_out.left_right = int(round(msg.left_right, 0))
+        msg_out.front_back = int(round(msg.front_back, 0))
+        msg_out.up_down = int(round(msg.up_down, 0))
+
+        if self._use_yaw_correction:
+            msg_out.yawl_yawr = self._yaw
+        else:
+            msg_out.yawl_yawr = int(round(msg.yawl_yawr, 0))
+            
+        self.move_pub.publish(msg_out)
+
+    def _setyaw(self, msg):
+        self._yaw = copy.deepcopy(int(round(msg.data, 0)))
 
     def _log(self, msg):
         print(str(rospy.get_name()) + ": " + str(msg))
@@ -65,23 +69,7 @@ class YawCorrection:
 
         r = rospy.Rate(self.rate)
 
-        count = 0
-
-        while not self._quit: 
-            # get the initial position of the drone
-            if self._desired_yaw is None:
-                if count < self._desired_yaw_wait_count:
-                    count += 1
-                else:
-                    self._desired_yaw = self._true_yaw
-            # We have our initial position
-            else:
-                output = self.yaw_controller.get_output(self._desired_yaw, self._true_yaw)
-                output = -1 * output
-
-                msg = Int8()
-                msg.data = int(min(max(round(output, 0), -100), 100))
-                self.yaw_pub.publish(msg)
+        while not self._quit:            
             r.sleep()
 
 if __name__ == "__main__":

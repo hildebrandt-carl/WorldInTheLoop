@@ -10,9 +10,15 @@ position_source_use_tlm: ""
 position_source_use_sphinx_firmware: "/uav1/sphinx_sensors/position"
 position_source_use_physical_firmware: "/uav1/physical_sensors/position"
 
+
+
+
+
+
+
 camera_overlay: False
-camera_base: "/uav1/unity_sensors/camera"
+camera_base: "/uav1/sphinx_sensors/camera"
 camera_overlay_source: '/uav1/unity_sensors/camera'
 
 attitude_source: ""
-position_source: "/uav1/physical_sensors/position"
+position_source: ""
