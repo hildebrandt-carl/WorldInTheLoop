@@ -191,11 +191,11 @@ $ sudo apt install python3-catkin-pkg-modules python3-rospkg-modules python3-emp
 Next instruct catkin build to use python 3. To do that you can run the following commands:
 
 ```zsh
-cd ~/Desktop/MixedRealityTesting/monocular_avoidance_ws/
+$ cd ~/Desktop/MixedRealityTesting/monocular_avoidance_ws/
 # Instruct catkin to set cmake variables
-catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.6m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.6m.so
+$ catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.6m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.6m.so
 # Instruct catkin to install built packages into install place. It is $CATKIN_WORKSPACE/install folder
-catkin config --no-install
+$ catkin config --no-install
 ```
 
 ### Installing Custom Sphinx Models
@@ -203,7 +203,7 @@ catkin config --no-install
 Some of our sphinx simulations rely on custom object models. To make them available to sphinx we can do the following:
 
 ```
-sudo cp ~/Desktop/MixedRealityTesting/monocular_avoidance_ws/src/drone_controller/worlds/GateModels /opt/parrot-sphinx/usr/share/sphinx/models -r
+$ sudo cp ~/Desktop/MixedRealityTesting/monocular_avoidance_ws/src/drone_controller/worlds/GateModels /opt/parrot-sphinx/usr/share/sphinx/models -r
 ```
 
 ## Optional Installation
@@ -222,6 +222,7 @@ This will download a file `UnityHub.AppImage`. Move that to your documents folde
 $ cd ~/Documents
 $ mv ~/Downloads/UnityHub.AppImage ./UnityHub.AppImage
 $ chmod +x UnityHub.AppImage
+$ ./UnityHub.AppImage
 ```
 
 Next sign into unity and activate your licence.
