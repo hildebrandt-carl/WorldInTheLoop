@@ -93,7 +93,7 @@ $ fdc ping
 
 Olympe is the library used to communicate with the Parrot Anafi. To install Olympe you need to install `repo`. To install you need to have to `repo` tool installed. To do that run the command:
 ```zsh
-sudo apt-get install repo -y
+$ sudo apt-get install repo -y
 ```
 
 Next we need to install the parrot-groundsdk using:
