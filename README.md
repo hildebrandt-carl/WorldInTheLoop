@@ -100,7 +100,7 @@ Next we need to install the parrot-groundsdk using:
 ```zsh
 $ cd $HOME
 $ mkdir -p code/parrot-groundsdk
-$ cd code/parrot-groundsdk
+$ cd ~/code/parrot-groundsdk
 $ repo init -u https://github.com/Parrot-Developers/groundsdk-manifest.git
 $ repo sync
 ```
