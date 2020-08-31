@@ -46,13 +46,13 @@ public class DroneHandler : MonoBehaviour
         // Wait for the render to complete
         yield return new WaitForEndOfFrame();
 
-        RenderTexture rt = RenderTexture.GetTemporary(480, 270);
+        // RenderTexture rt = RenderTexture.GetTemporary(480, 270);
         // RenderTexture rt = RenderTexture.GetTemporary(768, 576);
         // RenderTexture rt = RenderTexture.GetTemporary(1024, 768);
         // RenderTexture rt = RenderTexture.GetTemporary(2048, 1536);
         
         // This is the same dimension as sphinx
-        // RenderTexture rt = RenderTexture.GetTemporary(1280, 720);
+        RenderTexture rt = RenderTexture.GetTemporary(1280, 720);
 
         // Render to RenderTexture
         droneCamera.targetTexture = rt;
@@ -62,6 +62,7 @@ public class DroneHandler : MonoBehaviour
         // Read pixels to texture
         Texture2D image = new Texture2D(droneCamera.targetTexture.width, droneCamera.targetTexture.height);
         image.ReadPixels(new Rect(0, 0, droneCamera.targetTexture.width, droneCamera.targetTexture.height), 0, 0);
+        // Possible cause of memory leak https://forum.unity.com/threads/texture2d-memory-leak.331895/
         image.Apply();
 
         // Encode texture into PNG

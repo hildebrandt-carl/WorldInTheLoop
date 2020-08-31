@@ -6,12 +6,15 @@
     <arg name="launch_unity" default="true" />
     <arg name="launch_physical" default="false"/>
     <arg name="launch_vicon" default="false"/>
+    <arg name="launch_multiview" default="true"/>
     
     <group if="$(arg launch_physical)">
         <node pkg="drone_controller" name="physical_main_drone_node" type="main_drone.py" output="screen"> 
             <param name="/simulated_ip" type="bool" value="False" />
         </node>
-        <node pkg="rqt_image_view" type="rqt_image_view" name="physical_view" args="/uav1/physical_sensors/camera" output="screen"/>
+        <group if="$(arg launch_multiview)">
+            <node pkg="rqt_image_view" type="rqt_image_view" name="physical_view" args="/uav1/physical_sensors/camera" output="screen"/>
+        </group>
     </group>
 
     <group if="$(arg launch_shinx)">
@@ -21,7 +24,9 @@
         <node pkg="information_extraction" name="extract_position_node" type="simulation_information.py" output="screen">
             <param name="/attitude_source" type="string" value="simulation" />
         </node>
-        <node pkg="rqt_image_view" type="rqt_image_view" name="simulated_view" args="/uav1/sphinx_sensors/camera" output="screen"/>
+        <group if="$(arg launch_multiview)">
+            <node pkg="rqt_image_view" type="rqt_image_view" name="simulated_view" args="/uav1/sphinx_sensors/camera" output="screen"/>
+        </group>
     </group>
 
     <group if="$(arg launch_unity)">
@@ -30,7 +35,9 @@
             <param name="/position_topic_name" type="string" value="/ground_truth/uav1/pose" />
             <param name="/image_topic_name" type="string" value="/uav1/unity_sensors/camera" />
         </node>
-        <node pkg="rqt_image_view" type="rqt_image_view" name="unity_view" args="/uav1/unity_sensors/camera" output="screen"/>
+        <group if="$(arg launch_multiview)">
+            <node pkg="rqt_image_view" type="rqt_image_view" name="unity_view" args="/uav1/unity_sensors/camera" output="screen"/>
+        </group>
     </group>
 
     <node pkg="drone_controller" name="yaw_correction_node" type="yaw_correction.py" output="screen">
@@ -47,6 +54,7 @@
 
     <node pkg="mixed_reality" name="mixer_node" type="mixer.py" output="screen">
     </node>
+    
     <node pkg="rqt_image_view" type="rqt_image_view" name="mixer_img" args="/mixer/sensors/camera" output="screen"/>
 
 </launch>

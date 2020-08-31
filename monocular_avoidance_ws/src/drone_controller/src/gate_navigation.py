@@ -114,6 +114,26 @@ class GateNavigation:
         else:
             self._gatefound = True
 
+        # Make sure we are looking at a full gate and not only an image
+        thresh = cv2.adaptiveThreshold(mask, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 11, 2)
+        contours, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+        full_gate_found = False
+        contour_list = []
+        for contour in contours:
+            area = cv2.contourArea(contour)
+            # Filter based on length and area
+            if (area > 25000):
+                full_gate_found = True
+                contour_list.append(contour)
+
+        rbg_img = cv2.drawContours(rbg_img, contour_list,  -1, (255,0,0), 2)
+
+        # If we can only see part of the gate, fly directly forward
+        if (full_gate_found == False) and (self._gatefound == True):
+            gate_centre_x = self.camera_center_x
+            gate_centre_y = self.camera_center_y
+
         # Save the results
         if self.gate_center_x_arr is None:
             self.gate_center_x_arr = np.full(self.object_arr_length, gate_centre_x)
@@ -171,7 +191,7 @@ class GateNavigation:
                     self.y_controller.remove_buildup()
                     stop_counter += 1
                     # Wait 2 seconds before stopping your action
-                    if stop_counter <= self.rate * 1.5:
+                    if stop_counter <= self.rate * 2:
                         direction_y = 0
                         direction_z = 0
                         direction_backforward = -1
@@ -187,6 +207,9 @@ class GateNavigation:
                 direction_y = int(round(max(min(direction_y, 100), -100),0))
                 direction_z = int(round(max(min(direction_z, 100), -100),0))
                 direction_backforward = int(round(max(min(direction_backforward, 100), -100),0))
+
+                direction_y = 0
+                direction_z = 0
 
                 # Publish the message
                 msg = Move()

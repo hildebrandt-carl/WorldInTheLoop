@@ -5,12 +5,14 @@
     <arg name="unity" default="true"/>
     <arg name="physical" default="false"/>
     <arg name="vicon" default="false"/>
+    <arg name="multiview" default="false"/>
 
     <include file="$(find drone_controller)/launch/main.launch">
         <arg name="launch_unity" value="$(arg unity)" />
         <arg name="launch_shinx" value="$(arg sphinx)" />
         <arg name="launch_physical" value="$(arg physical)" />
         <arg name="launch_vicon" value="$(arg vicon)" />
+        <arg name="launch_multiview" value="$(arg multiview)" />
     </include>
 
     <node pkg="drone_controller" name="program_controller_node" type="gate_scenario_controller.py" output="screen">
@@ -35,7 +37,9 @@
         <param name="output_topic" type="string" value="/uav1/overlay/camera" />
     </node> 
 
-    <node pkg="rqt_image_view" type="rqt_image_view" name="gate_center" args="/gate_navigation/sensors/camera" output="screen"/>
-    <node pkg="rqt_image_view" type="rqt_image_view" name="test_color" args="/uav1/overlay/camera" output="screen"/>
-    
+    <group if="$(arg multiview)">
+        <node pkg="rqt_image_view" type="rqt_image_view" name="gate_center" args="/gate_navigation/sensors/camera" output="screen"/>
+        <node pkg="rqt_image_view" type="rqt_image_view" name="test_color" args="/uav1/overlay/camera" output="screen"/>
+    </group>
+
 </launch>

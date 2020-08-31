@@ -16,8 +16,10 @@ import numpy as np
 
 from queue import Queue, Empty
 from tf.transformations import quaternion_from_euler
+from tf.transformations import euler_from_quaternion
 
 from geometry_msgs.msg import Point
+from geometry_msgs.msg import TransformStamped
 from drone_controller.msg import Attitude
 
 
@@ -48,10 +50,18 @@ class InformationExtraction:
 
         self.att_sub = None
         self.pos_sub = None
-        if attitude_source != "":
+
+        # None Vicon related topics
+        if (attitude_source != "") and ("vicon" not in attitude_source):
             self.att_sub = rospy.Subscriber(attitude_source, Attitude , self.attitude_callback)
-        if position_source != "":
+        if (position_source != "") and ("vicon" not in position_source):
             self.pos_sub = rospy.Subscriber(position_source, Point , self.position_callback)
+
+        # Vicon related topics
+        self.vicon_attitude = ("vicon" in attitude_source.lower())
+        self.vicon_position = ("vicon" in position_source.lower())
+        if self.vicon_attitude or self.vicon_position:
+            self.vicon_sub = rospy.Subscriber("/vicon/ANAFI/ANAFI", TransformStamped , self.vicon_callback)
 
         time.sleep(0.5)
 
@@ -60,6 +70,20 @@ class InformationExtraction:
 
     def stop(self):
         self._quit = True
+
+    def vicon_callback(self, msg):
+        if self.vicon_attitude:
+            euler = euler_from_quaternion(quaternion=(msg.transform.rotation.x,
+                                                      msg.transform.rotation.y,
+                                                      msg.transform.rotation.z,
+                                                      msg.transform.rotation.w))
+            att1[0] = float(-1*euler[0])
+            att1[1] = float(-1*euler[1])
+            att1[2] = float(euler[2])
+        if self.vicon_position:
+            pos1[0] = float(msg.transform.translation.x)
+            pos1[1] = float(msg.transform.translation.y)
+            pos1[2] = float(msg.transform.translation.z)  
 
     def attitude_callback(self, msg):
         att1[0] = float(msg.roll)
