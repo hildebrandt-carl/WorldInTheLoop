@@ -452,7 +452,34 @@ sudo apt-get install -y --no-install-recommends libnvinfer6=6.0.1-1+cuda10.1 \
 ```
 
 
+## Installing lm-sensors
 
+This package is used to monitor the temperature of your CPU. You can get it by running:
+
+```zsh
+$ sudo apt install lm-sensors
+$ sudo sensors-detect
+```
+
+You can then look at your CPU temperate using:
+```zsh
+$ watch -n 2 sensors
+```
+
+
+## Installing Cuda
+
+Go [CUDA toolkit](https://developer.nvidia.com/cuda-downloads) website and select `Linux->x86_64->Ubuntu->18.04->deb (local)`. At the time of running this, I was given the following instructions:
+
+```zsh
+$ wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
+$ sudo mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
+$ wget https://developer.download.nvidia.com/compute/cuda/11.0.3/local_installers/cuda-repo-ubuntu1804-11-0-local_11.0.3-450.51.06-1_amd64.deb
+$ sudo dpkg -i cuda-repo-ubuntu1804-11-0-local_11.0.3-450.51.06-1_amd64.deb
+$ sudo apt-key add /var/cuda-repo-ubuntu1804-11-0-local/7fa2af80.pub
+$ sudo apt-get update
+$ sudo apt-get -y install cuda
+```
 
 
 
