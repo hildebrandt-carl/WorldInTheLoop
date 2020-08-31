@@ -192,6 +192,8 @@ Next instruct catkin build to use python 3. To do that you can run the following
 
 ```zsh
 $ cd ~/Desktop/MixedRealityTesting/monocular_avoidance_ws/
+# Make sure you are working in the current workspace
+$ catkin init --workspace .
 # Instruct catkin to set cmake variables
 $ catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.6m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.6m.so
 # Instruct catkin to install built packages into install place. It is $CATKIN_WORKSPACE/install folder
