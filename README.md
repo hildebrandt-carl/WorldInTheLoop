@@ -122,7 +122,7 @@ You need to run the following commands (ONLY IF YOU GOT THE ERROR ABOVE)
 $ sudo python3 -m pip uninstall clang -y
 $ sudo python3 -m pip install clang==6.0.0.2
 # Rerun the process that used to throw the error
-$ cd code/parrot-groundsdk
+$ cd ~/code/parrot-groundsdk
 $ ./products/olympe/linux/env/postinst
 ```
 
