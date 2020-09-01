@@ -66,8 +66,8 @@ class GateNavigation:
         self.bridge = CvBridge()
 
         # Define the upper and lower bound
-        self.lower_bound = (0, 0, 40)
-        self.upper_bound = (20, 200, 200)
+        self.lower_bound = (150, 100, 100)
+        self.upper_bound = (200, 250, 220)
 
         # Init all the publishers and subscribers
         self.move_pub = rospy.Publisher("/uav1/input/beforeyawcorrection/move", Move, queue_size=10)
@@ -210,6 +210,7 @@ class GateNavigation:
 
                 direction_y = 0
                 direction_z = 0
+                direction_backforward = 0
 
                 # Publish the message
                 msg = Move()

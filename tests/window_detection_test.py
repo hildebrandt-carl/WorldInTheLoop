@@ -13,8 +13,9 @@ from matplotlib import colors
 
 
 
-img = cv2.imread('./images/gate.png')
-# img = cv2.imread('./images/standard_screen.png')
+# img = cv2.imread('./images/gate.png')
+img = cv2.imread('./images/standard_screen.png')
+# img = cv2.imread('./images/gate_latest.png')
 
 scale_percent = 100
 width = int(img.shape[1] * scale_percent / 100)
@@ -27,7 +28,7 @@ hsv_img = cv2.cvtColor(rbg_img, cv2.COLOR_RGB2HSV)
 
 # Colors we want to find
 light_orange = (150, 100, 100)
-dark_orange = (200, 250, 200)
+dark_orange = (200, 250, 220)
 
 # Create the selected colors for display
 lo_square = np.full((10, 10, 3), light_orange, dtype=np.uint8) / 255.0
