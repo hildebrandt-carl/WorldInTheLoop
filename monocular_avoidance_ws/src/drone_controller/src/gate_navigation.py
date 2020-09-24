@@ -66,8 +66,10 @@ class GateNavigation:
         self.bridge = CvBridge()
 
         # Define the upper and lower bound
-        self.lower_bound = (150, 100, 100)
-        self.upper_bound = (200, 250, 220)
+        lb = rospy.get_param(rospy.get_name() + '/lower_bound', {'H': 0, 'S': 0, 'V': 40})
+        ub = rospy.get_param(rospy.get_name() + '/upper_bound', {'H': 20, 'S': 200, 'V': 200})
+        self.lower_bound = (lb["H"], lb["S"], lb["V"])
+        self.upper_bound = (ub["H"], ub["S"], ub["V"])
 
         # Init all the publishers and subscribers
         self.move_pub = rospy.Publisher("/uav1/input/beforeyawcorrection/move", Move, queue_size=10)
@@ -118,16 +120,18 @@ class GateNavigation:
         thresh = cv2.adaptiveThreshold(mask, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 11, 2)
         contours, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-        full_gate_found = False
+        full_gate_found = True
         contour_list = []
         for contour in contours:
             area = cv2.contourArea(contour)
             # Filter based on length and area
-            if (area > 25000):
+            ## AREA USED TO BE 25000
+            ## AREA IS NOW 11873
+            if (area > 11000):
                 full_gate_found = True
                 contour_list.append(contour)
 
-        rbg_img = cv2.drawContours(rbg_img, contour_list,  -1, (255,0,0), 2)
+        rbg_img = cv2.drawContours(rbg_img, contour_list,  -1, (0, 255, 0), 2)
 
         # If we can only see part of the gate, fly directly forward
         if (full_gate_found == False) and (self._gatefound == True):
@@ -147,7 +151,7 @@ class GateNavigation:
         # Publish the image with the dot
         center_coordinates = (int(round(gate_centre_x, 0)), int(round(gate_centre_y, 0)))
         radius = 2
-        color = (255, 0, 0) 
+        color = (0, 255, 0) 
         thickness = 2
         rbg_img = cv2.circle(rbg_img, center_coordinates, radius, color, thickness) 
 

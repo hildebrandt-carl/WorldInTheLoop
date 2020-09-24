@@ -1,6 +1,0 @@
-devel_space: /home/parallels/MixedReality/yolo/catkin_workspace/devel
-install: false
-install_space: /home/parallels/MixedReality/yolo/catkin_workspace/install
-profile: default
-source_space: /home/parallels/MixedReality/yolo/catkin_workspace/src
-workspace: /home/parallels/MixedReality/yolo/catkin_workspace

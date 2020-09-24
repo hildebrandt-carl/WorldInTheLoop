@@ -281,178 +281,7 @@ $ roslaunch drone_controller manual_simulation.launch
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-# Old instructions
-
-
-
-
-
-# Runnning Sphix
-
-You can launch two drones by running:
-```
-$ sudo systemctl start firmwared.service
-$ sphinx /opt/parrot-sphinx/usr/share/sphinx/drones/anafi4k.drone::stolen_interface=::pose="2 0 0.2 0 0 0"::with_front_cam=true /opt/parrot-sphinx/usr/share/sphinx/drones/anafi4k.drone::name=other::stolen_interface=::pose="-2 0 0.2 0 0 0"::with_front_cam=false
-```
-
-We then have a bunch of different python scripts to control the drone using:
-```
-$ source ~/code/parrot-groundsdk/./products/olympe/linux/env/shell
-$ python <PYTHONSCRIPT>.py
-```
-
-You might find that the ethernet does not reset correctly. To reset the ethernet you can run the following:
-```
-$ sudo ip link set eth0 down
-$ sudo ip link set eth0 name enp0s5
-$ sudo ip link set enp0s5 up
-```
-
-
-# Flying the second drone
-
-Create a virtual ethernet connection using:
-```
-$ sudo ip link add eth10 type dummy
-```
-
-Now you can launch your drone using:
-```
-$ sudo systemctl start firmwared.service
-$ sphinx /opt/parrot-sphinx/usr/share/sphinx/drones/anafi4k.drone::stolen_interface=enp0s5:eth0:192.168.42.1/24 /opt/parrot-sphinx/usr/share/sphinx/drones/anafi4k.drone::name=other::stolen_interface=eth10:eth0:192.168.42.1/24::pose="5 0 0.2 0 0 0"::with_front_cam=false
-```
-
-
-
-## Original build instructions
-
-These instructions do not need to be run. I have kept them if I ever need to reinstall one of the following modules
-
-### Yolo
-
-These were the original instructions on how I setup the darknet network.
-
-Installation
-```zsh
-$ mkdir -p catkin_workspace/src
-$ cd catkin_workspace/src
-$ git clone --recursive git@github.com:leggedrobotics/darknet_ros.git
-$ cd ../
-$ catkin build darknet_ros -DCMAKE_BUILD_TYPE=Release
-$ catkin build darknet_ros --no-deps --verbose --catkin-make-args run_tests
-$ catkin build
-```
-
-To run it use the following:
-```zsh
-$ source ./devel/setup.zsh
-$ roslaunch controller main.launch
-```
-
-### Making CV_Bridge work with Python3
-
-You have to do the following. Note you need to change the catkin config command to include the python version you are using. so for example I am using python3.6.9 so I ran the command python3.6m
-You also need to change the ros version to melodic in the grep command
-
-``` zsh
-# `python-catkin-tools` is needed for catkin tool
-# `python3-dev` and `python3-catkin-pkg-modules` is needed to build cv_bridge
-# `python3-numpy` and `python3-yaml` is cv_bridge dependencies
-# `ros-kinetic-cv-bridge` is needed to install a lot of cv_bridge deps. Probaply you already have it installed.
-sudo apt-get install python-catkin-tools python3-dev python3-catkin-pkg-modules python3-numpy python3-yaml ros-melodic-cv-bridge
-# Create catkin workspace
-mkdir catkin_workspace
-cd catkin_workspace
-catkin init
-# Instruct catkin to set cmake variables
-catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.5m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.5m.so
-# Instruct catkin to install built packages into install place. It is $CATKIN_WORKSPACE/install folder
-catkin config --install
-# Clone cv_bridge src
-git clone https://github.com/ros-perception/vision_opencv.git src/vision_opencv
-# Find version of cv_bridge in your repository
-apt-cache show ros-kinetic-cv-bridge | grep Version
-    Version: 1.12.8-0xenial-20180416-143935-0800
-# Checkout right version in git repo. In our case it is 1.12.8
-cd src/vision_opencv/
-git checkout 1.12.8
-cd ../../
-# Build
-catkin build cv_bridge
-# Extend environment with new package
-source install/setup.bash --extend
-```
-
-I also needed to use catkin config --no-install
-
-## Installing CUDA
-
-You can install Cuda using the following commands:
-Add NVIDIA package repositories
-```zsh
-$ wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-repo-ubuntu1804_10.1.243-1_amd64.deb
-$ sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
-$ sudo dpkg -i cuda-repo-ubuntu1804_10.1.243-1_amd64.deb
-$ sudo apt-get update
-$ wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
-$ sudo apt install ./nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
-$ sudo apt-get update
-```
-
-Install NVIDIA driver:
-```zsh
-$ sudo apt-get install --no-install-recommends nvidia-driver-430
-```
-
-Reboot. Check that GPUs are visible using the command:
-```zsh
-nvidia-smi
-```
-Install development and runtime libraries (~4GB)
-```zsh
-sudo apt-get install --no-install-recommends \
-    cuda-10-1 \
-    libcudnn7=7.6.4.38-1+cuda10.1  \
-    libcudnn7-dev=7.6.4.38-1+cuda10.1
-```
-
-Install TensorRT. Requires that libcudnn7 is installed above.
-```zsh
-sudo apt-get install -y --no-install-recommends libnvinfer6=6.0.1-1+cuda10.1 \
-    libnvinfer-dev=6.0.1-1+cuda10.1 \
-    libnvinfer-plugin6=6.0.1-1+cuda10.1
-
-```
-
+# Non-Essential
 
 ## Installing lm-sensors
 
@@ -468,26 +297,6 @@ You can then look at your CPU temperate using:
 $ watch -n 2 sensors
 ```
 
-
-## Installing Cuda
-
-Go [CUDA toolkit](https://developer.nvidia.com/cuda-downloads) website and select `Linux->x86_64->Ubuntu->18.04->deb (local)`. At the time of running this, I was given the following instructions:
-
-```zsh
-$ wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
-$ sudo mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
-$ wget https://developer.download.nvidia.com/compute/cuda/11.0.3/local_installers/cuda-repo-ubuntu1804-11-0-local_11.0.3-450.51.06-1_amd64.deb
-$ sudo dpkg -i cuda-repo-ubuntu1804-11-0-local_11.0.3-450.51.06-1_amd64.deb
-$ sudo apt-key add /var/cuda-repo-ubuntu1804-11-0-local/7fa2af80.pub
-$ sudo apt-get update
-$ sudo apt-get -y install cuda
-```
-
-
-
-
-
-
 ## Setting up Vicon
 
 Build on the vicon machine
@@ -501,9 +310,49 @@ $ export ROS_HOSTNAME=<VICONMACHINEIP>
 $ export ROS_MASTER_URI=<YOURMACHINEIP:11311>
 ```
 
-YOUR Machine
+Working Machine
 ```zsh
 $ export ROS_IP=<YOURMACHINEIP>
 $ export ROS_HOSTNAME=<YOURMACHINEIP>
 $ export ROS_MASTER_URI=http://<YOURMACHINEIP:11311>
+```
+---
+
+# Old instructions
+
+
+
+# Runnning Sphix
+
+You can launch two drones by running:
+```zsh
+$ sudo systemctl start firmwared.service
+$ sphinx /opt/parrot-sphinx/usr/share/sphinx/drones/anafi4k.drone::stolen_interface=::pose="2 0 0.2 0 0 0"::with_front_cam=true /opt/parrot-sphinx/usr/share/sphinx/drones/anafi4k.drone::name=other::stolen_interface=::pose="-2 0 0.2 0 0 0"::with_front_cam=false
+```
+
+We then have a bunch of different python scripts to control the drone using:
+```zsh
+$ source ~/code/parrot-groundsdk/./products/olympe/linux/env/shell
+$ python <PYTHONSCRIPT>.py
+```
+
+You might find that the ethernet does not reset correctly. To reset the ethernet you can run the following:
+```zsh
+$ sudo ip link set eth0 down
+$ sudo ip link set eth0 name enp0s5
+$ sudo ip link set enp0s5 up
+```
+
+
+# Flying the second drone
+
+Create a virtual ethernet connection using:
+```zsh
+$ sudo ip link add eth10 type dummy
+```
+
+Now you can launch your drone using:
+```zsh
+$ sudo systemctl start firmwared.service
+$ sphinx /opt/parrot-sphinx/usr/share/sphinx/drones/anafi4k.drone::stolen_interface=enp0s5:eth0:192.168.42.1/24 /opt/parrot-sphinx/usr/share/sphinx/drones/anafi4k.drone::name=other::stolen_interface=eth10:eth0:192.168.42.1/24::pose="5 0 0.2 0 0 0"::with_front_cam=false
 ```

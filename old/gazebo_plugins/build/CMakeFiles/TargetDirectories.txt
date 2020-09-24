@@ -1,3 +1,0 @@
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/gazebo_plugins/build/CMakeFiles/rebuild_cache.dir
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/gazebo_plugins/build/CMakeFiles/model_push.dir
-/home/carl/MixedReality/monocular_avoidance/catkin_ws/gazebo_plugins/build/CMakeFiles/edit_cache.dir

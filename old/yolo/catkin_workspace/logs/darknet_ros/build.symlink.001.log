@@ -1,6 +1,0 @@
-Linked: (/home/parallels/MixedReality/yolo/catkin_workspace/devel/.private/darknet_ros/share/darknet_ros/cmake/darknet_rosConfig.cmake, /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/darknet_ros/cmake/darknet_rosConfig.cmake)
-Linked: (/home/parallels/MixedReality/yolo/catkin_workspace/devel/.private/darknet_ros/share/darknet_ros/cmake/darknet_rosConfig-version.cmake, /home/parallels/MixedReality/yolo/catkin_workspace/devel/share/darknet_ros/cmake/darknet_rosConfig-version.cmake)
-Linked: (/home/parallels/MixedReality/yolo/catkin_workspace/devel/.private/darknet_ros/lib/libdarknet_ros_lib.so, /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/libdarknet_ros_lib.so)
-Linked: (/home/parallels/MixedReality/yolo/catkin_workspace/devel/.private/darknet_ros/lib/pkgconfig/darknet_ros.pc, /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/pkgconfig/darknet_ros.pc)
-Linked: (/home/parallels/MixedReality/yolo/catkin_workspace/devel/.private/darknet_ros/lib/darknet_ros/darknet_ros, /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/darknet_ros/darknet_ros)
-Symlinking /home/parallels/MixedReality/yolo/catkin_workspace/devel/lib/darknet_ros/darknet_ros_object_detection-test

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites tests="3" failures="0" disabled="2" errors="0" timestamp="2020-06-15T11:41:57" time="10.74" name="AllTests">
-  <testsuite name="ObjectDetection" tests="3" failures="0" disabled="2" errors="0" time="10.74">
-    <testcase name="DISABLED_DetectDog" status="notrun" time="0" classname="ObjectDetection" />
-    <testcase name="DetectANYmal" status="run" time="10.74" classname="ObjectDetection" />
-    <testcase name="DISABLED_DetectPerson" status="notrun" time="0" classname="ObjectDetection" />
-  </testsuite>
-</testsuites>

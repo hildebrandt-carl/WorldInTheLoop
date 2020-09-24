@@ -23,15 +23,22 @@
         <param name="gains/p" type="double" value="27" />
         <param name="gains/i" type="double" value="0" />
         <param name="gains/d" type="double" value="15" />
+
+        <param name="lower_bound/H" type="int" value="0" />
+        <param name="lower_bound/S" type="int" value="100" />
+        <param name="lower_bound/V" type="int" value="60" />
+        <param name="upper_bound/H" type="int" value="10" />
+        <param name="upper_bound/S" type="int" value="250" />
+        <param name="upper_bound/V" type="int" value="220" />
     </node> 
 
     <node pkg="mixing_functions" name="color_threshold_node" type="color_threshold.py" output="screen">
         <param name="lower_bound/H" type="int" value="0" />
-        <param name="lower_bound/S" type="int" value="0" />
-        <param name="lower_bound/V" type="int" value="40" />
-        <param name="upper_bound/H" type="int" value="20" />
-        <param name="upper_bound/S" type="int" value="200" />
-        <param name="upper_bound/V" type="int" value="200" />
+        <param name="lower_bound/S" type="int" value="100" />
+        <param name="lower_bound/V" type="int" value="60" />
+        <param name="upper_bound/H" type="int" value="10" />
+        <param name="upper_bound/S" type="int" value="250" />
+        <param name="upper_bound/V" type="int" value="220" />
 
         <param name="input_topic" type="string" value="/uav1/sphinx_sensors/camera" />
         <param name="output_topic" type="string" value="/uav1/overlay/camera" />

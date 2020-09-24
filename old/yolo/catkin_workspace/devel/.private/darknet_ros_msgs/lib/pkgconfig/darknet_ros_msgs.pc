@@ -1,8 +1,0 @@
-prefix=/home/parallels/MixedReality/yolo/catkin_workspace/devel/.private/darknet_ros_msgs
-
-Name: darknet_ros_msgs
-Description: Description of darknet_ros_msgs
-Version: 1.1.4
-Cflags: -I/home/parallels/MixedReality/yolo/catkin_workspace/devel/.private/darknet_ros_msgs/include
-Libs: -L${prefix}/lib 
-Requires: actionlib_msgs geometry_msgs sensor_msgs message_runtime std_msgs
