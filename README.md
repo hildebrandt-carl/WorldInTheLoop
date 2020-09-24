@@ -148,11 +148,17 @@ $ sudo apt install python3-opencv python-catkin-tools -y
 
 Install a dependency required to build opencv
 ```zsh
-$ pip3 install scikit-build scipy zmq matplotlib --user
+$ python3 -m pip install scikit-build scipy zmq matplotlib --user
 ```
 
-Next we need to create the following script inside (`~/code/parrot-groundsdk`) our Olympe package. Call the file `olympe_custom_env.sh`.
-```bash
+Next we need to create the following script inside (`~/code/parrot-groundsdk`) our Olympe package. Call the file `olympe_custom_env.sh`. You can do that using:
+```zsh
+$ cd ~/code/parrot-groundsdk
+$ nano olympe_custom_env.sh
+```
+
+Add the following to the file:
+```zsh
 #!/bin/bash
 
 
@@ -177,7 +183,7 @@ source "$GSDK_DIR/out/olympe-linux/final/native-wrapper.sh"
 
 Then we need to source it each time we want to run olympe, by running:
 ```zsh
-source ~/code/parrot-groundsdk/olympe_custom_env.sh
+$ source ~/code/parrot-groundsdk/olympe_custom_env.sh
 ```
 
 ### ROS with Python3
@@ -204,7 +210,7 @@ $ catkin config --no-install
 
 Some of our sphinx simulations rely on custom object models. To make them available to sphinx we can do the following:
 
-```
+```zsh
 $ sudo cp ~/Desktop/MixedRealityTesting/monocular_avoidance_ws/src/drone_controller/worlds/GateModels /opt/parrot-sphinx/usr/share/sphinx/models -r
 ```
 
