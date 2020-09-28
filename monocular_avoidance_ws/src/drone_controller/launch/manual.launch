@@ -22,5 +22,8 @@
 
     <node pkg="drone_controller" name="manual_control_node" type="manual_control.py" output="screen">
     </node>
+
+    <node pkg="rqt_gui" name="yaw_plot" type="rqt_gui" respawn="false" output="screen" args="--perspective-file $(find drone_controller)/rqt_config/debug_yaw.perspective"/>
+    <node pkg="rqt_gui" name="move_plot" type="rqt_gui" respawn="false" output="screen" args="--perspective-file $(find drone_controller)/rqt_config/debug_move.perspective"/>
     
 </launch>

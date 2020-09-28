@@ -10,6 +10,7 @@ from time import sleep
 from pid_class import PID
 from utility import DroneState
 
+from std_msgs.msg import Bool
 from std_msgs.msg import Int16
 from sensor_msgs.msg import Image
 from drone_controller.msg import Move
@@ -65,6 +66,9 @@ class GateNavigation:
         # Create the bridge
         self.bridge = CvBridge()
 
+        # Variable to check if movement is allowed
+        self.allow_movement = True
+
         # Define the upper and lower bound
         lb = rospy.get_param(rospy.get_name() + '/lower_bound', {'H': 0, 'S': 0, 'V': 40})
         ub = rospy.get_param(rospy.get_name() + '/upper_bound', {'H': 20, 'S': 200, 'V': 200})
@@ -72,9 +76,10 @@ class GateNavigation:
         self.upper_bound = (ub["H"], ub["S"], ub["V"])
 
         # Init all the publishers and subscribers
-        self.move_pub = rospy.Publisher("/uav1/input/beforeyawcorrection/move", Move, queue_size=10)
-        self.drone_state_sub = rospy.Subscriber("uav1/input/state", Int16, self._getstate)
-        self.image_sub = rospy.Subscriber("/mixer/sensors/camera", Image, self._getImage)
+        self.move_pub           = rospy.Publisher("/uav1/input/beforeyawcorrection/move", Move, queue_size=10)
+        self.drone_state_sub    = rospy.Subscriber("/uav1/input/state", Int16, self._getstate)
+        self.image_sub          = rospy.Subscriber("/mixer/sensors/camera", Image, self._getImage)
+        self.allow_movement_sub = rospy.Subscriber("/uav1/status/yaw_out_of_range", Bool, self._getOutOfRange)
 
         # Publish the image with the center
         self.img_pub = rospy.Publisher("/gate_navigation/sensors/camera", Image, queue_size=10)
@@ -85,7 +90,12 @@ class GateNavigation:
     def stop(self):
         self._quit = True
 
+    def _getOutOfRange(self, msg):
+        # Set the allow_movement flag to the incoming message
+        self.allow_movement = msg.data
+
     def _getstate(self, msg):
+        # Check if we are in navigation mode
         if msg.data == DroneState.GATENAVIGATION.value:
             self._innavigationmode = True
 
@@ -120,7 +130,7 @@ class GateNavigation:
         thresh = cv2.adaptiveThreshold(mask, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 11, 2)
         contours, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-        full_gate_found = True
+        full_gate_found = False
         contour_list = []
         for contour in contours:
             area = cv2.contourArea(contour)
@@ -175,7 +185,7 @@ class GateNavigation:
                     continue
 
                 # Calculate the error
-                percentage_leftright       = (cen_x - self.camera_center_x) / self.camera_center_x
+                percentage_leftright = (cen_x - self.camera_center_x) / self.camera_center_x
                 percentage_updown    = (cen_y - self.camera_center_y) / self.camera_center_y
 
                 # Put the error into the corresponding PID controller
@@ -194,8 +204,8 @@ class GateNavigation:
                     self.z_controller.remove_buildup()
                     self.y_controller.remove_buildup()
                     stop_counter += 1
-                    # Wait 2 seconds before stopping your action
-                    if stop_counter <= self.rate * 2:
+                    # Wait 3 seconds before stopping your action
+                    if stop_counter <= self.rate * 3:
                         direction_y = 0
                         direction_z = 0
                         direction_backforward = -1
@@ -205,16 +215,17 @@ class GateNavigation:
                         direction_backforward = 0
 
                 # We want to move slowly forward
-                direction_backforward = direction_backforward * 10
+                direction_backforward = direction_backforward * 5
 
                 # Make sure the commands are int's between -100 and 100
                 direction_y = int(round(max(min(direction_y, 100), -100),0))
                 direction_z = int(round(max(min(direction_z, 100), -100),0))
                 direction_backforward = int(round(max(min(direction_backforward, 100), -100),0))
 
-                direction_y = 0
-                direction_z = 0
-                direction_backforward = 0
+                if not self.allow_movement:
+                    direction_y = 0
+                    direction_z = 0
+                    direction_backforward = 0
 
                 # Publish the message
                 msg = Move()

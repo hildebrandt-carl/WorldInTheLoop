@@ -3,6 +3,7 @@
 from __future__ import print_function, absolute_import
 
 from std_msgs.msg import Int16
+from std_msgs.msg import Bool
 from utility import ProgramState
 from utility import DroneState
 
@@ -29,8 +30,19 @@ class ProgramController:
         self.rate = 1.0
         self.dt = 1.0 / self.rate
 
+        # Holds the manual override value
+        self.manual_override = False
+
         # Init all the publishers and subscribers
-        self.main_drone_pub = rospy.Publisher("uav1/input/state", Int16, queue_size=10)
+        self.main_drone_pub     = rospy.Publisher("uav1/input/state", Int16, queue_size=10)
+        self.manual_move_sub    = rospy.Subscriber("/uav1/input/manual_overide", Bool, self._setManualOverride)
+
+    def _setManualOverride(self, msg):
+        if self.manual_override == False and msg.data == True:
+            self._log("Manual Override Requested")
+            self.manual_override = True
+            msg = Int16(DroneState.MANUAL.value)
+            self.main_drone_pub.publish(msg)
 
     def start(self):
         self._mainloop()
@@ -75,25 +87,32 @@ class ProgramController:
             r.sleep()
 
     def _startscenario(self):
-        msg = Int16(DroneState.TAKEOFF.value)
-        self.main_drone_pub.publish(msg)
-        time.sleep(5)
-        self._state = ProgramState.SCENARIO
+        if not self.manual_override:
+            msg = Int16(DroneState.TAKEOFF.value)
+            self.main_drone_pub.publish(msg)
+        time.sleep(1)
+        if not self.manual_override:
+            self._state = ProgramState.SCENARIO
 
     def _endscenario(self):
-        msg = Int16(DroneState.LANDING.value)
-        self.main_drone_pub.publish(msg)
+        if not self.manual_override:
+            msg = Int16(DroneState.LANDING.value)
+            self.main_drone_pub.publish(msg)
         time.sleep(5)
-        self._state = ProgramState.INACTIVE
+        if not self.manual_override:
+            self._state = ProgramState.INACTIVE
 
     def _mainscenario(self):
-        msg = Int16(DroneState.HOVERING.value)
-        self.main_drone_pub.publish(msg)
+        if not self.manual_override:
+            msg = Int16(DroneState.HOVERING.value)
+            self.main_drone_pub.publish(msg)
         time.sleep(1)
-        msg = Int16(DroneState.GATENAVIGATION.value)
-        self.main_drone_pub.publish(msg)
-        time.sleep(10)
-        self._state = ProgramState.ENDING
+        if not self.manual_override:
+            msg = Int16(DroneState.GATENAVIGATION.value)
+            self.main_drone_pub.publish(msg)
+        time.sleep(180)
+        if not self.manual_override:
+            self._state = ProgramState.ENDING
 
 if __name__ == "__main__":
     try:

@@ -2,7 +2,8 @@
 # TODO Set the IP as a param
 from __future__ import print_function, absolute_import
 from drone_controller.msg import Move
-from std_msgs.msg import Int8
+from std_msgs.msg import Int8, Int16
+from utility import DroneState
 
 import sys
 import copy
@@ -35,31 +36,55 @@ class YawCorrection:
         # Init the drone and program state
         self._quit = False
 
+        # Holds the drone state
+        self._state = DroneState.INACTIVE
+
         # Create the publishers and subscribers
-        self.yaw_sub = rospy.Subscriber("/uav1/input/yawcorrection", Int8, self._setyaw)
-        self.move_sub = rospy.Subscriber("/uav1/input/beforeyawcorrection/move", Move, self._setmove)
-        self.move_pub = rospy.Publisher("uav1/input/move", Move, queue_size=10)
+        self.yaw_sub            = rospy.Subscriber("/uav1/input/yawcorrection", Int8, self._setYaw)
+        self.move_sub           = rospy.Subscriber("/uav1/input/beforeyawcorrection/move", Move, self._setMove)
+        self.move_override_sub  = rospy.Subscriber("/uav1/input/beforeyawcorrection/move_manual", Move, self._setManualMove)
+        self.state_sub          = rospy.Subscriber("/uav1/input/state", Int16, self._setstate)
+
+        self.move_pub           = rospy.Publisher("uav1/input/move", Move, queue_size=10)
 
     def start(self):
         self._mainloop()
 
+    def _setstate(self, msg):
+        self._state = DroneState(int(msg.data))
+
     def stop(self):
         self._quit = True
 
-    def _setmove(self, msg):
-        msg_out = Move()
-        msg_out.left_right = int(round(msg.left_right, 0))
-        msg_out.front_back = int(round(msg.front_back, 0))
-        msg_out.up_down = int(round(msg.up_down, 0))
+    def _setMove(self, msg):
+        if self._state != DroneState.MANUAL:
+            msg_out = Move()
+            msg_out.left_right = int(round(msg.left_right, 0))
+            msg_out.front_back = int(round(msg.front_back, 0))
+            msg_out.up_down = int(round(msg.up_down, 0))
 
-        if self._use_yaw_correction:
-            msg_out.yawl_yawr = self._yaw
-        else:
-            msg_out.yawl_yawr = int(round(msg.yawl_yawr, 0))
-            
-        self.move_pub.publish(msg_out)
+            if self._use_yaw_correction:
+                msg_out.yawl_yawr = self._yaw
+            else:
+                msg_out.yawl_yawr = int(round(msg.yawl_yawr, 0))
+                
+            self.move_pub.publish(msg_out)
 
-    def _setyaw(self, msg):
+    def _setManualMove(self, msg):
+        if self._state == DroneState.MANUAL:
+            msg_out = Move()
+            msg_out.left_right = int(round(msg.left_right, 0))
+            msg_out.front_back = int(round(msg.front_back, 0))
+            msg_out.up_down = int(round(msg.up_down, 0))
+
+            if self._use_yaw_correction:
+                msg_out.yawl_yawr = self._yaw
+            else:
+                msg_out.yawl_yawr = int(round(msg.yawl_yawr, 0))
+                
+            self.move_pub.publish(msg_out)
+
+    def _setYaw(self, msg):
         self._yaw = copy.deepcopy(int(round(msg.data, 0)))
 
     def _log(self, msg):

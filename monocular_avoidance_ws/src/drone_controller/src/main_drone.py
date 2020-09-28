@@ -66,11 +66,11 @@ class MainDroneController:
             publish_topic_base = "/uav1/physical_sensors/"
 
         # Init all the publishers and subscribers
-        self.state_sub = rospy.Subscriber("/uav1/input/state", Int16, self._setstate)
-        self.move_sub = rospy.Subscriber("/uav1/input/move", Move, self._setmove)
-        self.camera_pub = rospy.Publisher(publish_topic_base + "camera", Image, queue_size=10)
-        self.attitude_pub = rospy.Publisher(publish_topic_base + "attitude", Attitude, queue_size=10)
-        self.location_pub = rospy.Publisher(publish_topic_base + "position", Point, queue_size=10)
+        self.state_sub          = rospy.Subscriber("/uav1/input/state", Int16, self._setstate)
+        self.move_sub           = rospy.Subscriber("/uav1/input/move", Move, self._setmove)
+        self.camera_pub         = rospy.Publisher(publish_topic_base + "camera", Image, queue_size=10)
+        self.attitude_pub       = rospy.Publisher(publish_topic_base + "attitude", Attitude, queue_size=10)
+        self.location_pub       = rospy.Publisher(publish_topic_base + "position", Point, queue_size=10)
 
         # Init the drone variables
         self.drone_speed = min([speed, 100])
@@ -95,7 +95,6 @@ class MainDroneController:
         self.drone.start_video_streaming()
         # Start piloting
         self.drone.start_piloting()
-
 
     def start(self):
         self._mainloop()

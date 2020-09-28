@@ -77,8 +77,8 @@ class InformationExtraction:
                                                       msg.transform.rotation.y,
                                                       msg.transform.rotation.z,
                                                       msg.transform.rotation.w))
-            att1[0] = float(-1*euler[0])
-            att1[1] = float(-1*euler[1])
+            att1[0] = float(euler[0])
+            att1[1] = float(euler[1])
             att1[2] = float(euler[2])
         if self.vicon_position:
             pos1[0] = float(msg.transform.translation.x)

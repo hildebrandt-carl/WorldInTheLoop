@@ -46,9 +46,10 @@
 
     <group if="$(arg launch_vicon)">
         <node pkg="drone_controller" name="vicon_yaw_control_node" type="vicon_yaw_control.py" output="screen">
-            <param name="gains/p" type="double" value="75" />
-            <param name="gains/i" type="double" value="5" />
+            <param name="gains/p" type="double" value="400" />
+            <param name="gains/i" type="double" value="20" />
             <param name="gains/d" type="double" value="10" />
+            <param name="out_of_range_yaw" type="double" value="5" />
         </node>
     </group>
 
