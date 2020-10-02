@@ -218,6 +218,66 @@ $ sudo cp ~/Desktop/MixedRealityTesting/monocular_avoidance_ws/src/drone_control
 
 The following packages are optional and are not required to run the base project. I however recommend installing most of them as it will allow full functionality.
 
+### CUDA
+
+If you want to run the yolo code on the GPU, you need to install CUDA. To do that visit [this website](https://developer.nvidia.com/cuda-10.2-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=deblocal). Select Linux->x86_64->Ubuntu->18.04->deb(local). It gave me the following commands:
+
+```zsh
+$ wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
+$ sudo mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
+$ wget http://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda-repo-ubuntu1804-10-2-local-10.2.89-440.33.01_1.0-1_amd64.deb
+$ sudo dpkg -i cuda-repo-ubuntu1804-10-2-local-10.2.89-440.33.01_1.0-1_amd64.deb
+$ sudo apt-key add /var/cuda-repo-10-2-local-10.2.89-440.33.01/7fa2af80.pub
+$ sudo apt-get update
+$ sudo apt-get -y install cuda
+```
+Once you are done that reboot you computer using `reboot`. Once you are done that you need to add cuda to your path which you can do by adding the following to your `.zshrc` file. **Note** make sure to include the right cuda version:
+```zsh
+#CUDA Environment Setup
+export PATH=/usr/local/cuda-10.2/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64\${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+```
+
+Close your terminal and open it again. You can test it all worked by running:
+```zsh
+$ nvcc -V
+>>> nvcc: NVIDIA (R) Cuda compiler driver
+>>> Copyright (c) 2005-2020 NVIDIA Corporation
+>>> Built on Tue_Sep_15_19:10:02_PDT_2020
+>>> Cuda compilation tools, release 11.1, V11.1.74
+>>> Build cuda_11.1.TC455_06.29069683_0
+```
+
+If you proceed with this step. During the build phase of the package you might get the error:
+```zsh
+nvcc fatal   : Unsupported gpu architecture 'compute_30'
+```
+
+To solve this you need to edit the `darknet_ros/CMakeLists.txt`. First find your GPU version on the [CUDA Wiki page](https://en.wikipedia.org/wiki/CUDA#Supported_GPUs). So for example the Titan RTX is 7.5. Then add this line to the `CMakeList`:
+```zsh
+-O3 -gencode arch=compute_75,code=sm_75
+```
+
+**Note** I had to remove all other lines in that file so mine now looks like:
+```zsh
+# Find CUDA
+find_package(CUDA QUIET)
+if (CUDA_FOUND)
+  find_package(CUDA REQUIRED)
+  message(STATUS "CUDA Version: ${CUDA_VERSION_STRINGS}")
+  message(STATUS "CUDA Libararies: ${CUDA_LIBRARIES}")
+  set(
+    CUDA_NVCC_FLAGS
+    ${CUDA_NVCC_FLAGS};
+    -O3
+    -gencode arch=compute_75,code=sm_75
+  )
+  add_definitions(-DGPU)
+else()
+  list(APPEND LIBRARIES "m")
+endif()
+```
+
 ### Unity
 
 If you want to run any of the unity simulations, you will need to install unity. To do that visit the [Unity Download Center](https://unity3d.com/get-unity/download). I would recommend downloading Unity Hub

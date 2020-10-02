@@ -37,6 +37,7 @@ class ProgramController:
         self.main_drone_pub     = rospy.Publisher("uav1/input/state", Int16, queue_size=10)
         self.manual_move_sub    = rospy.Subscriber("/uav1/input/manual_overide", Bool, self._setManualOverride)
 
+    # Manual override callback
     def _setManualOverride(self, msg):
         if self.manual_override == False and msg.data == True:
             self._log("Manual Override Requested")
@@ -90,7 +91,7 @@ class ProgramController:
         if not self.manual_override:
             msg = Int16(DroneState.TAKEOFF.value)
             self.main_drone_pub.publish(msg)
-        time.sleep(1)
+        time.sleep(0.2)
         if not self.manual_override:
             self._state = ProgramState.SCENARIO
 
@@ -106,7 +107,7 @@ class ProgramController:
         if not self.manual_override:
             msg = Int16(DroneState.HOVERING.value)
             self.main_drone_pub.publish(msg)
-        time.sleep(1)
+        time.sleep(0.1)
         if not self.manual_override:
             msg = Int16(DroneState.GATENAVIGATION.value)
             self.main_drone_pub.publish(msg)

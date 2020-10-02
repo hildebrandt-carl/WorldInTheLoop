@@ -35,7 +35,7 @@ class GateNavigation:
         rospy.on_shutdown(self.stop)
 
         # Set the rate
-        self.rate = 15.0
+        self.rate = 30.0
         self.dt = 1.0 / self.rate
 
         # Init the drone and program state
@@ -137,9 +137,10 @@ class GateNavigation:
             # Filter based on length and area
             ## AREA USED TO BE 25000
             ## AREA IS NOW 11873
-            if (area > 11000):
+            if (area > 20000):
                 full_gate_found = True
                 contour_list.append(contour)
+                print(area)
 
         rbg_img = cv2.drawContours(rbg_img, contour_list,  -1, (0, 255, 0), 2)
 
@@ -174,6 +175,7 @@ class GateNavigation:
         r = rospy.Rate(self.rate)
 
         stop_counter = 0
+        previous_back_forward = 0
 
         while not self._quit:
             if self._innavigationmode:
@@ -215,17 +217,29 @@ class GateNavigation:
                         direction_backforward = 0
 
                 # We want to move slowly forward
-                direction_backforward = direction_backforward * 5
+                direction_backforward = direction_backforward * 2
 
                 # Make sure the commands are int's between -100 and 100
                 direction_y = int(round(max(min(direction_y, 100), -100),0))
                 direction_z = int(round(max(min(direction_z, 100), -100),0))
                 direction_backforward = int(round(max(min(direction_backforward, 100), -100),0))
 
+                # Only allow forward movement if we are lined up for the gate
+                if abs(direction_y) > 1 or abs(direction_z) > 1:
+                    if previous_back_forward > 0:
+                        direction_backforward = -1 * previous_back_forward
+                    else:
+                        direction_backforward = 0
+
                 if not self.allow_movement:
                     direction_y = 0
                     direction_z = 0
                     direction_backforward = 0
+
+                print("Direction y: " + str(direction_y))
+                print("Direction z: " + str(direction_z))
+                print("Direction f: " + str(direction_backforward))
+                print("---------------------")
 
                 # Publish the message
                 msg = Move()
@@ -234,6 +248,9 @@ class GateNavigation:
                 msg.front_back = direction_backforward
                 msg.yawl_yawr = 0
                 self.move_pub.publish(msg)
+
+                # Save the previous backforward message
+                previous_back_forward = 0
             
             r.sleep()
 

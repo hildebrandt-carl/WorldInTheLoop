@@ -31,7 +31,7 @@ class ViconYawControl:
         self._desired_yaw_wait_count = 1
 
         # Set the rate
-        self.rate = 15.0
+        self.rate = 30.0
         self.dt = 1.0 / self.rate
 
         # Out of range param
@@ -57,12 +57,16 @@ class ViconYawControl:
         self.debug_actual_pub   = rospy.Publisher("/debug/ActualYaw", Float32 , queue_size=10)
         self.out_of_range_pub   = rospy.Publisher("/uav1/status/yaw_out_of_range", Bool , queue_size=10)
         self.true_yaw_sub       = rospy.Subscriber("/vicon/ANAFI/ANAFI", TransformStamped, self._getvicon)
+        self.set_yaw_sub        = rospy.Subscriber("/uav1/input/vicon_setpoint/yaw/rate", Float32, self._updateSetpoint)
 
     def start(self):
         self._mainloop()
 
     def stop(self):
         self._quit = True
+
+    def _updateSetpoint(self, msg):
+        self._desired_yaw = self._true_yaw + msg.data
 
     def _getvicon(self, msg):
         rot = msg.transform.rotation

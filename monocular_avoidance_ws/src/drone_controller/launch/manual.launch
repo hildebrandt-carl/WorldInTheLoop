@@ -7,6 +7,7 @@
     <arg name="vicon" default="false"/>
     <arg name="controller" default="js0"/>
     <arg name="multiview" default="false"/>
+    <arg name="yaw_debug" default="false"/>
 
     <include file="$(find drone_controller)/launch/main.launch">
         <arg name="launch_unity" value="$(arg unity)" />
@@ -14,6 +15,7 @@
         <arg name="launch_physical" value="$(arg physical)" />
         <arg name="launch_vicon" value="$(arg vicon)" />
         <arg name="launch_multiview" value="$(arg multiview)" />
+        <arg name="yaw_debug_plot" value="$(arg yaw_debug)" />
     </include>
 
     <node name="joy_node" pkg="joy" type="joy_node">
@@ -23,7 +25,4 @@
     <node pkg="drone_controller" name="manual_control_node" type="manual_control.py" output="screen">
     </node>
 
-    <node pkg="rqt_gui" name="yaw_plot" type="rqt_gui" respawn="false" output="screen" args="--perspective-file $(find drone_controller)/rqt_config/debug_yaw.perspective"/>
-    <node pkg="rqt_gui" name="move_plot" type="rqt_gui" respawn="false" output="screen" args="--perspective-file $(find drone_controller)/rqt_config/debug_move.perspective"/>
-    
 </launch>

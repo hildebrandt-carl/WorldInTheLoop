@@ -22,6 +22,9 @@ class YawCorrection:
 
         # Set the move goal
         self._yaw = 0
+        self._left_right = 0
+        self._front_back = 0
+        self._up_down = 0
 
         # Param to use the corrrection or not
         self._use_yaw_correction = rospy.get_param(rospy.get_name() + '/yaw_correction', True)
@@ -30,7 +33,7 @@ class YawCorrection:
         self._log(": Yaw Correction - " + str(self._use_yaw_correction))
 
         # Set the rate
-        self.rate = 30.0
+        self.rate = 50.0
         self.dt = 1.0 / self.rate
 
         # Init the drone and program state
@@ -58,34 +61,23 @@ class YawCorrection:
 
     def _setMove(self, msg):
         if self._state != DroneState.MANUAL:
-            msg_out = Move()
-            msg_out.left_right = int(round(msg.left_right, 0))
-            msg_out.front_back = int(round(msg.front_back, 0))
-            msg_out.up_down = int(round(msg.up_down, 0))
-
-            if self._use_yaw_correction:
-                msg_out.yawl_yawr = self._yaw
-            else:
-                msg_out.yawl_yawr = int(round(msg.yawl_yawr, 0))
-                
-            self.move_pub.publish(msg_out)
+            self._left_right    = copy.deepcopy(int(round(msg.left_right, 0)))
+            self._front_back    = copy.deepcopy(int(round(msg.front_back, 0)))
+            self._up_down       = copy.deepcopy(int(round(msg.up_down, 0)))
+        if not self._use_yaw_correction:
+            self._yaw           = copy.deepcopy(int(round(msg.yawl_yawr, 0)))
 
     def _setManualMove(self, msg):
         if self._state == DroneState.MANUAL:
-            msg_out = Move()
-            msg_out.left_right = int(round(msg.left_right, 0))
-            msg_out.front_back = int(round(msg.front_back, 0))
-            msg_out.up_down = int(round(msg.up_down, 0))
-
-            if self._use_yaw_correction:
-                msg_out.yawl_yawr = self._yaw
-            else:
-                msg_out.yawl_yawr = int(round(msg.yawl_yawr, 0))
-                
-            self.move_pub.publish(msg_out)
+            self._left_right    = copy.deepcopy(int(round(msg.left_right, 0)))
+            self._front_back    = copy.deepcopy(int(round(msg.front_back, 0)))
+            self._up_down       = copy.deepcopy(int(round(msg.up_down, 0)))
+        if not self._use_yaw_correction:
+            self._yaw           = copy.deepcopy(int(round(msg.yawl_yawr, 0)))
 
     def _setYaw(self, msg):
-        self._yaw = copy.deepcopy(int(round(msg.data, 0)))
+        if self._use_yaw_correction:
+            self._yaw = copy.deepcopy(int(round(msg.data, 0)))
 
     def _log(self, msg):
         print(str(rospy.get_name()) + ": " + str(msg))
@@ -94,7 +86,14 @@ class YawCorrection:
 
         r = rospy.Rate(self.rate)
 
-        while not self._quit:            
+        while not self._quit:    
+            msg_out = Move()
+            msg_out.left_right  = self._left_right
+            msg_out.front_back  = self._front_back
+            msg_out.up_down     = self._up_down
+            msg_out.yawl_yawr = self._yaw
+            self.move_pub.publish(msg_out)    
+
             r.sleep()
 
 if __name__ == "__main__":

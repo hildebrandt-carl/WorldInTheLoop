@@ -7,6 +7,7 @@
     <arg name="launch_physical" default="false"/>
     <arg name="launch_vicon" default="false"/>
     <arg name="launch_multiview" default="true"/>
+    <arg name="yaw_debug_plot" default="false"/>
     
     <group if="$(arg launch_physical)">
         <node pkg="drone_controller" name="physical_main_drone_node" type="main_drone.py" output="screen"> 
@@ -46,9 +47,9 @@
 
     <group if="$(arg launch_vicon)">
         <node pkg="drone_controller" name="vicon_yaw_control_node" type="vicon_yaw_control.py" output="screen">
-            <param name="gains/p" type="double" value="400" />
-            <param name="gains/i" type="double" value="20" />
-            <param name="gains/d" type="double" value="10" />
+            <param name="gains/p" type="double" value="1000" />
+            <param name="gains/i" type="double" value="0" />
+            <param name="gains/d" type="double" value="0" />
             <param name="out_of_range_yaw" type="double" value="5" />
         </node>
     </group>
@@ -57,5 +58,10 @@
     </node>
     
     <node pkg="rqt_image_view" type="rqt_image_view" name="mixer_img" args="/mixer/sensors/camera" output="screen"/>
+
+    <group if="$(arg yaw_debug_plot)">
+        <node pkg="rqt_gui" name="yaw_plot" type="rqt_gui" respawn="false" output="screen" args="--perspective-file $(find drone_controller)/rqt_config/debug_yaw.perspective"/>
+        <node pkg="rqt_gui" name="move_plot" type="rqt_gui" respawn="false" output="screen" args="--perspective-file $(find drone_controller)/rqt_config/debug_move.perspective"/>
+    </group>
 
 </launch>

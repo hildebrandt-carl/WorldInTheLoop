@@ -42,6 +42,9 @@ class ColorThreshold:
         # Get the name of the topic we want to be using
         topic_out = rospy.get_param(rospy.get_name() + '/output_topic', "/color_threshold/output")
 
+        # Get whether the background needs to be inverted
+        self.invert_background = rospy.get_param(rospy.get_name() + '/invert_background', False)
+
         # Init all the publishers and subscribers
         self.image_sub = rospy.Subscriber(self.config['camera_overlay_source'], Image, self._getImage)
 
@@ -71,9 +74,16 @@ class ColorThreshold:
         # Get the pixels that are within the range
         mask = cv2.inRange(hsv_img, self.lower_bound, self.upper_bound)
         result = cv2.bitwise_and(img, img, mask=mask)
-           
+
+        # Check if we need to invert the background
+        if self.invert_background:
+            # Invert image to make it easier to see
+            result = cv2.bitwise_not(result, mask=mask)
+            result = cv2.bitwise_not(result)
+
         # Convert back to ros message and publish
         image_message = self.bridge.cv2_to_imgmsg(result, encoding="bgr8")
+
         self.img_pub.publish(image_message)
 
     def _mainloop(self):

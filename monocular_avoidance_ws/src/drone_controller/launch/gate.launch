@@ -7,6 +7,7 @@
     <arg name="vicon" default="false"/>
     <arg name="multiview" default="false"/>
     <arg name="controller" default="js0"/>
+    <arg name="yaw_debug" default="false"/>
 
     <include file="$(find drone_controller)/launch/main.launch">
         <arg name="launch_unity" value="$(arg unity)" />
@@ -14,6 +15,7 @@
         <arg name="launch_physical" value="$(arg physical)" />
         <arg name="launch_vicon" value="$(arg vicon)" />
         <arg name="launch_multiview" value="$(arg multiview)" />
+        <arg name="yaw_debug_plot" value="$(arg yaw_debug)" />
     </include>
 
     <node pkg="drone_controller" name="program_controller_node" type="gate_scenario_controller.py" output="screen">
@@ -21,9 +23,9 @@
 
     <!-- Error is a value between -1 an 1, and the output is a value between -100, 100 -->
     <node pkg="drone_controller" name="gate_navigation_node" type="gate_navigation.py" output="screen">
-        <param name="gains/p" type="double" value="27" />
+        <param name="gains/p" type="double" value="10" />
         <param name="gains/i" type="double" value="0" />
-        <param name="gains/d" type="double" value="15" />
+        <param name="gains/d" type="double" value="7" />
 
         <param name="lower_bound/H" type="int" value="0" />
         <param name="lower_bound/S" type="int" value="100" />
@@ -57,8 +59,5 @@
         <node pkg="rqt_image_view" type="rqt_image_view" name="gate_center" args="/gate_navigation/sensors/camera" output="screen"/>
         <node pkg="rqt_image_view" type="rqt_image_view" name="test_color" args="/uav1/overlay/camera" output="screen"/>
     </group>
-
-    <node pkg="rqt_gui" name="yaw_plot" type="rqt_gui" respawn="false" output="screen" args="--perspective-file $(find drone_controller)/rqt_config/debug_yaw.perspective"/>
-    <node pkg="rqt_gui" name="move_plot" type="rqt_gui" respawn="false" output="screen" args="--perspective-file $(find drone_controller)/rqt_config/debug_move.perspective"/>
     
 </launch>

@@ -1,19 +1,20 @@
 #!/usr/bin/env python3
-# TODO Set the IP as a param
 from __future__ import print_function, absolute_import
-from time import sleep
-from std_msgs.msg import Int16
-# from sensor_msgs.msg import Image
-from drone_controller.msg import Move
-from darknet_ros_msgs.msg import BoundingBoxes
-import numpy as np
-from utility import DroneState
 
 import sys
 import rospy
 import cv2
 import time
+
+import numpy as np
+
+from time import sleep
+from utility import DroneState
 from cv_bridge import CvBridge
+from std_msgs.msg import Int16
+from std_msgs.msg import Float32
+from drone_controller.msg import Move
+from darknet_ros_msgs.msg import BoundingBoxes
 
 
 class AvoidanceNavigation:
@@ -41,10 +42,10 @@ class AvoidanceNavigation:
         self.object_arr_length = 10
 
         # Init all the publishers and subscribers
-        self.move_pub = rospy.Publisher("/uav1/input/beforeyawcorrection/move", Move, queue_size=10)
-        self.drone_state_sub = rospy.Subscriber("uav1/input/state", Int16, self._getstate)
-        # self.image_sub = rospy.Subscriber("darknet_ros/detection_image", Image, self._getimagedetails)
-        self.bounding_sub = rospy.Subscriber("darknet_ros/bounding_boxes", BoundingBoxes, self._getbounding)
+        self.move_pub           = rospy.Publisher("/uav1/input/beforeyawcorrection/move", Move, queue_size=10)
+        self.drone_state_sub    = rospy.Subscriber("uav1/input/state", Int16, self._getstate)
+        self.bounding_sub       = rospy.Subscriber("darknet_ros/bounding_boxes", BoundingBoxes, self._getbounding)
+        self.debug_area_pub     = rospy.Publisher("/debug/second_drone_area", Float32 , queue_size=10)
 
     def start(self):
         self._mainloop()
@@ -57,10 +58,10 @@ class AvoidanceNavigation:
             self._inavoidancemode = True
 
     def _getbounding(self, msg):
+        # For each bounding box
         for box in msg.bounding_boxes:
             # If it is an airplane
-            if box.id == 4:
-            # if box.id is not None:
+            if box.Class == "aeroplane":
                 len_side_x = box.xmax - box.xmin
                 len_side_y = box.ymax - box.ymin
 
@@ -91,10 +92,17 @@ class AvoidanceNavigation:
         movement_f = None
         movement_x = None
         movement_y = None
-        delay = 5
+        compare_back_distance = 30
 
         while not self._quit:
             if self._inavoidancemode:
+
+                # Init variables
+                moving_towards = False
+                direction_x = 0
+                direction_y = 0
+                direction_z = 0
+
                 # Calculate what the drones current points
                 try:
                     area  = np.average(self.object_size_arr)
@@ -103,10 +111,11 @@ class AvoidanceNavigation:
                 except:
                     continue
 
+                # Keep a list of previous recordings to allow a compare
                 if movement_f is None:
-                    movement_f = np.full(delay, area)
-                    movement_x = np.full(delay, cen_x)
-                    movement_y = np.full(delay, cen_y)
+                    movement_f = np.full(compare_back_distance, area)
+                    movement_x = np.full(compare_back_distance, cen_x)
+                    movement_y = np.full(compare_back_distance, cen_y)
                 else:
                     movement_f = np.roll(movement_f, 1)
                     movement_x = np.roll(movement_x, 1)
@@ -115,44 +124,40 @@ class AvoidanceNavigation:
                     movement_x[0] = cen_x
                     movement_y[0] = cen_y
 
-                moving_towards = False
-                direction_x = 0
-                direction_y = 0
 
-                if movement_f[-1] * 1.1 < movement_f[0]:
+                # If the current area is 2 times larger than the previous one, the drone is moving towards us
+                if movement_f[-1] * 2.5 < movement_f[0]:
                     moving_towards = True
                 
-                
+                # If it is moving towards us
                 if moving_towards:
-                    # if movement_x[-1] < movement_x[0]:
-                    #     direction_y = -1
-                    #     direction_y_str = "left"
-                    # else:
-                    #     direction_y = 1
-                    #     direction_y_str = "right"
-                    # if movement_y[-1] < movement_y[0]:
-                    #     direction_x = -1
-                    #     direction_x_str = "up"
-                    # else:
-                    #     direction_x = 1
-                    #     direction_x_str = "down"
-
                     # Always move up for now
-                    direction_x = -1
-                    direction_x_str = "up"
-                    direction_y = 0
+                    direction_z = -0.2
+                    direction_str = "up"
                     
                 if moving_towards:
-                    # self._log("Object moving towards drone detected! Moving: " + str(direction_y_str) + ", " + str(direction_x_str))
-                    self._log("Object moving towards drone detected! Moving: " + str(direction_x_str))
+                    self._log("Object moving towards drone detected! Moving: " + str(direction_str))
 
+                # Scale between up to 100
+                direction_y = direction_y * 100
+                direction_x = direction_x * 100
+                direction_z = direction_z * 100
 
+                # Make sure the commands are int's between -100 and 100
+                direction_y = int(round(max(min(direction_y, 100), -100),0))
+                direction_z = int(round(max(min(direction_z, 100), -100),0))
+                direction_x = int(round(max(min(direction_x, 100), -100),0))
+
+                # Publish the move commands
                 msg = Move()
-                msg.left_right = direction_y * 100
-                msg.front_back = 0
+                msg.left_right = direction_y
+                msg.up_down = direction_z
+                msg.front_back = direction_x
                 msg.yawl_yawr = 0
-                msg.up_down = direction_x * 100
                 self.move_pub.publish(msg)
+
+                # Publish the recorded area for debugging
+                self.debug_area_pub.publish(Float32(area))
             
             r.sleep()
 
