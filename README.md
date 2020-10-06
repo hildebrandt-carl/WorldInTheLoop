@@ -70,8 +70,6 @@ $ sudo apt update
 $ sudo apt install parrot-sphinx -y
 ```
 
-
-
 During the installation it will ask you which user groups you want to install the firmware to. To figure out what user you are you can run the command:
 ```zsh
 $ whoami
@@ -343,11 +341,7 @@ $ roslaunch drone_controller manual_simulation.launch
 
 **Note:** You might need to change the joystick to use js0 or js1 depending on your machine configuraiton. Look inside the 'manual_siumulation.launch' file.
 
-
-
-
-
-# Non-Essential
+# Optional Setups
 
 ## Installing lm-sensors
 
