@@ -9,6 +9,7 @@
     <arg name="controller" default="js0"/>
     <arg name="yaw_debug" default="false"/>
 
+    <!-- Launch main controller node -->
     <include file="$(find drone_controller)/launch/main.launch">
         <arg name="launch_unity" value="$(arg unity)" />
         <arg name="launch_shinx" value="$(arg sphinx)" />
@@ -18,10 +19,16 @@
         <arg name="yaw_debug_plot" value="$(arg yaw_debug)" />
     </include>
 
+    <!-- Launch backup controller on xbox -->
+    <include file="$(find drone_controller)/launch/backup_safety.launch">
+        <arg name="controller" value="$(arg controller)" />
+    </include>
+
+    <!-- Launch the gate navigation -->
     <node pkg="drone_controller" name="program_controller_node" type="gate_scenario_controller.py" output="screen">
     </node>
 
-    <!-- Error is a value between -1 an 1, and the output is a value between -100, 100 -->
+    <!-- Note: Error is a value between -1 an 1, and the output is a value between -100, 100: hence high PID values -->
     <node pkg="drone_controller" name="gate_navigation_node" type="gate_navigation.py" output="screen">
         <param name="gains/p" type="double" value="10" />
         <param name="gains/i" type="double" value="0" />
@@ -35,6 +42,22 @@
         <param name="upper_bound/V" type="int" value="220" />
     </node> 
 
+    <!-- Values to use when using sphix -->
+    <!--
+        dark_color = (0, 0, 0)
+        light_color = (30, 255, 150) 
+    -->
+
+    <!-- Values to use when using unity and real world -->
+    <!-- 
+        dark_color = (0, 100, 60)
+        light_color = (10, 250, 220)
+    -->
+
+    <!-- Gate navigation view -->
+    <node pkg="rqt_image_view" type="rqt_image_view" name="gate_center" args="/gate_navigation/sensors/camera" output="screen"/>
+
+    <!-- Mixing functions -->
     <node pkg="mixing_functions" name="color_threshold_node" type="color_threshold.py" output="screen">
         <param name="lower_bound/H" type="int" value="0" />
         <param name="lower_bound/S" type="int" value="100" />
@@ -47,16 +70,13 @@
         <param name="output_topic" type="string" value="/uav1/overlay/camera" />
     </node> 
 
-    <!-- Used as a backup control -->
-    <node name="joy_node" pkg="joy" type="joy_node">
-        <param name="dev" value="/dev/input/$(arg controller)"/>
+    <node pkg="mixed_reality" name="mixer_node" type="mixer.py" output="screen">
+        <param name="ignore_white" type="bool" value="False" />
+        <param name="ignore_black" type="bool" value="True" />
     </node>
 
-    <node pkg="drone_controller" name="manual_control_node" type="manual_control.py" output="screen">
-    </node>
-
+    <!-- Optional views -->
     <group if="$(arg multiview)">
-        <node pkg="rqt_image_view" type="rqt_image_view" name="gate_center" args="/gate_navigation/sensors/camera" output="screen"/>
         <node pkg="rqt_image_view" type="rqt_image_view" name="test_color" args="/uav1/overlay/camera" output="screen"/>
     </group>
     

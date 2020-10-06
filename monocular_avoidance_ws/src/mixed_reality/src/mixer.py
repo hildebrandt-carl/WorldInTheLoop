@@ -37,6 +37,18 @@ class Mixer:
         # Used to save any overlay sensors
         self.overlay = {}
 
+        # Determine if the color black or white is ignored
+        self.ignore_white = rospy.get_param(rospy.get_name() + '/ignore_white', False)
+        self.ignore_black = rospy.get_param(rospy.get_name() + '/ignore_black', True)
+
+        # Check that either white or black pixels are ignored
+        if self.ignore_white and self.ignore_black:
+            self._log("ERROR: Can't ignore both black and white pixels")
+            self.stop()
+        if not self.ignore_white and not self.ignore_black:
+            self._log("ERROR: Need to ignore either black or white pixels")
+            self.stop()
+
         # Init all the subscribers
         self.parrot_phy_image_sub = rospy.Subscriber("/uav1/physical_sensors/camera", Image, self._getPhysicalParrotImage)
         self.parrot_sim_image_sub = rospy.Subscriber("/uav1/sphinx_sensors/camera", Image, self._getSimulatedParrotImage)
@@ -99,6 +111,9 @@ class Mixer:
     def _computeOutgoingMessage(self, sensor, base_bool, overlay_bool, msg_in):
         # Get the data 
         msg = self.bridge.imgmsg_to_cv2(msg_in, desired_encoding='passthrough')
+        
+        # Create the output data
+        msg_out = copy.deepcopy(msg)
 
         # Check if there is an overlay, and if there is, add it to the current message
         if base_bool:
@@ -108,18 +123,16 @@ class Mixer:
                     height, width = msg.shape[:2]
                     overlay_img = cv2.resize(self.overlay[sensor], (width, height), interpolation = cv2.INTER_CUBIC)
 
-                    # Overlay the images
-                    img2gray = cv2.cvtColor(overlay_img, cv2.COLOR_BGR2GRAY)
-                    ret, mask = cv2.threshold(img2gray, 10, 255, cv2.THRESH_BINARY)
-                    mask_inv = cv2.bitwise_not(mask)
-                    img1_bg = cv2.bitwise_and(msg, msg, mask=mask_inv)
-                    img2_fg = cv2.bitwise_and(overlay_img, overlay_img, mask=mask)
-                    msg = cv2.add(img1_bg,img2_fg)
+                    # Copy the background where the mask is not pure black
+                    if self.ignore_black:
+                        msg_out[np.where(overlay_img != 0)] = overlay_img[np.where(overlay_img != 0)]
+                    if self.ignore_white:
+                        msg_out[np.where(overlay_img != 255)] = overlay_img[np.where(overlay_img != 255)]
 
             except KeyError as e:
                 pass
             # Return the data in the original form
-            output = self.bridge.cv2_to_imgmsg(msg, encoding="bgr8")
+            output = self.bridge.cv2_to_imgmsg(msg_out, encoding="bgr8")
             return output
 
         if overlay_bool:

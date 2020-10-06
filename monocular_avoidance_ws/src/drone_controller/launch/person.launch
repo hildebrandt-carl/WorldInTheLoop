@@ -7,8 +7,10 @@
     <arg name="physical" default="false"/>
     <arg name="vicon" default="false"/>
     <arg name="multiview" default="false"/>
+    <arg name="controller" default="js0"/>
     <arg name="yaw_debug" default="false"/>
 
+    <!-- Main drone controller -->
     <include file="$(find drone_controller)/launch/main.launch">
         <arg name="launch_unity" value="$(arg unity)" />
         <arg name="launch_shinx" value="$(arg sphinx)" />
@@ -18,6 +20,12 @@
         <arg name="yaw_debug_plot" value="$(arg yaw_debug)" />
     </include>
 
+    <!-- Launch backup controller on xbox -->
+    <include file="$(find drone_controller)/launch/backup_safety.launch">
+        <arg name="controller" value="$(arg controller)" />
+    </include>
+
+    <!-- Person navigation code -->
     <node pkg="drone_controller" name="program_controller_node" type="person_scenario_controller.py" output="screen">
     </node>
 
@@ -27,9 +35,35 @@
         <param name="gains/d" type="double" value="0.75" />
     </node> 
 
+    <!-- Mixing functions -->
+    <node pkg="mixing_functions" name="color_threshold_node" type="color_threshold.py" output="screen">
+        <param name="lower_bound/H" type="int" value="0" />
+        <param name="lower_bound/S" type="int" value="0" />
+        <param name="lower_bound/V" type="int" value="0" />
+        <param name="upper_bound/H" type="int" value="255" />
+        <param name="upper_bound/S" type="int" value="255" />
+        <param name="upper_bound/V" type="int" value="150" />
+
+        <param name="input_topic" type="string" value="/uav1/sphinx_sensors/camera" />
+        <param name="output_topic" type="string" value="/uav1/overlay/camera" />
+
+        <param name="invert_background" type="bool" value="False" />
+    </node> 
+
+    <node pkg="mixed_reality" name="mixer_node" type="mixer.py" output="screen">
+        <param name="ignore_white" type="bool" value="False" />
+        <param name="ignore_black" type="bool" value="True" />
+    </node>
+
+    <!-- Darknet yolo network -->
     <include file="$(find darknet_ros)/launch/darknet_ros.launch">
         <arg name="image" default="/mixer/sensors/camera" />
         <arg name="network_param_file" default="$(find darknet_ros)/config/yolov2-tiny.yaml"/>
     </include>
 
+    <!-- Optional views -->
+    <group if="$(arg multiview)">
+        <node pkg="rqt_image_view" type="rqt_image_view" name="test_color" args="/uav1/overlay/camera" output="screen"/>
+    </group>
+    
 </launch>

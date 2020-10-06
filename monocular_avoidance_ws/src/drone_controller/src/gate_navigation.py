@@ -140,7 +140,6 @@ class GateNavigation:
             if (area > 20000):
                 full_gate_found = True
                 contour_list.append(contour)
-                print(area)
 
         rbg_img = cv2.drawContours(rbg_img, contour_list,  -1, (0, 255, 0), 2)
 
@@ -217,7 +216,7 @@ class GateNavigation:
                         direction_backforward = 0
 
                 # We want to move slowly forward
-                direction_backforward = direction_backforward * 2
+                direction_backforward = direction_backforward * 3
 
                 # Make sure the commands are int's between -100 and 100
                 direction_y = int(round(max(min(direction_y, 100), -100),0))
@@ -235,11 +234,6 @@ class GateNavigation:
                     direction_y = 0
                     direction_z = 0
                     direction_backforward = 0
-
-                print("Direction y: " + str(direction_y))
-                print("Direction z: " + str(direction_z))
-                print("Direction f: " + str(direction_backforward))
-                print("---------------------")
 
                 # Publish the message
                 msg = Move()

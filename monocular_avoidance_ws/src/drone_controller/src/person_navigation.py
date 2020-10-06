@@ -87,8 +87,7 @@ class PersonNavigation:
         # Go through each bounding box
         for box in msg.bounding_boxes:
             # If it is a person
-            if box.Class == "person" and box.probability >= 0.9:
-                print("Person found")
+            if box.Class == "person" and box.probability >= 0.65:
                 person_data.append([box.xmin, box.xmax, box.ymin, box.ymax])
 
         # If we have people data
@@ -163,9 +162,6 @@ class PersonNavigation:
                     cen_x = np.average(self.object_center_x_arr)
                     cen_y = np.average(self.object_center_y_arr)
 
-                    print("Human center: " + str(cen_x))
-                    print("Image size: " + str(self.image_size[0]))
-
                     # Get a percentage away from the center lines
                     cen_x = (cen_x - self.image_size[0] / 2.0) / (self.image_size[0] / 2.0)
                     cen_y = (cen_y - self.image_size[1] / 2.0) / (self.image_size[1] / 2.0)
@@ -195,14 +191,11 @@ class PersonNavigation:
                 msg.front_back  = int(round(direction_z * 100, 0))
                 msg.yawl_yawr   = int(round(cen_x * 100, 0))
 
-                print("Cent X: " + str(cen_x))
                 # Compute how much to change the yaw in degrees
                 yaw_rate = math.radians(-cen_x * 20)
-                print("Yaw Rate: " + str(yaw_rate))
-                # yaw_rate = 0
-                
+
+                # Publish the vicon yaw command
                 self.vicon_yaw_pub.publish(Float32(yaw_rate))
-                print("----------------")
                 
                 # Publish the move command
                 self.move_pub.publish(msg)

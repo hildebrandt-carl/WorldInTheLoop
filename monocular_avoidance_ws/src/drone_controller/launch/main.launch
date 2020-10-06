@@ -9,6 +9,9 @@
     <arg name="launch_multiview" default="true"/>
     <arg name="yaw_debug_plot" default="false"/>
     
+    <node pkg="information_extraction" name="extract_position_node" type="simulation_information.py" output="screen">
+    </node>
+
     <group if="$(arg launch_physical)">
         <node pkg="drone_controller" name="physical_main_drone_node" type="main_drone.py" output="screen"> 
             <param name="/simulated_ip" type="bool" value="False" />
@@ -21,9 +24,6 @@
     <group if="$(arg launch_shinx)">
         <node pkg="drone_controller" name="simulated_main_drone_node" type="main_drone.py" output="screen"> 
             <param name="/simulated_ip" type="bool" value="True" />
-        </node>
-        <node pkg="information_extraction" name="extract_position_node" type="simulation_information.py" output="screen">
-            <param name="/attitude_source" type="string" value="simulation" />
         </node>
         <group if="$(arg launch_multiview)">
             <node pkg="rqt_image_view" type="rqt_image_view" name="simulated_view" args="/uav1/sphinx_sensors/camera" output="screen"/>
@@ -53,9 +53,6 @@
             <param name="out_of_range_yaw" type="double" value="5" />
         </node>
     </group>
-
-    <node pkg="mixed_reality" name="mixer_node" type="mixer.py" output="screen">
-    </node>
     
     <node pkg="rqt_image_view" type="rqt_image_view" name="mixer_img" args="/mixer/sensors/camera" output="screen"/>
 

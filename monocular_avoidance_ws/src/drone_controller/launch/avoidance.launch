@@ -2,6 +2,7 @@
 
 <launch>
 
+    <arg name="control_second_drone" default="true"/>
     <arg name="sphinx" default="true"/>
     <arg name="unity" default="true"/>
     <arg name="physical" default="false"/>
@@ -11,6 +12,7 @@
     <arg name="yaw_debug" default="false"/>
     <arg name="area_debug" default="false"/>
 
+    <!-- Launch main file -->
     <include file="$(find drone_controller)/launch/main.launch">
         <arg name="launch_unity" value="$(arg unity)" />
         <arg name="launch_shinx" value="$(arg sphinx)" />
@@ -20,6 +22,12 @@
         <arg name="yaw_debug_plot" value="$(arg yaw_debug)" />
     </include>
 
+    <!-- Launch backup controller on xbox -->
+    <include file="$(find drone_controller)/launch/backup_safety.launch">
+        <arg name="controller" value="$(arg controller)" />
+    </include>
+
+    <!-- The avoidance controller code -->
     <node pkg="drone_controller" name="program_controller_node" type="avoidance_scenario_controller.py" output="screen">
     </node>
 
@@ -32,6 +40,7 @@
         <arg name="network_param_file" default="$(find darknet_ros)/config/yolov2-tiny.yaml"/>
     </include>
 
+    <!-- Mixing functions -->
     <node pkg="mixing_functions" name="color_threshold_node" type="color_threshold.py" output="screen">
         <param name="lower_bound/H" type="int" value="0" />
         <param name="lower_bound/S" type="int" value="0" />
@@ -43,35 +52,35 @@
         <param name="input_topic" type="string" value="/uav1/sphinx_sensors/camera" />
         <param name="output_topic" type="string" value="/uav1/overlay/camera" />
 
-        <param name="invert_background" type="bool" value="False" />
+        <param name="invert_background" type="bool" value="True" />
     </node> 
+
+    <node pkg="mixed_reality" name="mixer_node" type="mixer.py" output="screen">
+        <param name="ignore_white" type="bool" value="True" />
+        <param name="ignore_black" type="bool" value="False" />
+    </node>
+
+    <!-- Connect to second drone -->
+    <group if="$(arg control_second_drone)">
+        <node pkg="drone_controller" name="obstacle_drone_node" type="obstacle_drone.py" output="screen"> 
+            <param name="/simulated_ip" type="bool" value="True" />
+        </node>
+
+        <group if="$(arg unity)">
+            <node pkg="unity_communication" name="UnityRosConnection2" type="UnityRosConnection.py" output="screen">
+                <param name="/port" type="int" value="55555" />
+                <param name="/position_topic_name" type="string" value="/ground_truth/uav2/pose" />
+            </node>
+        </group>
+    </group>
+
+    <!-- Optional views -->
+    <group if="$(arg area_debug)">
+        <node pkg="rqt_gui" name="area_plot" type="rqt_gui" respawn="false" output="screen" args="--perspective-file $(find drone_controller)/rqt_config/debug_drone_area.perspective"/>
+    </group>
 
     <group if="$(arg multiview)">
         <node pkg="rqt_image_view" type="rqt_image_view" name="test_color" args="/uav1/overlay/camera" output="screen"/>
-    </group>
-
-    <!-- Connect to second drone -->
-    <node pkg="drone_controller" name="obstacle_drone_node" type="obstacle_drone.py" output="screen"> 
-        <param name="/simulated_ip" type="bool" value="True" />
-    </node>
-
-    <!-- <group if="$(arg unity)">
-        <node pkg="unity_communication" name="UnityRosConnection2" type="UnityRosConnection.py" output="screen">
-            <param name="/port" type="int" value="55555" />
-            <param name="/position_topic_name" type="string" value="/ground_truth/uav2/pose" />
-        </node>
-    </group> -->
-
-    <!-- Used as a backup control -->
-    <node name="joy_node" pkg="joy" type="joy_node">
-        <param name="dev" value="/dev/input/$(arg controller)"/>
-    </node>
-
-    <node pkg="drone_controller" name="manual_control_node" type="manual_control.py" output="screen">
-    </node>
-
-    <group if="$(arg area_debug)">
-        <node pkg="rqt_gui" name="area_plot" type="rqt_gui" respawn="false" output="screen" args="--perspective-file $(find drone_controller)/rqt_config/debug_drone_area.perspective"/>
     </group>
 
 </launch>
