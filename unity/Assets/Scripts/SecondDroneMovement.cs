@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ public class SecondDroneMovement : MonoBehaviour
 
     [Range(0.0f, 1.0f)]
     public float speed = 0.01f ;
-    public Vector3 start_position = new Vector3(0.0f, 0.0f, -7.0f);
+    public Vector3 start_position = new Vector3(0.0f, 0.0f, -3.0f);
     public Vector3 end_position  = new Vector3(0.0f, 1.5f, 2.0f);
 
     private float true_speed ;
