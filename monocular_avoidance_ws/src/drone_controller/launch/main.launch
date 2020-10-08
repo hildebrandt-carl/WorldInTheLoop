@@ -8,43 +8,60 @@
     <arg name="launch_vicon" default="false"/>
     <arg name="launch_multiview" default="true"/>
     <arg name="yaw_debug_plot" default="false"/>
+    <arg name="force_debug_plot" default="false"/>
+    <arg name="output_data_save_name" default="~/Desktop/output.csv"/>
     
+    <!-- Extract the ground truth information from either vicon, tlc, or the drones onboard sensors -->
     <node pkg="information_extraction" name="extract_position_node" type="simulation_information.py" output="screen">
     </node>
 
+    <!-- Launch the force calculator node -->
+    <node pkg="information_extraction" name="force_calculator_node" type="force_calculator.py" output="screen">
+        <param name="/drone_mass" type="double" value="0.32" />
+        <param name="/save_name" type="string" value="$(arg output_data_save_name)"/>
+    </node>
+
+    <!-- If we are launching real drone, conect with real IP -->
     <group if="$(arg launch_physical)">
         <node pkg="drone_controller" name="physical_main_drone_node" type="main_drone.py" output="screen"> 
             <param name="/simulated_ip" type="bool" value="False" />
         </node>
+        <!-- Display real view -->
         <group if="$(arg launch_multiview)">
             <node pkg="rqt_image_view" type="rqt_image_view" name="physical_view" args="/uav1/physical_sensors/camera" output="screen"/>
         </group>
     </group>
 
+    <!-- If we are launching sphinx, connect with simulated IP -->
     <group if="$(arg launch_shinx)">
         <node pkg="drone_controller" name="simulated_main_drone_node" type="main_drone.py" output="screen"> 
             <param name="/simulated_ip" type="bool" value="True" />
         </node>
+        <!-- Display sphinx view -->
         <group if="$(arg launch_multiview)">
             <node pkg="rqt_image_view" type="rqt_image_view" name="simulated_view" args="/uav1/sphinx_sensors/camera" output="screen"/>
         </group>
     </group>
 
+    <!-- If Unity is launched, connect to Unity over TCP -->
     <group if="$(arg launch_unity)">
         <node pkg="unity_communication" name="UnityRosConnection1" type="UnityRosConnection.py" output="screen">
             <param name="/port" type="int" value="44444" />
             <param name="/position_topic_name" type="string" value="/ground_truth/uav1/pose" />
             <param name="/image_topic_name" type="string" value="/uav1/unity_sensors/camera" />
         </node>
+        <!-- Display unitys view -->
         <group if="$(arg launch_multiview)">
             <node pkg="rqt_image_view" type="rqt_image_view" name="unity_view" args="/uav1/unity_sensors/camera" output="screen"/>
         </group>
     </group>
 
+    <!-- Launch the yaw correction node (will change yaw commands to vicon, if vicon is launched) -->
     <node pkg="drone_controller" name="yaw_correction_node" type="yaw_correction.py" output="screen">
         <param name="yaw_correction" value="$(arg launch_vicon)"/>
     </node>
 
+    <!-- If launching vicon, launch the vicon yaw node -->
     <group if="$(arg launch_vicon)">
         <node pkg="drone_controller" name="vicon_yaw_control_node" type="vicon_yaw_control.py" output="screen">
             <param name="gains/p" type="double" value="1000" />
@@ -54,11 +71,18 @@
         </node>
     </group>
     
+    <!-- Display the mixers output -->
     <node pkg="rqt_image_view" type="rqt_image_view" name="mixer_img" args="/mixer/sensors/camera" output="screen"/>
 
+    <!-- Launch the debug yaw plots if required -->
     <group if="$(arg yaw_debug_plot)">
         <node pkg="rqt_gui" name="yaw_plot" type="rqt_gui" respawn="false" output="screen" args="--perspective-file $(find drone_controller)/rqt_config/debug_yaw.perspective"/>
         <node pkg="rqt_gui" name="move_plot" type="rqt_gui" respawn="false" output="screen" args="--perspective-file $(find drone_controller)/rqt_config/debug_move.perspective"/>
+    </group>
+
+    <!-- Launch the debug force plot if required -->
+    <group if="$(arg force_debug_plot)">
+        <node pkg="rqt_gui" name="force_plot" type="rqt_gui" respawn="false" output="screen" args="--perspective-file $(find drone_controller)/rqt_config/debug_force.perspective"/>
     </group>
 
 </launch>

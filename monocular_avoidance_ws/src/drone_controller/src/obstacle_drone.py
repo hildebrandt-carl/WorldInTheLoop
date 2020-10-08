@@ -105,7 +105,8 @@ class SecondDroneController:
                 
         # Make sure we have initiated landing
         self._land()
-        self._close_conn()  # closes the connection
+        # Closes the connection
+        self._close_conn()  
 
     def _takeoff(self):
         self.drone(TakeOff()).wait()
@@ -115,7 +116,7 @@ class SecondDroneController:
 
     def _fly(self):
         self.drone(moveBy(0,  0, 0, 0)).wait()
-        self.drone(moveBy(-10,  0, 0, 0)).wait()
+        self.drone(moveBy(-4,  0, 0, 0)).wait()
         
 
 if __name__ == "__main__":

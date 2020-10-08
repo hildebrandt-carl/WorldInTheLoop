@@ -3,7 +3,7 @@
   <model name='GateModels'>
     <link name="gate_10">
       <!-- The gate is 2m off the ground by default -->
-      <pose>7 0 -1.5 0 0 1.570796</pose>
+      <pose>2 0 -1.5 0 0 1.570796</pose>
       <visual name="visual">
         <geometry>
           <mesh><uri>model://GateModels/gates/05.dae</uri></mesh>

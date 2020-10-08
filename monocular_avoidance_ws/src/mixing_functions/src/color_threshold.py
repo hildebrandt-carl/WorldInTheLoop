@@ -45,6 +45,11 @@ class ColorThreshold:
         # Get whether the background needs to be inverted
         self.invert_background = rospy.get_param(rospy.get_name() + '/invert_background', False)
 
+        # Print out the parameters
+        self._log(": Lower HSV - " + str(self.lower_bound))
+        self._log(": Upper HSV - " + str(self.upper_bound))
+        self._log(": Invert Background - " + str(self.invert_background))
+
         # Init all the publishers and subscribers
         self.image_sub = rospy.Subscriber(self.config['camera_overlay_source'], Image, self._getImage)
 

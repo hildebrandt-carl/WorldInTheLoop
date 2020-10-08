@@ -417,15 +417,3 @@ Now you can launch your drone using:
 $ sudo systemctl start firmwared.service
 $ sphinx /opt/parrot-sphinx/usr/share/sphinx/drones/anafi4k.drone::stolen_interface=enp0s5:eth0:192.168.42.1/24 /opt/parrot-sphinx/usr/share/sphinx/drones/anafi4k.drone::name=other::stolen_interface=eth10:eth0:192.168.42.1/24::pose="5 0 0.2 0 0 0"::with_front_cam=false
 ```
-
-
-
-
-TODO:
-
-Make the person walk closer to the drone in unity and sphinx
-Figure out why we are sending move command to the first drone when we have the parameters: roslaunch drone_controller avoidance.launch multiview:=true sphinx:=false unity:=true physical:=true vicon:=true control_second_drone:=true
-Rerun the simulation results now that I have pulled information extraction node out of the sphinx launch section
-Run through the mixed reality tests in unity and sphinx
-Update the unity simulation to have a better model of the gate
-Email ajay

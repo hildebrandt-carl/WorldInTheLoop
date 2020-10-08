@@ -132,7 +132,7 @@ class AvoidanceNavigation:
                 # If it is moving towards us
                 if moving_towards:
                     # Always move up for now
-                    direction_z = -0.2
+                    direction_z = -0.3
                     direction_str = "up"
                     
                 if moving_towards:

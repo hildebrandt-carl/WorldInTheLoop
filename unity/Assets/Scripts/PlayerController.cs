@@ -85,62 +85,62 @@ public class PlayerController : MonoBehaviour
                     break;
                 case 0:
                     anim.SetFloat("forward", 0.4f);
-                    _distance_forward = 3;
+                    _distance_forward = 0.5f;
                     _position = transform.position;
                     break;
                 case 1:
                     anim.SetFloat("forward", 0.0f);
-                    anim.SetBool("turn_right", true);
+                    anim.SetBool("turn_left", true);
                     _turning = true;
                     break;
                 case 2:
                     anim.SetFloat("forward", 0.4f);
-                    _distance_forward = 6;
+                    _distance_forward = 1.5f;
                     _position = transform.position;
                     break;
                 case 3:
                     anim.SetFloat("forward", 0.0f);
-                    anim.SetBool("turn_right", true);
+                    anim.SetBool("turn_left", true);
                     _turning = true;
                     break;
                 case 4:
                     anim.SetFloat("forward", 0.4f);
-                    _distance_forward = 16;
+                    _distance_forward = 4;
                     _position = transform.position;
                     break;
                 case 5:
                     anim.SetFloat("forward", 0.0f);
-                    anim.SetBool("turn_right", true);
+                    anim.SetBool("turn_left", true);
                     _turning = true;
                     break;
                 case 6:
                     anim.SetFloat("forward", 0.4f);
-                    _distance_forward = 12;
+                    _distance_forward = 3;
                     _position = transform.position;
                     break;
                 case 7:
                     anim.SetFloat("forward", 0.0f);
-                    anim.SetBool("turn_right", true);
+                    anim.SetBool("turn_left", true);
                     _turning = true;
                     break;
                 case 8:
                     anim.SetFloat("forward", 0.4f);
-                    _distance_forward = 13;
+                    _distance_forward = 4;
                     _position = transform.position;
                     break;
                 case 9:
                     anim.SetFloat("forward", 0.0f);
-                    anim.SetBool("turn_right", true);
+                    anim.SetBool("turn_left", true);
                     _turning = true;
                     break;
                 case 10:
                     anim.SetFloat("forward", 0.4f);
-                    _distance_forward = 6;
+                    _distance_forward = 1.5f;
                     _position = transform.position;
                     break;
                 case 11:
                     anim.SetFloat("forward", 0.0f);
-                    anim.SetBool("turn_left", true);
+                    anim.SetBool("turn_right", true);
                     _turning = true;
                     break;
                 case 12:

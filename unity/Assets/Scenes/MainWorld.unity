@@ -134,7 +134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1392088669390636, guid: 08a9ba8ce242d0445a4b84ceaadfbf60, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4694004719658038, guid: 08a9ba8ce242d0445a4b84ceaadfbf60, type: 3}
       propertyPath: m_LocalPosition.x
@@ -146,7 +146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4694004719658038, guid: 08a9ba8ce242d0445a4b84ceaadfbf60, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4694004719658038, guid: 08a9ba8ce242d0445a4b84ceaadfbf60, type: 3}
       propertyPath: m_LocalRotation.x
@@ -538,7 +538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca62a9563fd44ef2f8be70237fc160a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDelay: 0
+  startDelay: 20
   crouched: 0
   loop: 0
   scenarioSelection: 0
@@ -618,8 +618,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: -0.2409338, y: -0.66553694, z: 0.2457233, w: -0.6622927}
-  m_LocalPosition: {x: -8.557154, y: 7.5367846, z: 2.951553}
+  m_LocalRotation: {x: -0.22991319, y: -0.6639095, z: 0.23078494, w: -0.67312884}
+  m_LocalPosition: {x: -3.0052824, y: 2.4846778, z: 1.741154}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -806,7 +806,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &880291768
 Transform:
   m_ObjectHideFlags: 0
@@ -815,7 +815,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880291767}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 1473983348}
@@ -2677,9 +2677,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290fe0e3f5d203650bb4170554a0e19b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.25
-  start_position: {x: 0, y: 0, z: -3}
-  end_position: {x: 0, y: 1.5, z: 2}
+  speed: 0.3
+  start_position: {x: 0, y: 0, z: 2.5}
+  end_position: {x: 0, y: 1, z: -1}
+  startDelay: 20
 --- !u!1 &1641692341
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ from matplotlib import cm
 from matplotlib import colors
 
 
-img = cv2.imread('./images/gate_real_overlay.png')
+img = cv2.imread('./images/unity_person2_overlay.png')
 
 scale_percent = 100
 width = int(img.shape[1] * scale_percent / 100)
@@ -25,7 +25,7 @@ hsv_img = cv2.cvtColor(rbg_img, cv2.COLOR_RGB2HSV)
 
 # Colors we want to find
 dark_color = (0, 0, 0)
-light_color = (30, 255, 150)
+light_color = (255, 255, 150)
 
 # Create the selected colors for display
 lo_square = np.full((10, 10, 3), dark_color, dtype=np.uint8) / 255.0
