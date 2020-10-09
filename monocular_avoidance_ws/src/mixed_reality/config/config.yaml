@@ -14,7 +14,8 @@ position_source_use_vicon: "vicon"
 
 
 
-camera_overlay: True
+
+camera_overlay: False
 camera_base: "/uav1/physical_sensors/camera"
 camera_overlay_source: '/uav1/unity_sensors/camera'
 

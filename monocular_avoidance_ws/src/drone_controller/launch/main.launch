@@ -9,7 +9,7 @@
     <arg name="launch_multiview" default="true"/>
     <arg name="yaw_debug_plot" default="false"/>
     <arg name="force_debug_plot" default="false"/>
-    <arg name="output_data_save_name" default="~/Desktop/output.csv"/>
+    <arg name="output_data_save_name" default=""/>
     
     <!-- Extract the ground truth information from either vicon, tlc, or the drones onboard sensors -->
     <node pkg="information_extraction" name="extract_position_node" type="simulation_information.py" output="screen">

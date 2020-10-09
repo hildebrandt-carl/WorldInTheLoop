@@ -73,13 +73,13 @@ class ForceCalculator:
         previous_velocity   = np.zeros(3)
         previous_time       = 0
 
-        # Open the csv file for writing
-        csvfile = open(self.save_name, 'w') 
-
-        # Create the header
-        fieldnames = ["timestamp", "position x", "position y", "position z", "velocity x", "velocity y", "velocity z", "acceleration x", "acceleration y", "acceleration z", "force x", "force y" , "force z", "total velocity", "total acceleration", "total force"]
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        writer.writeheader()
+        if self.save_name != "" and len(self.save_name) > 0:
+            # Open the csv file for writing
+            csvfile = open(self.save_name, 'w') 
+            # Create the header
+            fieldnames = ["timestamp", "position x", "position y", "position z", "velocity x", "velocity y", "velocity z", "acceleration x", "acceleration y", "acceleration z", "force x", "force y" , "force z", "total velocity", "total acceleration", "total force"]
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
 
         while not self._quit:
             
@@ -140,31 +140,33 @@ class ForceCalculator:
             previous_position   = copy.deepcopy(self.current_position)
             previous_velocity   = np.array([v_x, v_y, v_z])
 
-            # Write the data to the csv file
-            data = {}
-            data['timestamp'] = self.current_time
-            data['position x'] = self.current_position[0]
-            data['position y'] = self.current_position[1]
-            data['position z'] = self.current_position[2]
-            data['velocity x'] = v_x
-            data['velocity y'] = v_y
-            data['velocity z'] = v_z
-            data['acceleration x'] = a_x
-            data['acceleration y'] = a_y
-            data['acceleration z'] = a_z
-            data['force x'] = f_x
-            data['force y'] = f_y
-            data['force z'] = f_z
-            data['total velocity'] = current_velocity
-            data['total acceleration'] = acceleration
-            data['total force'] = force
-            writer.writerow(data)
+            if self.save_name != "":
+                # Write the data to the csv file
+                data = {}
+                data['timestamp'] = self.current_time
+                data['position x'] = self.current_position[0]
+                data['position y'] = self.current_position[1]
+                data['position z'] = self.current_position[2]
+                data['velocity x'] = v_x
+                data['velocity y'] = v_y
+                data['velocity z'] = v_z
+                data['acceleration x'] = a_x
+                data['acceleration y'] = a_y
+                data['acceleration z'] = a_z
+                data['force x'] = f_x
+                data['force y'] = f_y
+                data['force z'] = f_z
+                data['total velocity'] = current_velocity
+                data['total acceleration'] = acceleration
+                data['total force'] = force
+                writer.writerow(data)
 
             # Mantain the rate
             r.sleep()
 
         # Close the csv file
-        csvfile.close()
+        if self.save_name != "":
+            csvfile.close()
 
 if __name__ == "__main__":
     # Run the node

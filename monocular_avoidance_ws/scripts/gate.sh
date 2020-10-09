@@ -3,7 +3,7 @@
 if [[ $# -eq 2 ]]; then
     echo "Location of gate recieved: ($1, $2)"
 else
-    1=3
+    1=2
     2=0
     echo "Requires two arguments - Assuming default location of gate ($1, $2)"
 fi

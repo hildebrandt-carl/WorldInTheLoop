@@ -12,7 +12,7 @@
     <arg name="yaw_debug" default="false"/>
     <arg name="area_debug" default="false"/>
     <arg name="force_debug" default="false"/>
-    <arg name="save_data" default="/home/autosoftlab/Desktop/output.csv"/>
+    <arg name="save_data" default=""/>
 
     <!-- Launch main file -->
     <include file="$(find drone_controller)/launch/main.launch">

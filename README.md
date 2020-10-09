@@ -213,6 +213,23 @@ $ sudo cp ~/Desktop/MixedRealityTesting/monocular_avoidance_ws/src/drone_control
 $ sudo chmod 777 /opt/parrot-sphinx/usr/share/sphinx/models/GateModels/
 ```
 
+### Updating the Sun Model
+
+We need the sun to be behind the robot so that the lighting best matches lab conditions. To do that we need to edit the pose of the sun model. We can do that by running the command:
+```zsh
+$ sudo nano /opt/parrot-sphinx/usr/share/sphinx/models/sun/model.sdf
+```
+
+Then change the pose from:
+```zsh
+>>> <pose>0 0 10 0 0 0</pose>
+```
+
+To:
+```zsh
+>>> <pose>0 0 10 0 -1.25 0</pose>
+```
+
 ## Optional Installation
 
 The following packages are optional and are not required to run the base project. I however recommend installing most of them as it will allow full functionality.
