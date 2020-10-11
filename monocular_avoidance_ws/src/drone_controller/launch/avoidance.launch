@@ -2,15 +2,16 @@
 
 <launch>
 
-    <arg name="control_second_drone" default="true"/>
     <arg name="sphinx" default="true"/>
     <arg name="unity" default="true"/>
     <arg name="physical" default="false"/>
     <arg name="vicon" default="false"/>
+    <arg name="control_second_drone" default="true"/>
     <arg name="multiview" default="false"/>
     <arg name="controller" default="js0"/>
     <arg name="yaw_debug" default="false"/>
     <arg name="area_debug" default="false"/>
+    <arg name="distance_debug" default="false"/>
     <arg name="force_debug" default="false"/>
     <arg name="save_data" default=""/>
 
@@ -59,21 +60,14 @@
         <param name="invert_background" type="bool" value="True" />
     </node> 
 
-    <!-- Values to use when using sphix -->
-    <!--
-        dark_color = (0, 0, 0)
-        light_color = (255, 255, 150) 
-    -->
-
-    <!-- Values to use when using unity and real world -->
-    <!-- 
-        dark_color = (0, 0, 0)
-        light_color = (255, 255, 150) 
-    -->
-
+    <!-- Mixed reality node -->
     <node pkg="mixed_reality" name="mixer_node" type="mixer.py" output="screen">
         <param name="ignore_white" type="bool" value="True" />
         <param name="ignore_black" type="bool" value="False" />
+    </node>
+
+    <!-- Compute the distance between the two drones -->
+    <node pkg="information_extraction" name="distance_calculator" type="distance_calculator.py" output="screen">
     </node>
 
     <!-- Connect to second drone -->
@@ -93,6 +87,10 @@
     <!-- Optional views -->
     <group if="$(arg area_debug)">
         <node pkg="rqt_gui" name="area_plot" type="rqt_gui" respawn="false" output="screen" args="--perspective-file $(find drone_controller)/rqt_config/debug_drone_area.perspective"/>
+    </group>
+
+    <group if="$(arg distance_debug)">
+        <node pkg="rqt_gui" name="distance_plot" type="rqt_gui" respawn="false" output="screen" args="--perspective-file $(find drone_controller)/rqt_config/debug_drone_distance.perspective"/>
     </group>
 
     <group if="$(arg multiview)">

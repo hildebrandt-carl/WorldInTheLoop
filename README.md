@@ -269,7 +269,7 @@ If you proceed with this step. During the build phase of the package you might g
 nvcc fatal   : Unsupported gpu architecture 'compute_30'
 ```
 
-To solve this you need to edit the `darknet_ros/CMakeLists.txt`. First find your GPU version on the [CUDA Wiki page](https://en.wikipedia.org/wiki/CUDA#Supported_GPUs). So for example the Titan RTX is 7.5. Then add this line to the `CMakeList`:
+To solve this you need to edit the `darknet_ros/CMakeLists.txt`. First find your GPU version on the [CUDA Wiki page](https://en.wikipedia.org/wiki/CUDA#Supported_GPUs). So for example the Titan RTX is 7.5. (A similar guide can be found at [this website](http://arnon.dk/matching-sm-architectures-arch-and-gencode-for-various-nvidia-cards/)) Then add this line to the `CMakeList`:
 ```zsh
 -O3 -gencode arch=compute_75,code=sm_75
 ```

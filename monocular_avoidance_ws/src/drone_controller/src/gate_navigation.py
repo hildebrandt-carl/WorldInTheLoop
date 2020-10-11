@@ -135,8 +135,6 @@ class GateNavigation:
         for contour in contours:
             area = cv2.contourArea(contour)
             # Filter based on length and area
-            ## AREA USED TO BE 25000
-            ## AREA IS NOW 11873
             if (area > 20000):
                 full_gate_found = True
                 contour_list.append(contour)
@@ -173,8 +171,14 @@ class GateNavigation:
 
         r = rospy.Rate(self.rate)
 
+        # Hold samples for the last 5 seconds
+        total_samples = int(self.rate * 5)
+        # These arrays hold the values used to line up with the gate.
+        line_up_window_y = np.full((total_samples,), 10)
+        line_up_window_z = np.full((total_samples,), 10)
+
+        shoot_forward = False
         stop_counter = 0
-        previous_back_forward = 0
 
         while not self._quit:
             if self._innavigationmode:
@@ -196,8 +200,39 @@ class GateNavigation:
                 # Set the output
                 direction_y = leftright
                 direction_z = updown
-                direction_backforward = -1
- 
+                direction_backforward = 0
+
+                # Record the values and check if on average we have lined up
+                if (self._gatefound): 
+                    line_up_window_y = np.roll(line_up_window_y, 1)
+                    line_up_window_z = np.roll(line_up_window_z, 1)
+                    line_up_window_y[0] = abs(direction_y)
+                    line_up_window_z[0] = abs(direction_z)
+
+                # Check if we have lined up
+                avg_y = np.mean(line_up_window_y) 
+                avg_z = np.mean(line_up_window_z)
+                if (avg_y <= 0.25) and (avg_z <= 0.25) and (not shoot_forward):
+                    self._log("Moving in straight line through the gate")
+                    shoot_forward = True
+
+                # If we want to shoot forward
+                if shoot_forward == True:
+                    direction_y = 0
+                    direction_z = 0
+                    direction_backforward = -3
+
+                # Allow movement is triggered if the yaw is off
+                if not self.allow_movement:
+                    direction_y = 0
+                    direction_z = 0
+                    direction_backforward = 0
+
+                # Make sure the commands are int's between -100 and 100
+                direction_y = int(round(max(min(direction_y, 100), -100),0))
+                direction_z = int(round(max(min(direction_z, 100), -100),0))
+                direction_backforward = int(round(max(min(direction_backforward, 100), -100),0))
+
                 # If you can't see a gate anymore reset PID and send stop command
                 if self._gatefound:
                     stop_counter = 0
@@ -205,35 +240,12 @@ class GateNavigation:
                     self.z_controller.remove_buildup()
                     self.y_controller.remove_buildup()
                     stop_counter += 1
-                    # Wait 3 seconds before stopping your action
-                    if stop_counter <= self.rate * 3:
-                        direction_y = 0
-                        direction_z = 0
-                        direction_backforward = -1
-                    else:
+                    # If we havent seen the gate for 3 seconds stop
+                    if stop_counter >= self.rate * 3:
                         direction_y = 0
                         direction_z = 0
                         direction_backforward = 0
 
-                # We want to move slowly forward
-                direction_backforward = direction_backforward * 3
-
-                # Make sure the commands are int's between -100 and 100
-                direction_y = int(round(max(min(direction_y, 100), -100),0))
-                direction_z = int(round(max(min(direction_z, 100), -100),0))
-                direction_backforward = int(round(max(min(direction_backforward, 100), -100),0))
-
-                # Only allow forward movement if we are lined up for the gate
-                if abs(direction_y) > 1 or abs(direction_z) > 1:
-                    if previous_back_forward > 0:
-                        direction_backforward = -1 * previous_back_forward
-                    else:
-                        direction_backforward = 0
-
-                if not self.allow_movement:
-                    direction_y = 0
-                    direction_z = 0
-                    direction_backforward = 0
 
                 # Publish the message
                 msg = Move()
@@ -243,9 +255,6 @@ class GateNavigation:
                 msg.yawl_yawr = 0
                 self.move_pub.publish(msg)
 
-                # Save the previous backforward message
-                previous_back_forward = 0
-            
             r.sleep()
 
 if __name__ == "__main__":

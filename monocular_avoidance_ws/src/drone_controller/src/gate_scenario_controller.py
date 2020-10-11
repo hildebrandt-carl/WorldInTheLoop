@@ -89,11 +89,11 @@ class ProgramController:
 
     def _startscenario(self):
         # Remove this 10 seconds. This is so that I can setup record software before startup
-        time.sleep(10)
+        time.sleep(0)
         if not self.manual_override:
             msg = Int16(DroneState.TAKEOFF.value)
             self.main_drone_pub.publish(msg)
-        time.sleep(0.2)
+        time.sleep(5)
         if not self.manual_override:
             self._state = ProgramState.SCENARIO
 

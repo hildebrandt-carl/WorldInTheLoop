@@ -25,6 +25,7 @@ if (CUDA_FOUND)
     ${CUDA_NVCC_FLAGS};
     -O3
     -gencode arch=compute_75,code=sm_75
+    -gencode arch=compute_52,code=sm_52
   )
   add_definitions(-DGPU)
 else()
