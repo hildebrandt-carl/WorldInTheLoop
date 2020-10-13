@@ -84,18 +84,18 @@ public class PlayerController : MonoBehaviour
                     _state = 0;
                     break;
                 case 0:
-                    anim.SetFloat("forward", 0.4f);
-                    _distance_forward = 0.5f;
-                    _position = transform.position;
-                    break;
-                case 1:
                     anim.SetFloat("forward", 0.0f);
                     anim.SetBool("turn_left", true);
                     _turning = true;
                     break;
+                case 1:
+                    anim.SetFloat("forward", 0.4f);
+                    _distance_forward = 3.5f;
+                    _position = transform.position;
+                    break;
                 case 2:
                     anim.SetFloat("forward", 0.4f);
-                    _distance_forward = 1.5f;
+                    _distance_forward = 2.5f;
                     _position = transform.position;
                     break;
                 case 3:
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
                     break;
                 case 4:
                     anim.SetFloat("forward", 0.4f);
-                    _distance_forward = 4;
+                    _distance_forward = 5.0f;
                     _position = transform.position;
                     break;
                 case 5:
@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
                     break;
                 case 6:
                     anim.SetFloat("forward", 0.4f);
-                    _distance_forward = 3;
+                    _distance_forward = 5.0f;
                     _position = transform.position;
                     break;
                 case 7:
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
                     break;
                 case 8:
                     anim.SetFloat("forward", 0.4f);
-                    _distance_forward = 4;
+                    _distance_forward = 5.0f;
                     _position = transform.position;
                     break;
                 case 9:
@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
                     break;
                 case 10:
                     anim.SetFloat("forward", 0.4f);
-                    _distance_forward = 1.5f;
+                    _distance_forward = 2.5f;
                     _position = transform.position;
                     break;
                 case 11:
@@ -144,6 +144,31 @@ public class PlayerController : MonoBehaviour
                     _turning = true;
                     break;
                 case 12:
+                    if(stateInfo.IsName("Stand") || stateInfo.IsName("Crouch"))
+                    {
+                        _state = _state + 1;
+                    }    
+                    else
+                    {
+                        _prev_state = _state - 1;
+                    }
+                    break;
+                case 13:
+                    anim.SetFloat("forward", 0.0f);
+                    anim.SetBool("turn_right", true);
+                    _turning = true;
+                    break;
+                case 14:
+                    anim.SetFloat("forward", 0.4f);
+                    _distance_forward = 3.5f;
+                    _position = transform.position;
+                    break;
+                case 15:
+                    anim.SetFloat("forward", 0.0f);
+                    anim.SetBool("turn_left", true);
+                    _turning = true;
+                    break;
+                case 16:
                     if (loop)
                     {
                         _state = -1;
@@ -153,7 +178,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Used for running
+
+    // Used for walking
     void update_run(AnimatorStateInfo stateInfo, AnimatorTransitionInfo transInfo)
     {
         // If we have a new state
@@ -165,31 +191,70 @@ public class PlayerController : MonoBehaviour
             switch(_state)
             {
                 case -1:
-                    _state = 0;
                     anim.SetBool("crouch", crouched);
+                    _state = 0;
                     break;
                 case 0:
-                    anim.SetFloat("forward", 0.4f);
-                    _distance_forward = 3;
-                    _position = transform.position;
-                    break;
-                case 1:
                     anim.SetFloat("forward", 0.0f);
-                    anim.SetBool("turn_right", true);
+                    anim.SetBool("turn_left", true);
                     _turning = true;
                     break;
-                case 2:
+                case 1:
                     anim.SetFloat("forward", 0.4f);
-                    _distance_forward = 6;
+                    _distance_forward = 3.5f;
+                    _position = transform.position;
+                    break;
+                case 2:
+                    anim.SetFloat("forward", 0.65f);
+                    _distance_forward = 2.5f;
                     _position = transform.position;
                     break;
                 case 3:
-                    Debug.Log("First turn left");
                     anim.SetFloat("forward", 0.0f);
                     anim.SetBool("turn_left", true);
                     _turning = true;
                     break;
                 case 4:
+                    anim.SetFloat("forward", 0.65f);
+                    _distance_forward = 5.1f;
+                    _position = transform.position;
+                    break;
+                case 5:
+                    anim.SetFloat("forward", 0.0f);
+                    anim.SetBool("turn_left", true);
+                    _turning = true;
+                    break;
+                case 6:
+                    anim.SetFloat("forward", 0.65f);
+                    _distance_forward = 5.1f;
+                    _position = transform.position;
+                    break;
+                case 7:
+                    anim.SetFloat("forward", 0.0f);
+                    anim.SetBool("turn_left", true);
+                    _turning = true;
+                    break;
+                case 8:
+                    anim.SetFloat("forward", 0.65f);
+                    _distance_forward = 5.1f;
+                    _position = transform.position;
+                    break;
+                case 9:
+                    anim.SetFloat("forward", 0.0f);
+                    anim.SetBool("turn_left", true);
+                    _turning = true;
+                    break;
+                case 10:
+                    anim.SetFloat("forward", 0.4f);
+                    _distance_forward = 2.5f;
+                    _position = transform.position;
+                    break;
+                case 11:
+                    anim.SetFloat("forward", 0.0f);
+                    anim.SetBool("turn_right", true);
+                    _turning = true;
+                    break;
+                case 12:
                     if(stateInfo.IsName("Stand") || stateInfo.IsName("Crouch"))
                     {
                         _state = _state + 1;
@@ -199,37 +264,32 @@ public class PlayerController : MonoBehaviour
                         _prev_state = _state - 1;
                     }
                     break;
-                case 5:
-                    Debug.Log("Second turn left");
+                case 13:
                     anim.SetFloat("forward", 0.0f);
-                    anim.SetBool("turn_left", true);
+                    anim.SetBool("turn_right", true);
                     _turning = true;
                     break;
-                case 6:
-                    Debug.Log("Running");
+                case 14:
                     anim.SetFloat("forward", 0.65f);
-                    _distance_forward = 6;
+                    _distance_forward = 3.5f;
                     _position = transform.position;
                     break;
-                case 7:
+                case 15:
                     anim.SetFloat("forward", 0.0f);
                     anim.SetBool("turn_left", true);
                     _turning = true;
                     break;
-                case 8:
-                    anim.SetFloat("forward", 0.4f);
-                    _distance_forward = 3;
-                    _position = transform.position;
-                    break;
-                case 9:
+                case 16:
                     if (loop)
                     {
                         _state = -1;
                     }
                     break;
             }
-        }        
+        }
     }
+
+
 
     void checkTurns(AnimatorTransitionInfo transInfo)
     {
@@ -272,7 +332,7 @@ public class PlayerController : MonoBehaviour
             stopDelay = 1f;
         }
         
-        float dist = Vector3.Distance(_position, transform.position);
+        float dist = Vector3.Distance(_position, transform.position);      
 
         if (dist > (_distance_forward - stopDelay))
         {
@@ -290,3 +350,86 @@ public class PlayerController : MonoBehaviour
         transform.rotation = target ;
     }
 }
+
+
+
+
+
+
+    // Used for running
+    // void update_run(AnimatorStateInfo stateInfo, AnimatorTransitionInfo transInfo)
+    // {
+    //     // If we have a new state
+    //     if (_state != _prev_state)
+    //     {
+    //         // Remember that we have dealt with the new state
+    //         _prev_state = _state;
+    //         // Process the new state
+    //         switch(_state)
+    //         {
+    //             case -1:
+    //                 _state = 0;
+    //                 anim.SetBool("crouch", crouched);
+    //                 break;
+    //             case 0:
+    //                 anim.SetFloat("forward", 0.4f);
+    //                 _distance_forward = 3;
+    //                 _position = transform.position;
+    //                 break;
+    //             case 1:
+    //                 anim.SetFloat("forward", 0.0f);
+    //                 anim.SetBool("turn_right", true);
+    //                 _turning = true;
+    //                 break;
+    //             case 2:
+    //                 anim.SetFloat("forward", 0.4f);
+    //                 _distance_forward = 6;
+    //                 _position = transform.position;
+    //                 break;
+    //             case 3:
+    //                 Debug.Log("First turn left");
+    //                 anim.SetFloat("forward", 0.0f);
+    //                 anim.SetBool("turn_left", true);
+    //                 _turning = true;
+    //                 break;
+    //             case 4:
+    //                 if(stateInfo.IsName("Stand") || stateInfo.IsName("Crouch"))
+    //                 {
+    //                     _state = _state + 1;
+    //                 }    
+    //                 else
+    //                 {
+    //                     _prev_state = _state - 1;
+    //                 }
+    //                 break;
+    //             case 5:
+    //                 Debug.Log("Second turn left");
+    //                 anim.SetFloat("forward", 0.0f);
+    //                 anim.SetBool("turn_left", true);
+    //                 _turning = true;
+    //                 break;
+    //             case 6:
+    //                 Debug.Log("Running");
+    //                 anim.SetFloat("forward", 0.65f);
+    //                 _distance_forward = 6;
+    //                 _position = transform.position;
+    //                 break;
+    //             case 7:
+    //                 anim.SetFloat("forward", 0.0f);
+    //                 anim.SetBool("turn_left", true);
+    //                 _turning = true;
+    //                 break;
+    //             case 8:
+    //                 anim.SetFloat("forward", 0.4f);
+    //                 _distance_forward = 3;
+    //                 _position = transform.position;
+    //                 break;
+    //             case 9:
+    //                 if (loop)
+    //                 {
+    //                     _state = -1;
+    //                 }
+    //                 break;
+    //         }
+    //     }        
+    // }

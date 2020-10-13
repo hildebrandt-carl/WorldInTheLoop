@@ -7,6 +7,10 @@ import rospy
 import time
 import olympe 
 import sys
+import copy
+import numpy as np
+
+from geometry_msgs.msg import PoseStamped
 from olympe.messages.ardrone3.Piloting import TakeOff, moveBy, Landing
 from utility import DroneState
 
@@ -27,6 +31,9 @@ class SecondDroneController:
         # On shutdown do the following 
         rospy.on_shutdown(self.stop)
 
+        # Used to save the drone positions
+        self.drone_position = np.zeros(3)
+
         # Set the rate
         self.rate = 5.0
         self.dt = 1.0 / self.rate
@@ -35,11 +42,13 @@ class SecondDroneController:
         self._quit = False
         self._state = DroneState.INACTIVE
 
-        # Get the IP address
-        self.simulated_param = rospy.get_param(rospy.get_name() + '/simulated_ip', True)
+        # Get the IP address and speed param
+        self.simulated_param    = rospy.get_param(rospy.get_name() + '/simulated_ip', True)
+        self.fast_param         = rospy.get_param(rospy.get_name() + '/fast', False)
 
         # Init all the publishers and subscribers
-        self.state_sub = rospy.Subscriber("uav2/input/state", Int16, self._setstate)
+        self.state_sub = rospy.Subscriber("/uav2/input/state", Int16, self._setstate)
+        self.drone2_sub = rospy.Subscriber("/ground_truth/uav2/pose", PoseStamped, self.pose_callback)
 
         # Connect to the drone
         if self.simulated_param == True:
@@ -47,7 +56,10 @@ class SecondDroneController:
         else:
             print(str(rospy.get_name()) + ": UNTESTED FEATURE BEING USED!")
             self.drone = olympe.Drone(SecondDroneController.PHYSICAL_IP)
+        
         self.drone.connection()
+        time.sleep(0.5)
+        self.drone.start_piloting()
         time.sleep(0.5)
 
     def start(self):
@@ -55,6 +67,11 @@ class SecondDroneController:
 
     def stop(self):
         self._quit = True
+
+    def pose_callback(self, msg):
+        self.drone_position[0] = copy.deepcopy(msg.pose.position.x)
+        self.drone_position[1] = copy.deepcopy(msg.pose.position.y)
+        self.drone_position[2] = copy.deepcopy(msg.pose.position.z)
 
     def _setstate(self, msg):
         self._state = DroneState(int(msg.data))
@@ -97,8 +114,8 @@ class SecondDroneController:
             elif self._state == DroneState.WAYPOINT:
                 if previous_state != self._state:
                     self._log("Waypoint Sent")
-                    self._fly()
                     previous_state = self._state
+                self._fly()
 
             # Mantain the rate
             r.sleep()
@@ -115,8 +132,24 @@ class SecondDroneController:
         self.drone(Landing()).wait()
 
     def _fly(self):
-        self.drone(moveBy(0,  0, 0, 0)).wait()
-        self.drone(moveBy(-4,  0, 0, 0)).wait()
+        
+        # Dont move
+        front_back = 0
+        left_right = 0
+        yawl_yawr = 0
+        up_down = 0
+
+        # Only allow movement if the drone's x position is greater than 1
+        if self.drone_position[0] > -0.5:
+            if self.fast_param:
+                front_back = 20
+            else:
+                front_back = 10
+
+        # Send command
+        self.drone.piloting_pcmd(
+            left_right, -front_back, yawl_yawr, -up_down, 0.2
+        )
         
 
 if __name__ == "__main__":

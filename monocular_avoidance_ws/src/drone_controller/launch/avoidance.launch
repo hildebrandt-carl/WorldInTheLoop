@@ -13,6 +13,7 @@
     <arg name="area_debug" default="false"/>
     <arg name="distance_debug" default="false"/>
     <arg name="force_debug" default="false"/>
+    <arg name="fast" default="false"/>
     <arg name="save_data" default=""/>
 
     <!-- Launch main file -->
@@ -74,6 +75,7 @@
     <group if="$(arg control_second_drone)">
         <node pkg="drone_controller" name="obstacle_drone_node" type="obstacle_drone.py" output="screen"> 
             <param name="/simulated_ip" type="bool" value="True" />
+            <param name="/fast" type="bool" value="$(arg fast)" />
         </node>
 
         <group if="$(arg unity)">

@@ -5,14 +5,14 @@
     <arg name="controller" default="js0"/>
 
     <!-- If the controller is empty do not launch backup controller -->
-    <group unless="$(eval controller != '')">
+    <!-- <group unless="$(eval controller != '')"> -->
         <!-- Used as a backup control -->
-        <node name="joy_node" pkg="joy" type="joy_node">
-            <param name="dev" value="/dev/input/$(arg controller)"/>
-        </node>
+    <node name="joy_node" pkg="joy" type="joy_node">
+        <param name="dev" value="/dev/input/$(arg controller)"/>
+    </node>
 
-        <node pkg="drone_controller" name="manual_control_node" type="manual_control.py" output="screen">
-        </node>
-    </group>
+    <node pkg="drone_controller" name="manual_control_node" type="manual_control.py" output="screen">
+    </node>
+    <!-- </group> -->
 
 </launch>

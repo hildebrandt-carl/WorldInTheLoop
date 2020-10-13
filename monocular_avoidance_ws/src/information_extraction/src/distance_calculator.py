@@ -32,6 +32,9 @@ class DistanceCalculator:
         self.rate = 5.0
         self.dt = 1.0 / self.rate
 
+        # Compute the min distance 
+        self.minimum_distance = 100
+
         # Init the program state
         self._quit = False
 
@@ -66,6 +69,9 @@ class DistanceCalculator:
 
         r = rospy.Rate(self.rate)
 
+        # Make sure we wait a few seconds before recording the min
+        counter = 0
+        
         while not self._quit:
             
             # Compute the distance between the two drones
@@ -77,8 +83,17 @@ class DistanceCalculator:
             # Publish the distance
             self.distance_pub.publish(Float32(distance))
 
+            # Save minimum distance
+            if (distance < self.minimum_distance) and (counter > (self.rate * 5)):
+                self.minimum_distance = distance
+            else:
+                counter += 1
+
             # Mantain the rate
             r.sleep()
+        
+        # Print the min distance
+        self._log("Minimum distance: " + str(self.minimum_distance))
 
 if __name__ == "__main__":
     # Run the node

@@ -34,14 +34,14 @@
 
     <!-- Note: Error is a value between -1 an 1, and the output is a value between -100, 100: hence high PID values -->
     <node pkg="drone_controller" name="gate_navigation_node" type="gate_navigation.py" output="screen">
-        <param name="gains/p" type="double" value="10" />
+        <param name="gains/p" type="double" value="25" />
         <param name="gains/i" type="double" value="0" />
-        <param name="gains/d" type="double" value="7" />
+        <param name="gains/d" type="double" value="15" />
 
         <param name="lower_bound/H" type="int" value="0" />
         <param name="lower_bound/S" type="int" value="100" />
-        <param name="lower_bound/V" type="int" value="0" />
-        <param name="upper_bound/H" type="int" value="100" />
+        <param name="lower_bound/V" type="int" value="110" />
+        <param name="upper_bound/H" type="int" value="255" />
         <param name="upper_bound/S" type="int" value="255" />
         <param name="upper_bound/V" type="int" value="255" />
     </node> 
@@ -53,8 +53,8 @@
     <node pkg="mixing_functions" name="color_threshold_node" type="color_threshold.py" output="screen">
         <param name="lower_bound/H" type="int" value="0" />
         <param name="lower_bound/S" type="int" value="100" />
-        <param name="lower_bound/V" type="int" value="0" />
-        <param name="upper_bound/H" type="int" value="100" />
+        <param name="lower_bound/V" type="int" value="110" />
+        <param name="upper_bound/H" type="int" value="255" />
         <param name="upper_bound/S" type="int" value="255" />
         <param name="upper_bound/V" type="int" value="255" />
 

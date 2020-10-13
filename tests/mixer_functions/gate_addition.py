@@ -12,7 +12,7 @@ from matplotlib import colors
 
 
 # Load the iamges
-overlay_original    = cv2.imread('images/gate_overlay.png')
+overlay_original    = cv2.imread('images/gate_real_overlay.png')
 background          = cv2.imread('images/background.png')
 
 # Resize overlay to match the msg image
@@ -25,8 +25,8 @@ overlay_hsv         = cv2.cvtColor(overlay_original, cv2.COLOR_RGB2HSV)
 background          = cv2.cvtColor(background, cv2.COLOR_BGR2RGB)
 
 # Colors we want to find
-dark_color          = (0, 50, 60)
-light_color         = (25, 255, 255)
+dark_color          = (0, 100, 0)
+light_color         = (100, 255, 255)
 
 # Create the selected colors for display
 lo_square           = np.full((10, 10, 3), dark_color, dtype=np.uint8) / 255.0

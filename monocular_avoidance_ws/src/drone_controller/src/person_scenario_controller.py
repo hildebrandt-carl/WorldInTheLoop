@@ -111,7 +111,7 @@ class ProgramController:
 if __name__ == "__main__":
     try:
         x = ProgramController()
-        time.sleep(10)
+        time.sleep(5)
         x.start()
     except KeyboardInterrupt:
         print("Manually Aborted")

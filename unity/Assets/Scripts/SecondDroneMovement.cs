@@ -5,8 +5,10 @@ using UnityEngine;
 public class SecondDroneMovement : MonoBehaviour
 {
 
-    [Range(0.0f, 1.0f)]
-    public float speed = 0.3f ;
+    // [Range(0.0f, 1.0f)]
+    // public float speed = 0.3f ;
+    public bool slow;
+    public bool fast;
     public Vector3 start_position = new Vector3(0.0f, 0.0f, 3.0f);
     public Vector3 end_position  = new Vector3(0.0f, 1.0f, -1.0f);
     [Range(0,60)]
@@ -16,6 +18,7 @@ public class SecondDroneMovement : MonoBehaviour
     private Vector3 takeoff_position;
     private bool takeoff_achieved;
     private double _start_time;
+    private float speed = 0f;
 
 
     // Start is called before the first frame update
@@ -25,11 +28,25 @@ public class SecondDroneMovement : MonoBehaviour
         transform.position = start_position ;
         takeoff_position = start_position;
         takeoff_position.y = 1.0f;
-        // Compute the speed
-        true_speed = speed / 10.0f;
+
         // Init vairables
         takeoff_achieved = false;
         _start_time = Time.time;
+
+        if ((slow == false) || (fast == false))
+        {
+            if (slow == true)
+            {
+                speed = 0.2f;
+            }
+            if (fast == true)
+            {
+                speed = 0.4f;
+            }
+        }
+
+        // Compute the speed
+        true_speed = speed / 10.0f;
     }
 
     // Update is called once per frame
@@ -42,7 +59,7 @@ public class SecondDroneMovement : MonoBehaviour
             // While you havent taken off, takeoff.
             if((dist > 0.2) && (takeoff_achieved == false))
             {
-                transform.position = Vector3.Lerp(transform.position, takeoff_position, true_speed);
+                transform.position = Vector3.Lerp(transform.position, takeoff_position, 0.02f);
             }
             // Then fly to end position
             else

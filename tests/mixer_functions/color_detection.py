@@ -14,13 +14,15 @@ from matplotlib import colors
 
 file_names = ['./images/gate_sphinx_overlay.png',
               './images/gate_unity_overlay.png' ,
-              './images/gate_real_overlay.png']
+              './images/gate_real_overlay.png',
+              './images/large_gate_real_overlay.png',
+              './images/large_gate_real_overlay2.png']
 
 for name in file_names:
 
     img = cv2.imread(name)
 
-    scale_percent = 25
+    scale_percent = 100
     width = int(img.shape[1] * scale_percent / 100)
     height = int(img.shape[0] * scale_percent / 100)
     dim = (width, height)
@@ -30,8 +32,8 @@ for name in file_names:
     hsv_img = cv2.cvtColor(rbg_img, cv2.COLOR_RGB2HSV)
 
     # Colors we want to find
-    dark_color = (0, 100, 0)
-    light_color = (100, 255, 255) 
+    dark_color = (0, 100, 110)
+    light_color = (255, 255, 255) 
 
     # Create the selected colors for display
     lo_square = np.full((10, 10, 3), dark_color, dtype=np.uint8) / 255.0

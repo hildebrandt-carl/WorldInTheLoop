@@ -34,9 +34,9 @@
     </node>
 
     <node pkg="drone_controller" name="person_navigation_node" type="person_navigation.py" output="screen">
-        <param name="gains/p" type="double" value="1" />
+        <param name="gains/p" type="double" value="5" />
         <param name="gains/i" type="double" value="0" />
-        <param name="gains/d" type="double" value="0.75" />
+        <param name="gains/d" type="double" value="0" />
     </node> 
 
     <!-- Mixing functions -->
