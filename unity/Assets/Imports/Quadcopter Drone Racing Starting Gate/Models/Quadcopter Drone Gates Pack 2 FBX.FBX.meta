@@ -1,0 +1,169 @@
+fileFormatVersion: 2
+guid: 61f114ec4ae4a8b40bbe397834f9fc87
+timeCreated: 1538362842
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: GATE_ PLSTC_Hex
+    100002: GATE_ PLSTC_Round
+    100004: GATE_ PLSTC_Square
+    100006: GATE_ PLSTC_Square45
+    100008: GATE_Metal_Long
+    100010: GATE_Metal_SML
+    100012: Monitor
+    100014: NEON
+    100016: //RootNode
+    100018: Starting Gate
+    100020: GATE_MTL_SQR_Gravity Gate
+    100022: GATE_MTL_SQR_Hanging
+    100024: GATE_MTL_SQR_Standing
+    100026: NEON_1
+    100028: NEON_1 1
+    100030: NEON_1 2
+    100032: NEON_2
+    100034: NEON_2 1
+    100036: NEON_2 2
+    400000: GATE_ PLSTC_Hex
+    400002: GATE_ PLSTC_Round
+    400004: GATE_ PLSTC_Square
+    400006: GATE_ PLSTC_Square45
+    400008: GATE_Metal_Long
+    400010: GATE_Metal_SML
+    400012: Monitor
+    400014: NEON
+    400016: //RootNode
+    400018: Starting Gate
+    400020: GATE_MTL_SQR_Gravity Gate
+    400022: GATE_MTL_SQR_Hanging
+    400024: GATE_MTL_SQR_Standing
+    400026: NEON_1
+    400028: NEON_1 1
+    400030: NEON_1 2
+    400032: NEON_2
+    400034: NEON_2 1
+    400036: NEON_2 2
+    2300000: GATE_ PLSTC_Hex
+    2300002: GATE_ PLSTC_Round
+    2300004: GATE_ PLSTC_Square
+    2300006: GATE_ PLSTC_Square45
+    2300008: GATE_Metal_Long
+    2300010: GATE_Metal_SML
+    2300012: Monitor
+    2300014: NEON
+    2300016: Starting Gate
+    2300018: GATE_MTL_SQR_Gravity Gate
+    2300020: GATE_MTL_SQR_Hanging
+    2300022: GATE_MTL_SQR_Standing
+    2300024: NEON_1
+    2300026: NEON_1 1
+    2300028: NEON_1 2
+    2300030: NEON_2
+    2300032: NEON_2 1
+    2300034: NEON_2 2
+    3300000: GATE_ PLSTC_Hex
+    3300002: GATE_ PLSTC_Round
+    3300004: GATE_ PLSTC_Square
+    3300006: GATE_ PLSTC_Square45
+    3300008: GATE_Metal_Long
+    3300010: GATE_Metal_SML
+    3300012: Monitor
+    3300014: NEON
+    3300016: Starting Gate
+    3300018: GATE_MTL_SQR_Gravity Gate
+    3300020: GATE_MTL_SQR_Hanging
+    3300022: GATE_MTL_SQR_Standing
+    3300024: NEON_1
+    3300026: NEON_1 1
+    3300028: NEON_1 2
+    3300030: NEON_2
+    3300032: NEON_2 1
+    3300034: NEON_2 2
+    4300000: GATE_Metal_Long
+    4300002: GATE_Metal_SML
+    4300004: GATE_ PLSTC_Square
+    4300006: Starting Gate
+    4300008: NEON
+    4300010: GATE_ PLSTC_Round
+    4300012: GATE_ PLSTC_Hex
+    4300014: GATE_ PLSTC_Square45
+    4300016: Monitor
+    4300018: GATE_MTL_SQR_Standing
+    4300020: NEON_2
+    4300022: NEON_1
+    4300024: GATE_MTL_SQR_Hanging
+    4300026: NEON_2
+    4300028: NEON_1
+    4300030: GATE_MTL_SQR_Gravity Gate
+    4300032: NEON_2
+    4300034: NEON_1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

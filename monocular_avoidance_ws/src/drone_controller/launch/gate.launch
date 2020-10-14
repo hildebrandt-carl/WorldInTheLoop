@@ -34,9 +34,9 @@
 
     <!-- Note: Error is a value between -1 an 1, and the output is a value between -100, 100: hence high PID values -->
     <node pkg="drone_controller" name="gate_navigation_node" type="gate_navigation.py" output="screen">
-        <param name="gains/p" type="double" value="25" />
+        <param name="gains/p" type="double" value="30" />
         <param name="gains/i" type="double" value="0" />
-        <param name="gains/d" type="double" value="15" />
+        <param name="gains/d" type="double" value="30" />
 
         <param name="lower_bound/H" type="int" value="0" />
         <param name="lower_bound/S" type="int" value="100" />

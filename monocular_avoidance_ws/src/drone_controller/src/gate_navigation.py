@@ -80,7 +80,7 @@ class GateNavigation:
 
         # Variable to tell the algorithm if we can see the whole gate or only partial gate
         self.full_gate_found = False
-        self.full_gate_counter = 5
+        self.full_gate_ever_found = False
 
         # Used to store the current gates area (used as a metric for distance to gate)
         self._gate_area = 0
@@ -147,24 +147,23 @@ class GateNavigation:
         contours, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
         contour_list = []
+        area_list = [0]
         for contour in contours:
             area = cv2.contourArea(contour)
             # Filter based on length and area
             if (area > 20000):
                 contour_list.append(contour)
-                self._gate_area = area
+                area_list.append(area)
         
+        # Get the largest gate area
+        self._gate_area = max(area_list)
+
         # Check if there are any full gates found:
         if len(contour_list) <= 0:
-            self.full_gate_counter -= 1
-        else:
-            self.full_gate_counter = 5
-
-        # If we havent seen a full gate for 5 images
-        if self.full_gate_counter <= 0:
             self.full_gate_found = False
         else:
             self.full_gate_found = True
+            self.full_gate_ever_found = True
 
         rbg_img = cv2.drawContours(rbg_img, contour_list,  -1, (0, 255, 0), 2)
 
@@ -191,21 +190,21 @@ class GateNavigation:
             self.lower_right_mass = np.sum(mask[mask_horizontal_center:, mask_vertical_center:])
 
             # Check if there is gate on the upper left
-            if self.upper_left_mass != 0:
-                gate_centre_x += 0.05 * mask.shape[1] 
-                gate_centre_y += 0.05 * mask.shape[0] 
+            if self.upper_left_mass >= 1000:
+                gate_centre_x += 0.025 * mask.shape[1] 
+                gate_centre_y += 0.025 * mask.shape[0] 
             # Check if there is gate on the upper right
-            if self.upper_right_mass != 0:
-                gate_centre_x -= 0.05 * mask.shape[1] 
-                gate_centre_y += 0.05 * mask.shape[0] 
+            if self.upper_right_mass >= 1000:
+                gate_centre_x -= 0.025 * mask.shape[1] 
+                gate_centre_y += 0.025 * mask.shape[0] 
             # Check if there is gate on the lower left
-            if self.lower_left_mass != 0:
-                gate_centre_x += 0.05 * mask.shape[1] 
-                gate_centre_y -= 0.05 * mask.shape[0] 
+            if self.lower_left_mass >= 1000:
+                gate_centre_x += 0.025 * mask.shape[1] 
+                gate_centre_y -= 0.025 * mask.shape[0] 
             # Check if there is gate on the lower right
-            if self.lower_right_mass != 0:
-                gate_centre_x -= 0.05 * mask.shape[1] 
-                gate_centre_y -= 0.05 * mask.shape[0]
+            if self.lower_right_mass >= 1000:
+                gate_centre_x -= 0.025 * mask.shape[1] 
+                gate_centre_y -= 0.025 * mask.shape[0]
 
         # Save the results
         if self.gate_center_x_arr is None:
@@ -273,13 +272,16 @@ class GateNavigation:
                 # Check if we have lined up
                 avg_y = np.mean(line_up_window_y) 
                 avg_z = np.mean(line_up_window_z)
+                # if (avg_y <= 1) and (avg_z <= 1) and (not move_forward):
                 if (avg_y <= 0.5) and (avg_z <= 0.5) and (not move_forward):
                     self._log("Moving forward with visual navigation")
                     move_forward = True
                 # While you are moving towards the gate
                 elif ((avg_y >= 1) or (avg_z >= 1)) and (move_forward):
+                # elif ((avg_y >= 2) or (avg_z >= 2)) and (move_forward):
                     # Only pause if we have found the gate and its not too close
                     if self._gatefound and self.full_gate_found and self._gate_area <= 180000:
+                        self._log(self._gate_area)
                         self._log("Pausing for re-alignment")
                         move_forward = False
                         # Send quick burst to kill forward momemtum
@@ -298,17 +300,21 @@ class GateNavigation:
                     if self._gatefound:
                         # The center of mass is now calculated different and so we can use it to do the final navigation
                         direction_y = leftright
-                        direction_z = updown
-                        direction_backforward = -3
+                        direction_z = -1 * updown
+                        direction_backforward = -5
                         # If we cant see any gate go straight
                     else:
                         direction_y = 0
                         direction_z = 0
-                        direction_backforward = -3
+                        direction_backforward = -7
 
                 # Move backwards so you can see the gate again
                 if (not self.full_gate_found) and (not self.close_gate_navigation):
                     direction_backforward = 2
+
+                # If the full gate has never been found slowly move forward until you find it
+                if (self.full_gate_ever_found == False):
+                    direction_backforward = -1
 
                 # Allow movement is triggered if the yaw is off
                 if not self.allow_movement:
@@ -328,7 +334,7 @@ class GateNavigation:
                     self.z_controller.remove_buildup()
                     self.y_controller.remove_buildup()
                     stop_counter += 1
-                    # If we havent seen the gate for 3 seconds stop
+                    # If we havent seen the gate for 2 seconds stop
                     if stop_counter >= self.rate * 2:
                         direction_y = 0
                         direction_z = 0
