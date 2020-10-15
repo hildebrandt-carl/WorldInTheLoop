@@ -136,6 +136,8 @@ class UnityRosConnection():
         self.drone_ori[1] = math.degrees(-1 * euler[2])
         self.drone_ori[2] = math.degrees(-1 * euler[0])
 
+        print(str(self.drone_ori[0]) + ", " + str(self.drone_ori[1]) + ", " + str(self.drone_ori[2]))
+
     # Called on ROS shutdown
     def shutdown_sequence(self):
         rospy.loginfo(str(rospy.get_name()) + ": Shutting Down")

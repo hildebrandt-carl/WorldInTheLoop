@@ -34,9 +34,13 @@
     </node>
 
     <node pkg="drone_controller" name="person_navigation_node" type="person_navigation.py" output="screen">
-        <param name="gains/p" type="double" value="5" />
-        <param name="gains/i" type="double" value="0" />
-        <param name="gains/d" type="double" value="0" />
+        <param name="gains/p_alignment" type="double" value="0.5" />
+        <param name="gains/i_alignment" type="double" value="0" />
+        <param name="gains/d_alignment" type="double" value="0.5" />
+
+        <param name="gains/p_distance" type="double" value="0.125" />
+        <param name="gains/i_distance" type="double" value="0" />
+        <param name="gains/d_distance" type="double" value="0.05" />
     </node> 
 
     <!-- Mixing functions -->

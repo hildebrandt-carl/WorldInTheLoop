@@ -39,26 +39,34 @@ class PersonNavigation:
         self.object_center_x_arr = None
         self.object_center_y_arr = None
         self.object_size_arr = None
-        self.object_arr_length = 10
+        self.object_arr_length = 5
 
         self.image_size = None
 
         # PID Class to keep the person in view
-        gains = rospy.get_param(rospy.get_name() + '/gains', {'p': 1.0, 'i': 0.0, 'd': 0.0})
-        Kp, Ki, Kd = gains['p'], gains['i'], gains['d']
-        self.distance_controller = PID(Kp, Ki, Kd, self.rate)
+        a_gains = rospy.get_param(rospy.get_name() + '/gains', {'p_alignment': 0.25, 'i_alignment': 0.0, 'd_alignment': 1.0})
+        d_gains = rospy.get_param(rospy.get_name() + '/gains', {'p_distance': 1.0, 'i_distance': 0.0, 'd_distance': 0.0})
+        alignment_Kp, alignment_Ki, alignment_Kd    = a_gains['p_alignment'], a_gains['i_alignment'], a_gains['d_alignment']
+        distance_Kp, distance_Ki, distance_Kd       = d_gains['p_distance'], d_gains['i_distance'], d_gains['d_distance']
 
         # Display the variables
-        self._log(": p - " + str(Kp))
-        self._log(": i - " + str(Ki))
-        self._log(": d - " + str(Kd))
+        self._log(": Alignment p - " + str(alignment_Kp))
+        self._log(": Alignment i - " + str(alignment_Ki))
+        self._log(": Alignment d - " + str(alignment_Kd))
+        self._log(": Distance p - "  + str(distance_Kp))
+        self._log(": Distance i - "  + str(distance_Ki))
+        self._log(": Distance d - "  + str(distance_Kd))
+
+        # Create the controllers
+        self.distance_controller = PID(distance_Kp, distance_Ki, distance_Kd, self.rate)
+        self.alignment_controller = PID(alignment_Kp, alignment_Ki, alignment_Kd, self.rate)
 
         # Init all the publishers and subscribers
         self.move_pub           = rospy.Publisher("/uav1/input/beforeyawcorrection/move", Move, queue_size=10)
         self.drone_state_sub    = rospy.Subscriber("uav1/input/state", Int16, self._getstate)
         self.bounding_sub       = rospy.Subscriber("darknet_ros/bounding_boxes", BoundingBoxes, self._getbounding)
         self.camera_sub         = rospy.Subscriber("/mixer/sensors/camera", Image, self._getimagesize)
-        self.vicon_yaw_pub      = rospy.Publisher("/uav1/input/vicon_setpoint/yaw/rate", Float32, queue_size=10)
+        # self.vicon_yaw_pub      = rospy.Publisher("/uav1/input/vicon_setpoint/yaw/rate", Float32, queue_size=10)
 
     def start(self):
         self._mainloop()
@@ -166,36 +174,41 @@ class PersonNavigation:
                     cen_x = (cen_x - self.image_size[0] / 2.0) / (self.image_size[0] / 2.0)
                     cen_y = (cen_y - self.image_size[1] / 2.0) / (self.image_size[1] / 2.0)
 
-                    # How much of the screen you want to take up (i.e. 30th of the image)
-                    percentage_covered = 1 / 30.0
+                    # How much of the screen you want to take up (i.e. 5th of the image)
+                    percentage_covered = 1 / 10.0
                     desired_area = (self.image_size[0] * self.image_size[1]) * percentage_covered
                     area = (area - desired_area) / desired_area
 
-                    forward_backward = self.distance_controller.get_output(0, -1 * area)
-                    forward_backward = min(max(forward_backward, -1), 1)
-
                 except (TypeError):
+                    # This happens if you cant see the person
                     continue
 
+                # Compute how much you want to move backwards and forwards
+                forward_backward = self.distance_controller.get_output(0, -1 * area)
+                forward_backward = min(max(forward_backward, -1), 1)
+
+                # Compute how much you want to move sideways
+                sideways_movement = self.alignment_controller.get_output(0, -1 * cen_x)
+                sideways_movement = min(max(sideways_movement, -1), 1)
+
+                # Create the message
                 direction_yaw = 0
                 direction_x = 0
-                direction_y = 0
+                direction_y = sideways_movement
                 direction_z = forward_backward
-
-                # Dont move forward for initial tests
-                direction_z = 0
 
                 msg = Move()
                 msg.up_down     = int(round(direction_x * 100, 0))
                 msg.left_right  = int(round(direction_y * 100, 0))
                 msg.front_back  = int(round(direction_z * 100, 0))
-                msg.yawl_yawr   = int(round(cen_x * 100, 0))
+                msg.yawl_yawr   = 0
+                # msg.yawl_yawr   = int(round(cen_x * 100, 0))
 
                 # Compute how much to change the yaw in degrees
-                yaw_rate = math.radians(-cen_x * 20)
+                # yaw_rate = math.radians(-cen_x * 20)
 
                 # Publish the vicon yaw command
-                self.vicon_yaw_pub.publish(Float32(yaw_rate))
+                # self.vicon_yaw_pub.publish(Float32(yaw_rate))
                 
                 # Publish the move command
                 self.move_pub.publish(msg)
