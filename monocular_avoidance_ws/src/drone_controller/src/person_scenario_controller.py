@@ -105,7 +105,7 @@ class ProgramController:
         time.sleep(0.1)
         msg = Int16(DroneState.FOLLOWPERSON.value)
         self.main_drone_pub.publish(msg)
-        time.sleep(120)
+        time.sleep(60)
         self._state = ProgramState.ENDING
 
 if __name__ == "__main__":

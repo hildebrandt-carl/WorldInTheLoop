@@ -6,51 +6,52 @@
   <delay_start>20</delay_start>
 
   <waypoint>
-    <animation>walk</animation>
-    <velocity>0.75</velocity>
+    <animation>run</animation>
+    <velocity>1.25</velocity>
     <xy>2.5 -3.5</xy>
   </waypoint>
 
   <waypoint>
     <animation>run</animation>
     <velocity>1.25</velocity>
-    <xy>2.5 0</xy>
+    <xy>2.5 2</xy>
   </waypoint>
 
   <waypoint>
     <animation>run</animation>
     <velocity>1.25</velocity>
-    <xy>2.5 2.5</xy>
+    <xy>2 2</xy>
   </waypoint>
 
   <waypoint>
     <animation>run</animation>
     <velocity>1.25</velocity>
-    <xy>-2.5 2.5</xy>
+    <xy>2 -2</xy>
   </waypoint>
 
   <waypoint>
     <animation>run</animation>
     <velocity>1.25</velocity>
-    <xy>-2.5 -2.5</xy>
+    <xy>1.5 -2</xy>
   </waypoint>
 
   <waypoint>
     <animation>run</animation>
     <velocity>1.25</velocity>
-    <xy>2.5 -2.5</xy>
+    <xy>1.5 2</xy>
+  </waypoint>
+
+
+  <waypoint>
+    <animation>run</animation>
+    <velocity>1.25</velocity>
+    <xy>1 2</xy>
   </waypoint>
 
   <waypoint>
-    <animation>walk</animation>
-    <velocity>0.75</velocity>
-    <xy>2.5 0</xy>
-  </waypoint>
-
-  <waypoint>
-    <animation>walk</animation>
-    <velocity>0.75</velocity>
-    <xy>2.5 -3.5</xy>
+    <animation>run</animation>
+    <velocity>1.25</velocity>
+    <xy>1 0</xy>
   </waypoint>
   
 </path>

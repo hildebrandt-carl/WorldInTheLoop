@@ -46,13 +46,13 @@ public class DroneHandler : MonoBehaviour
         // Wait for the render to complete
         yield return new WaitForEndOfFrame();
 
-        // RenderTexture rt = RenderTexture.GetTemporary(480, 270);
+        RenderTexture rt = RenderTexture.GetTemporary(480, 270);
         // RenderTexture rt = RenderTexture.GetTemporary(768, 576);
         // RenderTexture rt = RenderTexture.GetTemporary(1024, 768);
         // RenderTexture rt = RenderTexture.GetTemporary(2048, 1536);
         
         // This is the same dimension as sphinx
-        RenderTexture rt = RenderTexture.GetTemporary(1280, 720);
+        // RenderTexture rt = RenderTexture.GetTemporary(1280, 720);
 
         // Render to RenderTexture
         droneCamera.targetTexture = rt;

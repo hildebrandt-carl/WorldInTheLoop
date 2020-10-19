@@ -36,6 +36,7 @@ class ViconYawControl:
 
         # Out of range param
         self.out_of_range_value = rospy.get_param(rospy.get_name() + '/out_of_range_yaw', 30)
+        self.use_starting_yaw = rospy.get_param(rospy.get_name() + '/use_starting_yaw', True)
 
         # Get the PID
         gains = rospy.get_param(rospy.get_name() + '/gains', {'p': 10.0, 'i': 0.0, 'd': 0.0})
@@ -82,6 +83,11 @@ class ViconYawControl:
         count = 0
 
         while not self._quit: 
+
+            # Check if we want to use 0
+            if not self.use_starting_yaw:
+                self._desired_yaw = 0
+
             # get the initial position of the drone
             if self._desired_yaw is None:
                 if count < self._desired_yaw_wait_count:

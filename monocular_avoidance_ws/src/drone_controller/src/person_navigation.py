@@ -174,7 +174,7 @@ class PersonNavigation:
                     cen_x = (cen_x - self.image_size[0] / 2.0) / (self.image_size[0] / 2.0)
                     cen_y = (cen_y - self.image_size[1] / 2.0) / (self.image_size[1] / 2.0)
 
-                    # How much of the screen you want to take up (i.e. 5th of the image)
+                    # How much of the screen you want to take up (i.e. 10th of the image)
                     percentage_covered = 1 / 10.0
                     desired_area = (self.image_size[0] * self.image_size[1]) * percentage_covered
                     area = (area - desired_area) / desired_area

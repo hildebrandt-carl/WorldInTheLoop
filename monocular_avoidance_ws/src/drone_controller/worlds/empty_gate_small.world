@@ -89,12 +89,12 @@
 
 
     <model name='right_straight'>
-      <pose>1 -1 1 0 0 0</pose>
+      <pose>1 -0.25 0.75 0 0 0</pose>
       <link name='right_straight::link'>
         <collision name='collision'>
           <geometry>
             <box>
-              <size>0.05 0.01 0.5</size>
+              <size>0.03 0.01 0.21</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -114,7 +114,7 @@
         <visual name='visual'>
           <geometry>
             <box>
-              <size>0.05 0.01 0.5</size>
+              <size>0.03 0.01 0.21</size>
             </box>
           </geometry>
           <material>
@@ -132,12 +132,12 @@
     </model>
 
     <model name='left_straight'>
-      <pose>1 1 1 0 0 0</pose>
+      <pose>1 0.25 0.75 0 0 0</pose>
       <link name='left_straight::link'>
         <collision name='collision'>
           <geometry>
             <box>
-              <size>0.05 0.01 0.5</size>
+              <size>0.03 0.01 0.21</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -157,7 +157,7 @@
         <visual name='visual'>
           <geometry>
             <box>
-              <size>0.05 0.01 0.5</size>
+              <size>0.03 0.01 0.21</size>
             </box>
           </geometry>
           <material>
@@ -176,12 +176,12 @@
 
 
     <model name='upper_left_diagonal'>
-      <pose>1 1 1.5 0.785 0 0</pose>
+      <pose>1 0.18 0.93 0.785 0 0</pose>
       <link name='upper_left_diagonal::link'>
         <collision name='collision'>
           <geometry>
             <box>
-              <size>0.05 0.01 0.5</size>
+              <size>0.03 0.01 0.21</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -201,7 +201,7 @@
         <visual name='visual'>
           <geometry>
             <box>
-              <size>0.05 0.01 0.5</size>
+              <size>0.03 0.01 0.21</size>
             </box>
           </geometry>
           <material>
@@ -220,12 +220,12 @@
 
 
     <model name='upper_right_diagonal'>
-      <pose>1 -1 1.5 -0.785 0 0</pose>
+      <pose>1 -0.18 0.93 5.5 0 0</pose>
       <link name='upper_right_diagonal::link'>
         <collision name='collision'>
           <geometry>
             <box>
-              <size>0.05 0.01 0.5</size>
+              <size>0.03 0.01 0.21</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -245,7 +245,7 @@
         <visual name='visual'>
           <geometry>
             <box>
-              <size>0.05 0.01 0.5</size>
+              <size>0.03 0.01 0.21</size>
             </box>
           </geometry>
           <material>
@@ -264,12 +264,12 @@
 
 
     <model name='lower_left_diagonal'>
-      <pose>1 1 0.5 -0.785 0 0</pose>
+      <pose>1 0.18 0.58 5.5 0 0</pose>
       <link name='lower_left_diagonal::link'>
         <collision name='collision'>
           <geometry>
             <box>
-              <size>0.05 0.01 0.5</size>
+              <size>0.03 0.01 0.21</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -289,7 +289,7 @@
         <visual name='visual'>
           <geometry>
             <box>
-              <size>0.05 0.01 0.5</size>
+              <size>0.03 0.01 0.21</size>
             </box>
           </geometry>
           <material>
@@ -308,12 +308,12 @@
 
 
     <model name='lower_right_diagonal'>
-      <pose>1 -1 0.5 0.785 0 0</pose>
+      <pose>1 -0.18 0.57 0.785 0 0</pose>
       <link name='lower_right_diagonal::link'>
         <collision name='collision'>
           <geometry>
             <box>
-              <size>0.05 0.01 0.5</size>
+              <size>0.03 0.01 0.21</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -333,7 +333,7 @@
         <visual name='visual'>
           <geometry>
             <box>
-              <size>0.05 0.01 0.5</size>
+              <size>0.03 0.01 0.21</size>
             </box>
           </geometry>
           <material>
@@ -353,12 +353,12 @@
 
 
     <model name='upper_flat'>
-      <pose>1 0 2 1.57 0 0</pose>
+      <pose>1 0 1 1.57 0 0</pose>
       <link name='upper_flat::link'>
         <collision name='collision'>
           <geometry>
             <box>
-              <size>0.05 0.01 0.5</size>
+              <size>0.03 0.01 0.21</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -378,7 +378,7 @@
         <visual name='visual'>
           <geometry>
             <box>
-              <size>0.05 0.01 0.5</size>
+              <size>0.03 0.01 0.21</size>
             </box>
           </geometry>
           <material>
@@ -402,7 +402,7 @@
         <collision name='collision'>
           <geometry>
             <box>
-              <size>0.05 0.01 0.5</size>
+              <size>0.03 0.01 0.21</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -422,7 +422,7 @@
         <visual name='visual'>
           <geometry>
             <box>
-              <size>0.05 0.01 0.5</size>
+              <size>0.03 0.01 0.21</size>
             </box>
           </geometry>
           <material>

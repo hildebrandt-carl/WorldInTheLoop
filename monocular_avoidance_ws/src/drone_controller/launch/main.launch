@@ -68,6 +68,9 @@
             <param name="gains/i" type="double" value="0" />
             <param name="gains/d" type="double" value="0" />
             <param name="out_of_range_yaw" type="double" value="5" />
+            <!-- Set to True if you want to use the starting yaw of the drone as the setpoint -->
+            <param name="use_starting_yaw" type="bool" value="False" />
+            
         </node>
     </group>
     

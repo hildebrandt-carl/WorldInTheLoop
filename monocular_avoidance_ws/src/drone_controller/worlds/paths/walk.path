@@ -8,50 +8,31 @@
   <waypoint>
     <animation>walk</animation>
     <velocity>0.75</velocity>
-    <xy>2.5 -3.5</xy>
+    <xy>2.5 1</xy>
   </waypoint>
 
   <waypoint>
     <animation>walk</animation>
     <velocity>0.75</velocity>
-    <xy>2.5 2</xy>
+    <xy>2.5 -0.5</xy>
   </waypoint>
 
   <waypoint>
     <animation>walk</animation>
     <velocity>0.75</velocity>
-    <xy>2 2</xy>
+    <xy>2.5 1</xy>
   </waypoint>
 
   <waypoint>
     <animation>walk</animation>
     <velocity>0.75</velocity>
-    <xy>2 -2</xy>
+    <xy>2.5 -0.5</xy>
   </waypoint>
 
   <waypoint>
     <animation>walk</animation>
     <velocity>0.75</velocity>
-    <xy>1.5 -2</xy>
+    <xy>2.5 1</xy>
   </waypoint>
 
-  <waypoint>
-    <animation>walk</animation>
-    <velocity>0.75</velocity>
-    <xy>1.5 2</xy>
-  </waypoint>
-
-
-  <waypoint>
-    <animation>walk</animation>
-    <velocity>0.75</velocity>
-    <xy>1 2</xy>
-  </waypoint>
-
-  <waypoint>
-    <animation>walk</animation>
-    <velocity>0.75</velocity>
-    <xy>1 0</xy>
-  </waypoint>
-  
 </path>

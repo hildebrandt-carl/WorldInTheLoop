@@ -85,5 +85,371 @@
     <include>
       <uri>model://ground_plane</uri>
     </include>
+
+
+
+    <model name='right_straight'>
+      <pose>1 -0.5 1 0 0 0</pose>
+      <link name='right_straight::link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.03 0.01 0.42</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.03 0.01 0.42</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Orange</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+        <gravity>0</gravity>
+      </link>
+    </model>
+
+    <model name='left_straight'>
+      <pose>1 0.5 1 0 0 0</pose>
+      <link name='left_straight::link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.03 0.01 0.42</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.03 0.01 0.42</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Orange</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+        <gravity>0</gravity>
+      </link>
+    </model>
+
+
+    <model name='upper_left_diagonal'>
+      <pose>1 0.35 1.36 0.785 0 0</pose>
+      <link name='upper_left_diagonal::link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.03 0.01 0.42</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.03 0.01 0.42</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Orange</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+        <gravity>0</gravity>
+      </link>
+    </model>
+
+
+    <model name='upper_right_diagonal'>
+      <pose>1 -0.35 1.36 5.5 0 0</pose>
+      <link name='upper_right_diagonal::link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.03 0.01 0.42</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.03 0.01 0.42</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Orange</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+        <gravity>0</gravity>
+      </link>
+    </model>
+
+
+    <model name='lower_left_diagonal'>
+      <pose>1 0.36 0.65 5.5 0 0</pose>
+      <link name='lower_left_diagonal::link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.03 0.01 0.42</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.03 0.01 0.42</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Orange</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+        <gravity>0</gravity>
+      </link>
+    </model>
+
+
+    <model name='lower_right_diagonal'>
+      <pose>1 -0.35 0.65 0.785 0 0</pose>
+      <link name='lower_right_diagonal::link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.03 0.01 0.42</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.03 0.01 0.42</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Orange</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+        <gravity>0</gravity>
+      </link>
+    </model>
+
+
+
+    <model name='upper_flat'>
+      <pose>1 0 1.5 1.57 0 0</pose>
+      <link name='upper_flat::link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.03 0.01 0.42</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.03 0.01 0.42</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Orange</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+        <gravity>0</gravity>
+      </link>
+    </model>
+
+
+    <model name='lower_flat'>
+      <pose>1 0 0.5 1.57 0 0</pose>
+      <link name='lower_flat::link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.03 0.01 0.42</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.03 0.01 0.42</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Orange</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+        <gravity>0</gravity>
+      </link>
+    </model>
+
+
+
+
+
+
+
+
+
+
+
+
+
   </world>
 </sdf>
