@@ -13,12 +13,18 @@
     
     <!-- Extract the ground truth information from either vicon, tlc, or the drones onboard sensors -->
     <node pkg="information_extraction" name="extract_position_node" type="simulation_information.py" output="screen">
+        <param name="/unity_usage" type="bool" value="$(arg launch_unity)" />
     </node>
 
     <!-- Launch the force calculator node -->
     <node pkg="information_extraction" name="force_calculator_node" type="force_calculator.py" output="screen">
         <param name="/drone_mass" type="double" value="0.32" />
-        <param name="/save_name" type="string" value="$(arg output_data_save_name)"/>
+        <param name="/topic_name" type="string" value="/ground_truth/uav1"/>
+    </node>
+
+    <!-- Launch data recorder -->
+    <node pkg="information_extraction" name="data_recorder_node" type="data_recorder.py" output="screen">
+        <param name="/save_name" type="string" value="$(arg output_data_save_name)" />
     </node>
 
     <!-- If we are launching real drone, conect with real IP -->
@@ -47,8 +53,11 @@
     <group if="$(arg launch_unity)">
         <node pkg="unity_communication" name="UnityRosConnection1" type="UnityRosConnection.py" output="screen">
             <param name="/port" type="int" value="44444" />
+            <param name="/update_drone_position_in_unity" type="bool" value="True" />
             <param name="/position_topic_name" type="string" value="/ground_truth/uav1/pose" />
             <param name="/image_topic_name" type="string" value="/uav1/unity_sensors/camera" />
+            <param name="/person_topic_name" type="string" value="/ground_truth/person/pose" />
+            <param name="/collision_topic_name" type="string" value="/ground_truth/uav1/collision" />
         </node>
         <!-- Display unitys view -->
         <group if="$(arg launch_multiview)">

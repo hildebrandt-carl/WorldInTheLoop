@@ -44,6 +44,9 @@ class InformationExtraction:
         # Init the program state
         self._quit = False
 
+        # Tells us that Unity is being used
+        self.unity_usage = rospy.get_param(rospy.get_name() + '/unity_usage' , False)
+
         # Init all the publishers and subscribers
         self.drone1_pub = rospy.Publisher("ground_truth/uav1/pose", PoseStamped, queue_size=10)
         self.drone2_pub = rospy.Publisher("ground_truth/uav2/pose", PoseStamped, queue_size=10)
@@ -61,7 +64,8 @@ class InformationExtraction:
         self.vicon_attitude = ("vicon" in attitude_source.lower())
         self.vicon_position = ("vicon" in position_source.lower())
         if self.vicon_attitude or self.vicon_position:
-            self.vicon_sub = rospy.Subscriber("/vicon/ANAFI/ANAFI", TransformStamped , self.vicon_callback)
+            self.vicon_sub = rospy.Subscriber("/vicon/ANAFI1/ANAFI1", TransformStamped , self.vicon_anafi_callback)
+            self.vicon_sub = rospy.Subscriber("/vicon/ANAFI2/ANAFI2", TransformStamped , self.vicon_obstacle_callback)
 
         time.sleep(0.5)
 
@@ -71,7 +75,7 @@ class InformationExtraction:
     def stop(self):
         self._quit = True
 
-    def vicon_callback(self, msg):
+    def vicon_anafi_callback(self, msg):
         if self.vicon_attitude:
             euler = euler_from_quaternion(quaternion=(msg.transform.rotation.x,
                                                       msg.transform.rotation.y,
@@ -84,6 +88,20 @@ class InformationExtraction:
             pos1[0] = float(msg.transform.translation.x)
             pos1[1] = float(msg.transform.translation.y)
             pos1[2] = float(msg.transform.translation.z)  
+
+    def vicon_obstacle_callback(self, msg):
+        if self.vicon_attitude:
+            euler = euler_from_quaternion(quaternion=(msg.transform.rotation.x,
+                                                      msg.transform.rotation.y,
+                                                      msg.transform.rotation.z,
+                                                      msg.transform.rotation.w))
+            att2[0] = float(euler[0])
+            att2[1] = float(euler[1])
+            att2[2] = float(euler[2])
+        if self.vicon_position:
+            pos2[0] = float(msg.transform.translation.x)
+            pos2[1] = float(msg.transform.translation.y)
+            pos2[2] = float(msg.transform.translation.z)  
 
     def attitude_callback(self, msg):
         att1[0] = float(msg.roll)
@@ -137,7 +155,10 @@ class InformationExtraction:
 
             # publish the topics
             self.drone1_pub.publish(self.drone1)
-            self.drone2_pub.publish(self.drone2)
+
+            # If we are not using unity
+            if not self.unity_usage:
+                self.drone2_pub.publish(self.drone2)
 
             # Mantain the rate
             r.sleep()
@@ -156,14 +177,14 @@ def process_output(out, queue, att_source, pos_source):
                     pos1[1] = float(number)
                 if ".z" in line:
                     pos1[2] = float(number)
-        if "_second.worldPosition" in line:
-            number = re.findall(r"[-+]?\d*\.\d+|\d+", line)[0]
-            if ".x" in line:
-                pos2[0] = float(number)
-            if ".y" in line:
-                pos2[1] = float(number)
-            if ".z" in line:
-                pos2[2] = float(number)
+            if "_second.worldPosition" in line:
+                number = re.findall(r"[-+]?\d*\.\d+|\d+", line)[0]
+                if ".x" in line:
+                    pos2[0] = float(number)
+                if ".y" in line:
+                    pos2[1] = float(number)
+                if ".z" in line:
+                    pos2[2] = float(number)
 
         if att_source == "":
             if "_first.worldAttitude" in line:
@@ -174,14 +195,14 @@ def process_output(out, queue, att_source, pos_source):
                     att1[1] = float(number)
                 if ".z" in line:
                     att1[2] = float(number)
-        if "_second.worldAttitude" in line:
-            number = re.findall(r"[-+]?\d*\.\d+|\d+", line)[0]
-            if ".x" in line:
-                att2[0] = float(number)
-            if ".y" in line:
-                att2[1] = float(number)
-            if ".z" in line:
-                att2[2] = float(number)
+            if "_second.worldAttitude" in line:
+                number = re.findall(r"[-+]?\d*\.\d+|\d+", line)[0]
+                if ".x" in line:
+                    att2[0] = float(number)
+                if ".y" in line:
+                    att2[1] = float(number)
+                if ".z" in line:
+                    att2[2] = float(number)
 
         queue.put(line)
     out.close()

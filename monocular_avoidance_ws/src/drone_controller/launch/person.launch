@@ -43,6 +43,13 @@
         <param name="gains/d_distance" type="double" value="0.05" />
     </node> 
 
+    <!-- Compute the distance between the drone and human -->
+    <node pkg="information_extraction" name="distance_calculator" type="distance_calculator.py" output="screen">
+        <param name="/object1_topic" type="string" value="/ground_truth/uav1/pose" />
+        <param name="/object2_topic" type="string" value="/ground_truth/person/pose" />
+        <param name="/output_base" type="string" value="/ground_truth/uav1person" />
+    </node>
+
     <!-- Mixing functions -->
     <node pkg="mixing_functions" name="color_threshold_node" type="color_threshold.py" output="screen">
         <param name="lower_bound/H" type="int" value="0" />
@@ -58,18 +65,12 @@
         <param name="invert_background" type="bool" value="False" />
     </node> 
 
-    <!-- Values to use when using sphix -->
-    <!--
-        dark_color = (0, 50, 0)
-        light_color = (255, 255, 255) 
-    -->
+    <!-- Launch the person extraction node -->
+    <node pkg="information_extraction" name="person_information" type="person_information.py" output="screen">
+        <param name="/unity_usage" type="bool" value="$(arg unity)" />
+    </node>
 
-    <!-- Values to use when using unity and real world -->
-    <!-- 
-        dark_color = (0, 0, 0)
-        light_color = (255, 255, 150)
-    -->
-
+    <!-- Mixer node -->
     <node pkg="mixed_reality" name="mixer_node" type="mixer.py" output="screen">
         <param name="ignore_white" type="bool" value="False" />
         <param name="ignore_black" type="bool" value="True" />

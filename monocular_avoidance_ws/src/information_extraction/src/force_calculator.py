@@ -33,21 +33,21 @@ class ForceCalculator:
         self.dt = 1.0 / self.rate
 
         # Get the parameters for this
-        self.mass = rospy.get_param(rospy.get_name() + '/drone_mass', 0.32)
-        self.save_name = rospy.get_param(rospy.get_name() + '/save_name', "output.csv")
+        self.mass       = rospy.get_param(rospy.get_name() + '/drone_mass', 0.32)
+        self.topic_name = rospy.get_param(rospy.get_name() + '/topic_name', '/ground_truth/uav1')
 
         # Print out the parameters
         self._log("Drone mass: " + str(self.mass) + "kg")
+        self._log("Topic name: " + str(self.topic_name))
 
         # Init the program state
         self._quit = False
 
         # Init all the publishers and subscribers
-        self.drone_sub = rospy.Subscriber("ground_truth/uav1/pose", PoseStamped, self.pose_callback)
-
-        self.force_on_drone         = rospy.Publisher("ground_truth/uav1/force", Float32, queue_size=10)
-        self.velocity_on_drone      = rospy.Publisher("ground_truth/uav1/velocity", Float32, queue_size=10)
-        self.acceleration_on_drone  = rospy.Publisher("ground_truth/uav1/acceleration", Float32, queue_size=10)
+        self.drone_sub = rospy.Subscriber(self.topic_name + "/pose", PoseStamped, self.pose_callback)
+        self.force_on_drone         = rospy.Publisher(self.topic_name + "/force", Float32, queue_size=10)
+        self.velocity_on_drone      = rospy.Publisher(self.topic_name + "/velocity", Float32, queue_size=10)
+        self.acceleration_on_drone  = rospy.Publisher(self.topic_name + "/acceleration", Float32, queue_size=10)
 
     def start(self):
         self._mainloop()
@@ -72,14 +72,6 @@ class ForceCalculator:
         previous_position   = np.zeros(3)
         previous_velocity   = np.zeros(3)
         previous_time       = 0
-
-        if self.save_name != "" and len(self.save_name) > 0:
-            # Open the csv file for writing
-            csvfile = open(self.save_name, 'w') 
-            # Create the header
-            fieldnames = ["timestamp", "position x", "position y", "position z", "velocity x", "velocity y", "velocity z", "acceleration x", "acceleration y", "acceleration z", "force x", "force y" , "force z", "total velocity", "total acceleration", "total force"]
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writeheader()
 
         while not self._quit:
             
@@ -140,33 +132,8 @@ class ForceCalculator:
             previous_position   = copy.deepcopy(self.current_position)
             previous_velocity   = np.array([v_x, v_y, v_z])
 
-            if self.save_name != "":
-                # Write the data to the csv file
-                data = {}
-                data['timestamp'] = self.current_time
-                data['position x'] = self.current_position[0]
-                data['position y'] = self.current_position[1]
-                data['position z'] = self.current_position[2]
-                data['velocity x'] = v_x
-                data['velocity y'] = v_y
-                data['velocity z'] = v_z
-                data['acceleration x'] = a_x
-                data['acceleration y'] = a_y
-                data['acceleration z'] = a_z
-                data['force x'] = f_x
-                data['force y'] = f_y
-                data['force z'] = f_z
-                data['total velocity'] = current_velocity
-                data['total acceleration'] = acceleration
-                data['total force'] = force
-                writer.writerow(data)
-
             # Mantain the rate
             r.sleep()
-
-        # Close the csv file
-        if self.save_name != "":
-            csvfile.close()
 
 if __name__ == "__main__":
     # Run the node

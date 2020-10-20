@@ -69,6 +69,9 @@
 
     <!-- Compute the distance between the two drones -->
     <node pkg="information_extraction" name="distance_calculator" type="distance_calculator.py" output="screen">
+        <param name="/object1_topic" type="string" value="ground_truth/uav1/pose" />
+        <param name="/object2_topic" type="string" value="ground_truth/uav2/pose" />
+        <param name="/output_base" type="string" value="ground_truth/uav1uav2" />
     </node>
 
     <!-- Connect to second drone -->
@@ -77,13 +80,15 @@
             <param name="/simulated_ip" type="bool" value="True" />
             <param name="/fast" type="bool" value="$(arg fast)" />
         </node>
+    </group>
 
-        <group if="$(arg unity)">
-            <node pkg="unity_communication" name="UnityRosConnection2" type="UnityRosConnection.py" output="screen">
-                <param name="/port" type="int" value="55555" />
-                <param name="/position_topic_name" type="string" value="/ground_truth/uav2/pose" />
-            </node>
-        </group>
+    <group if="$(arg unity)">
+        <node pkg="unity_communication" name="UnityRosConnection2" type="UnityRosConnection.py" output="screen">
+            <param name="/port" type="int" value="55555" />
+            <param name="/update_drone_position_in_unity" type="bool" value="False" />
+            <param name="/position_topic_name" type="string" value="/ground_truth/uav2/pose" />
+            <param name="/collision_topic_name" type="string" value="/ground_truth/uav2/collision" />
+        </node>
     </group>
 
     <!-- Optional views -->

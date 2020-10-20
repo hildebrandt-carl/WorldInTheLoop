@@ -4,80 +4,112 @@ using NetMQ.Sockets;
 using UnityEngine;
 using System.Linq;
 
-// From: https://unitylist.com/p/hc8/Unity3D-Python-Communication
+// Modified From: https://unitylist.com/p/hc8/Unity3D-Python-Communication
 
-/// <summary>
-///     Example of requester who only sends Hello. Very nice guy.
-///     You can copy this class and modify Run() to suits your needs.
-///     To use this class, you just instantiate, call Start() when you want to start and Stop() when you want to stop.
-/// </summary>
 public class TcpConnection : RunAbleThread
 {
-    private GameObject moveable_object;
+    // Link to the current image
     private byte[] current_image = new byte[1] {0};
+    // Port
     private int _port = 5555;
+    // Incoming message
+    private string message;
 
-    public Vector3 position;
-    public Vector3 orientation;
-    public string message;
+    // Public variables for the drone handler to use
+    public Vector3 drone_position;
+    public Vector3 drone_orientation;
+    public Vector3 person_position;
+    public Vector3 person_orientation;
     public bool collision;
 
+    private bool update_position = true;
+
+    // Constructor
     public TcpConnection()
     {
-        Debug.Log("Did no recieve the drone game object. The code will not work.");
+        Debug.Log("Did no recieve the port, and update bool");
     }
 
-    public TcpConnection(GameObject game_obj, int port)
+    // Constructor
+    public TcpConnection(int port, bool update_pos)
     {
-        moveable_object = game_obj;
         _port = port;
+        update_position = update_pos;
     }
 
+    // Saves the current image
     public void SetImage(byte[] imcoming_img)
     {
         current_image = imcoming_img.ToArray();
     }
 
-    /// <summary>
-    ///     Request Hello message to server and receive message back. Do it 10 times.
-    ///     Stop requesting when Running=false.
-    /// </summary>
+    // Main method
     protected override void Run()
     {
-        ForceDotNet.Force(); // this line is needed to prevent unity freeze after one use, not sure why yet
+        // this line is needed to prevent unity freeze after one use, not sure why yet
+        ForceDotNet.Force(); 
+
+        // Using the TCP connection
         using (RequestSocket client = new RequestSocket())
         {
+            // Connect
             client.Connect("tcp://localhost:" + _port.ToString());
 
+            // While running
             while(Running)
             {
+                // Create the message
                 RosUnityMsg msg = new RosUnityMsg();
-                msg.image = current_image.ToArray();
+
+                // Update the message parameters
+                msg.image                   = current_image.ToArray();
+                msg.drone_pose_x            = drone_position.x;
+                msg.drone_pose_y            = drone_position.y;
+                msg.drone_pose_z            = drone_position.z;
+                msg.drone_orientation_x     = drone_orientation.x;
+                msg.drone_orientation_y     = drone_orientation.y;
+                msg.drone_orientation_z     = drone_orientation.z;
+                msg.person_pose_x           = person_position.x;
+                msg.person_pose_y           = person_position.y;
+                msg.person_pose_z           = person_position.z;
+                msg.person_orientation_x    = person_orientation.x;
+                msg.person_orientation_y    = person_orientation.y;
+                msg.person_orientation_z    = person_orientation.z;
+                msg.collision               = collision;
+
+                // Convert the message to JSON
                 string msg_json = JsonUtility.ToJson(msg);
 
+                // Send the package back
                 client.SendFrame(msg_json);
 
+                // Wait for a responce
                 string message = null;
                 bool gotMessage = false;
                 while (Running)
                 {
-                    gotMessage = client.TryReceiveFrameString(out message); // this returns true if it's successful
+                     // Returns true if it's successful
+                    gotMessage = client.TryReceiveFrameString(out message);
                     if (gotMessage) 
                     {
                         break;
                     }
                 }
-
+                
+                // If we got a message
                 if (gotMessage)
                 {
-                    // Debug.Log("Received " + message);
-                    RosUnityMsg received_msg = JsonUtility.FromJson<RosUnityMsg>(message);
-                    // Get the pose
-                    Vector3 new_pose = new Vector3(received_msg.pose_x, received_msg.pose_y, received_msg.pose_z);
-                    position = new_pose;
-                    // Get the orientation
-                    Vector3 new_orientation = new Vector3(received_msg.orientation_x, received_msg.orientation_y, received_msg.orientation_z);
-                    orientation = new_orientation;
+                    RosUnityMsg msg_in = JsonUtility.FromJson<RosUnityMsg>(message);
+                    // Get the new pose and orientation
+                    Vector3 new_pose        = new Vector3(msg_in.drone_pose_x, msg_in.drone_pose_y, msg_in.drone_pose_z);
+                    Vector3 new_orientation = new Vector3(msg_in.drone_orientation_x, msg_in.drone_orientation_y, msg_in.drone_orientation_z);
+
+                    // Update the main_drones position
+                    if (update_position)
+                    {
+                        drone_orientation = new_orientation;
+                        drone_position = new_pose;
+                    }
                 }
             }
         }

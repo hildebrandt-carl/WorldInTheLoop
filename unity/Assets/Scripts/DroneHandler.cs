@@ -8,38 +8,89 @@ using System.Linq;
 
 public class DroneHandler : MonoBehaviour
 {
-    public GameObject droneObject;
-    public Camera droneCamera;
-    public int portNumber;
-    public bool enableCamera;
 
+    // Have links to each of the objects
+    public GameObject droneObject;
+    public GameObject personObject;
+    public Camera droneCamera;
+    
+    // Have the port number
+    public int portNumber;
+
+    // Check to enable camera
+    public bool enableCamera = false;
+    public bool updatePosition = true;
+
+    // Create a TCP connection to ROS
     private TcpConnection _tcpConnection;
+
+    // Keep track of the number of collisions
+    private int collision_number = 0;
 
     private void Start()
     {
-        _tcpConnection = new TcpConnection(droneObject, portNumber);
-        _tcpConnection.position = droneObject.transform.position;
-        _tcpConnection.orientation = droneObject.transform.rotation.eulerAngles;
-        _tcpConnection.message = "";
+        // Create the TCP connection
+        _tcpConnection = new TcpConnection(portNumber, updatePosition);
+
+        // Update all the variables in the TCP node
+        _tcpConnection.person_position      = personObject.transform.position;
+        _tcpConnection.person_orientation   = personObject.transform.rotation.eulerAngles;
+
+        // Set the collision as false
         _tcpConnection.collision = false;
+
+        // Start the tcp connection
         _tcpConnection.Start();
     }
 
+    // This happens on each frame
     private void FixedUpdate () 
     {
-        droneObject.transform.position = _tcpConnection.position;
-        Vector3 v = _tcpConnection.orientation;
-        droneObject.transform.rotation = Quaternion.Euler(v.x, v.y, v.z);
+        Vector3 new_pose = _tcpConnection.drone_position;
+
+        // Check if we want unity to use this position
+        if (updatePosition)
+        {   
+            // Update the main drones position and orientation
+            droneObject.transform.position = new_pose;
+            Vector3 v = _tcpConnection.drone_orientation;
+            droneObject.transform.rotation = Quaternion.Euler(v.x, v.y, v.z);
+        }
+        else
+        {
+            _tcpConnection.drone_position    = droneObject.transform.position;
+            _tcpConnection.drone_orientation = droneObject.transform.rotation.eulerAngles;
+        }
+
+        // Update the person information
+        _tcpConnection.person_position      = personObject.transform.position;
+        _tcpConnection.person_orientation   = personObject.transform.rotation.eulerAngles;
+    
+        // Set the collision flag
+        if (collision_number > 0)
+        {
+            _tcpConnection.collision = true;
+        }
     }
 
+    // Check for collisions
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Collision Detected: " + collision_number.ToString());
+        collision_number = collision_number + 1;
+    }
+
+    // This happens on the late update
     private void LateUpdate()
     {
+        // If the camera is enabled start the routine capture
         if (enableCamera)
         {
             StartCoroutine(Capture());
         }
     }
 
+    // Capture the camera routine
     public IEnumerator Capture()
     {
 
@@ -77,6 +128,8 @@ public class DroneHandler : MonoBehaviour
         // Save
         // File.WriteAllBytes(Application.dataPath + "/../Screenshots/SavedScreen.png", image_bytes);
     }
+
+    // Destroy the TCP connection
     private void OnDestroy()
     {
         _tcpConnection.Stop();
