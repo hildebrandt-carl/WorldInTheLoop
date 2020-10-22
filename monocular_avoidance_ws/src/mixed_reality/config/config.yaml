@@ -16,8 +16,8 @@ position_source_use_vicon: "vicon"
 
 
 camera_overlay: True
-camera_base: "/uav1/sphinx_sensors/camera"
+camera_base: "/uav1/physical_sensors/camera"
 camera_overlay_source: '/uav1/unity_sensors/camera'
 
-attitude_source: ""
-position_source: ""
+attitude_source: "vicon"
+position_source: "vicon"

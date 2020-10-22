@@ -88,10 +88,11 @@ class ProgramController:
             r.sleep()
 
     def _startscenario(self):
-        msg = Int16(DroneState.TAKEOFF.value)
-        self.main_drone_pub.publish(msg)
-        time.sleep(0.2)
-        self._state = ProgramState.SCENARIO
+        time.sleep(1000)
+        # msg = Int16(DroneState.TAKEOFF.value)
+        # self.main_drone_pub.publish(msg)
+        # time.sleep(0.2)
+        # self._state = ProgramState.SCENARIO
 
     def _endscenario(self):
         msg = Int16(DroneState.LANDING.value)
@@ -105,7 +106,7 @@ class ProgramController:
         time.sleep(0.1)
         msg = Int16(DroneState.FOLLOWPERSON.value)
         self.main_drone_pub.publish(msg)
-        time.sleep(60)
+        time.sleep(45)
         self._state = ProgramState.ENDING
 
 if __name__ == "__main__":

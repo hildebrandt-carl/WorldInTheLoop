@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<path name="run">
+<path name="walk">
 
   <loop>true</loop>
   <auto_start>true</auto_start>
@@ -8,50 +8,31 @@
   <waypoint>
     <animation>run</animation>
     <velocity>1.25</velocity>
-    <xy>2.5 -3.5</xy>
+    <xy>2.5 1</xy>
   </waypoint>
 
   <waypoint>
     <animation>run</animation>
     <velocity>1.25</velocity>
-    <xy>2.5 2</xy>
+    <xy>2.5 -0.5</xy>
   </waypoint>
 
   <waypoint>
     <animation>run</animation>
     <velocity>1.25</velocity>
-    <xy>2 2</xy>
+    <xy>2.5 1</xy>
   </waypoint>
 
   <waypoint>
     <animation>run</animation>
     <velocity>1.25</velocity>
-    <xy>2 -2</xy>
+    <xy>2.5 -0.5</xy>
   </waypoint>
 
   <waypoint>
     <animation>run</animation>
     <velocity>1.25</velocity>
-    <xy>1.5 -2</xy>
+    <xy>2.5 1</xy>
   </waypoint>
 
-  <waypoint>
-    <animation>run</animation>
-    <velocity>1.25</velocity>
-    <xy>1.5 2</xy>
-  </waypoint>
-
-
-  <waypoint>
-    <animation>run</animation>
-    <velocity>1.25</velocity>
-    <xy>1 2</xy>
-  </waypoint>
-
-  <waypoint>
-    <animation>run</animation>
-    <velocity>1.25</velocity>
-    <xy>1 0</xy>
-  </waypoint>
-  
 </path>

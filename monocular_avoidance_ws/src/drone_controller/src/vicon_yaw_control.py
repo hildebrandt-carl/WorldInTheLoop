@@ -57,7 +57,7 @@ class ViconYawControl:
         self.debug_desired_pub  = rospy.Publisher("/debug/DesiredYaw", Float32 , queue_size=10)
         self.debug_actual_pub   = rospy.Publisher("/debug/ActualYaw", Float32 , queue_size=10)
         self.out_of_range_pub   = rospy.Publisher("/uav1/status/yaw_out_of_range", Bool , queue_size=10)
-        self.true_yaw_sub       = rospy.Subscriber("/vicon/ANAFI/ANAFI", TransformStamped, self._getvicon)
+        self.true_yaw_sub       = rospy.Subscriber("/vicon/ANAFI1/ANAFI1", TransformStamped, self._getvicon)
         self.set_yaw_sub        = rospy.Subscriber("/uav1/input/vicon_setpoint/yaw/rate", Float32, self._updateSetpoint)
 
     def start(self):

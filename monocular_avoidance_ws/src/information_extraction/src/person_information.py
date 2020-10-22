@@ -62,7 +62,7 @@ class PersonInformation:
         self.vicon_attitude = ("vicon" in attitude_source.lower())
         self.vicon_position = ("vicon" in position_source.lower())
         if self.vicon_attitude or self.vicon_position:
-            self.vicon_sub = rospy.Subscriber("/vicon/PERSON/PERSON", TransformStamped , self.vicon_callback)
+            self.vicon_sub = rospy.Subscriber("/vicon/PLAYER1/PLAYER1", TransformStamped , self.vicon_callback)
 
         time.sleep(0.5)
 

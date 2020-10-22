@@ -78,7 +78,7 @@ class DataRecorder:
         self.drone1_position[0] = copy.deepcopy(msg.pose.position.x)
         self.drone1_position[1] = copy.deepcopy(msg.pose.position.y)
         self.drone1_position[2] = copy.deepcopy(msg.pose.position.z)
-        rot = msg.transform.rotation
+        rot = msg.pose.orientation
         euler_rot = euler_from_quaternion(quaternion=(rot.x, rot.y, rot.z, rot.w))
         self.drone1_orientation[0] = copy.deepcopy(euler_rot[0])
         self.drone1_orientation[1] = copy.deepcopy(euler_rot[1])
@@ -132,8 +132,6 @@ class DataRecorder:
 
         r = rospy.Rate(self.rate)
 
-                self.current_time = time.time()
-
         if self.save_name != "" and len(self.save_name) > 0:
             # Open the csv file for writing
             csvfile = open(self.save_name, 'w') 
@@ -156,9 +154,9 @@ class DataRecorder:
             data['drone1_acceleration']             = self.drone1_acceleration 
             data['drone1_force']                    = self.drone1_force 
             data['drone1_collision']                = self.drone1_collision 
-            data['drone2_pos_x']                    = self.drone1_velocity[0]
-            data['drone2_pos_y']                    = self.drone1_velocity[1]
-            data['drone2_pos_z']                    = self.drone1_velocity[2]
+            data['drone2_pos_x']                    = self.drone2_position[0]
+            data['drone2_pos_y']                    = self.drone2_position[1]
+            data['drone2_pos_z']                    = self.drone2_position[2]
             data['drone2_collision']                = self.drone2_collision
             data['person_pos_x']                    = self.person_position[0]
             data['person_pos_y']                    = self.person_position[1]

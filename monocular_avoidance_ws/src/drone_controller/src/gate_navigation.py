@@ -273,11 +273,11 @@ class GateNavigation:
                 avg_y = np.mean(line_up_window_y) 
                 avg_z = np.mean(line_up_window_z)
                 # if (avg_y <= 1) and (avg_z <= 1) and (not move_forward):
-                if (avg_y <= 0.5) and (avg_z <= 0.5) and (not move_forward):
+                if (avg_y <= 1.5) and (avg_z <= 1.5) and (not move_forward):
                     self._log("Moving forward with visual navigation")
                     move_forward = True
                 # While you are moving towards the gate
-                elif ((avg_y >= 1) or (avg_z >= 1)) and (move_forward):
+                elif ((avg_y >= 2) or (avg_z >= 2)) and (move_forward):
                 # elif ((avg_y >= 2) or (avg_z >= 2)) and (move_forward):
                     # Only pause if we have found the gate and its not too close
                     if self._gatefound and self.full_gate_found and self._gate_area <= 180000:

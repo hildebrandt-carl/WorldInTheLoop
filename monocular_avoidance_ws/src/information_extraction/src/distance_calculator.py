@@ -84,9 +84,6 @@ class DistanceCalculator:
         
         while not self._quit:
             
-            print(self.object1_position[0])
-            print(self.object2_position[0])
-            print("---------------------")
             # Compute the distance between the two drones
             dx = self.object1_position[0] - self.object2_position[0]
             dy = self.object1_position[1] - self.object2_position[1]

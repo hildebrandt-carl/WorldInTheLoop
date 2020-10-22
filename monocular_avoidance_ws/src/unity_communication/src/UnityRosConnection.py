@@ -133,8 +133,8 @@ class UnityRosConnection():
                 drone_msg.pose.position.y = -1 * data["drone_pose_x"]
                 drone_msg.pose.position.z = data["drone_pose_y"]
                 euler_ang = (data["drone_orientation_x"], data["drone_orientation_y"], data["drone_orientation_z"])
-                # quart = quaternion_from_euler(ai=euler_ang[0], aj=euler_ang[1], ak=euler_ang[2])
                 euler_ang = (0, 0 ,0)
+                quart = quaternion_from_euler(ai=euler_ang[0], aj=euler_ang[1], ak=euler_ang[2])
                 drone_msg.pose.orientation.x = quart[0]
                 drone_msg.pose.orientation.y = quart[1]
                 drone_msg.pose.orientation.z = quart[2]
