@@ -89,7 +89,7 @@
 
 
     <model name='right_straight'>
-      <pose>1 -0.25 0.75 0 0 0</pose>
+      <pose>2 -0.25 0.75 0 0 0</pose>
       <link name='right_straight::link'>
         <collision name='collision'>
           <geometry>
@@ -132,7 +132,7 @@
     </model>
 
     <model name='left_straight'>
-      <pose>1 0.25 0.75 0 0 0</pose>
+      <pose>2 0.25 0.75 0 0 0</pose>
       <link name='left_straight::link'>
         <collision name='collision'>
           <geometry>
@@ -176,7 +176,7 @@
 
 
     <model name='upper_left_diagonal'>
-      <pose>1 0.18 0.93 0.785 0 0</pose>
+      <pose>2 0.18 0.93 0.785 0 0</pose>
       <link name='upper_left_diagonal::link'>
         <collision name='collision'>
           <geometry>
@@ -220,7 +220,7 @@
 
 
     <model name='upper_right_diagonal'>
-      <pose>1 -0.18 0.93 5.5 0 0</pose>
+      <pose>2 -0.18 0.93 5.5 0 0</pose>
       <link name='upper_right_diagonal::link'>
         <collision name='collision'>
           <geometry>
@@ -264,7 +264,7 @@
 
 
     <model name='lower_left_diagonal'>
-      <pose>1 0.18 0.58 5.5 0 0</pose>
+      <pose>2 0.18 0.58 5.5 0 0</pose>
       <link name='lower_left_diagonal::link'>
         <collision name='collision'>
           <geometry>
@@ -308,7 +308,7 @@
 
 
     <model name='lower_right_diagonal'>
-      <pose>1 -0.18 0.57 0.785 0 0</pose>
+      <pose>2 -0.18 0.57 0.785 0 0</pose>
       <link name='lower_right_diagonal::link'>
         <collision name='collision'>
           <geometry>
@@ -353,7 +353,7 @@
 
 
     <model name='upper_flat'>
-      <pose>1 0 1 1.57 0 0</pose>
+      <pose>2 0 1 1.57 0 0</pose>
       <link name='upper_flat::link'>
         <collision name='collision'>
           <geometry>
@@ -397,7 +397,7 @@
 
 
     <model name='lower_flat'>
-      <pose>1 0 0.5 1.57 0 0</pose>
+      <pose>2 0 0.5 1.57 0 0</pose>
       <link name='lower_flat::link'>
         <collision name='collision'>
           <geometry>

@@ -89,7 +89,7 @@
 
 
     <model name='right_straight'>
-      <pose>1 -0.37 0.87 0 0 0</pose>
+      <pose>2 -0.37 0.87 0 0 0</pose>
       <link name='right_straight::link'>
         <collision name='collision'>
           <geometry>
@@ -132,7 +132,7 @@
     </model>
 
     <model name='left_straight'>
-      <pose>1 0.37 0.87 0 0 0</pose>
+      <pose>2 0.37 0.87 0 0 0</pose>
       <link name='left_straight::link'>
         <collision name='collision'>
           <geometry>
@@ -174,9 +174,8 @@
       </link>
     </model>
 
-
-    <model name='upper_left_diagonal'>
-      <pose>1 -0.26 1.13 0.785 0 0</pose>
+    <model name='upper_right_diagonal'>
+      <pose>2 -0.26 1.13 5.5 0 0</pose>
       <link name='upper_left_diagonal::link'>
         <collision name='collision'>
           <geometry>
@@ -219,53 +218,9 @@
     </model>
 
 
-    <model name='upper_right_diagonal'>
-      <pose>1 0.26 1.13 0.785 0 0</pose>
-      <link name='upper_right_diagonal::link'>
-        <collision name='collision'>
-          <geometry>
-            <box>
-              <size>0.03 0.01 0.31</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <box>
-              <size>0.03 0.01 0.31</size>
-            </box>
-          </geometry>
-          <material>
-            <script>
-              <name>Gazebo/Orange</name>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-            </script>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>1</kinematic>
-        <gravity>0</gravity>
-      </link>
-    </model>
-
-
-    <model name='lower_left_diagonal'>
-      <pose>1 -0.26 0.61 5.5 0 0</pose>
-      <link name='lower_left_diagonal::link'>
+    <model name='upper_left_diagonal'>
+      <pose>2 0.26 1.13 0.785 0 0</pose>
+      <link name='upper_left_diagonal::link'>
         <collision name='collision'>
           <geometry>
             <box>
@@ -308,8 +263,52 @@
 
 
     <model name='lower_right_diagonal'>
-      <pose>1 0.26 0.61 5.5 0 0</pose>
+      <pose>2 -0.26 0.61 0.785 0 0</pose>
       <link name='lower_right_diagonal::link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.03 0.01 0.31</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.03 0.01 0.31</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Orange</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>1</kinematic>
+        <gravity>0</gravity>
+      </link>
+    </model>
+
+
+    <model name='lower_left_diagonal'>
+      <pose>2 0.26 0.61 5.5 0 0</pose>
+      <link name='lower_left_diagonal::link'>
         <collision name='collision'>
           <geometry>
             <box>
@@ -353,7 +352,7 @@
 
 
     <model name='upper_flat'>
-      <pose>1 0 1.25 1.57 0 0</pose>
+      <pose>2 0 1.25 1.57 0 0</pose>
       <link name='upper_flat::link'>
         <collision name='collision'>
           <geometry>
@@ -397,7 +396,7 @@
 
 
     <model name='lower_flat'>
-      <pose>1 0 0.5 1.57 0 0</pose>
+      <pose>2 0 0.5 1.57 0 0</pose>
       <link name='lower_flat::link'>
         <collision name='collision'>
           <geometry>
