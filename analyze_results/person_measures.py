@@ -4,18 +4,18 @@ import matplotlib.pyplot as plt
 import os
 import glob
 
-required_distance = (2, 4.5)
-required_misalign_x = (-10, 10) 
-required_misalign_y = (-2.5, 2.5)
-required_overshoot_y = (-1, 2)
+x_range = (-1.75, 0.25)
+y_range = (-1.5, 2)
 
 test_cases = ["Walking", "Running"]
+folder = '/home/autosoft/Desktop/Results/Person/'
+folder = '/Users/carlhildebrandt/Dropbox/UVA/Research/Work/WorldInTheLoop/Results/Person/'
 
 for case in test_cases:
 
-    simulations_files   = glob.glob('/home/autosoft/Desktop/Results/Person/' + case + '/Simulation/*.csv')
-    mixed_reality_files = glob.glob('/home/autosoft/Desktop/Results/Person/' + case + '/MixedReality/*.csv')
-    reality_files       = glob.glob('/home/autosoft/Desktop/Results/Person/' + case + '/Reality/*.csv')
+    simulations_files   = glob.glob(folder + case + '/Simulation/*.csv')
+    mixed_reality_files = glob.glob(folder + case + '/MixedReality/*.csv')
+    reality_files       = glob.glob(folder + case + '/Reality/*.csv')
 
     simulations_files.sort()
     mixed_reality_files.sort()
@@ -119,13 +119,9 @@ for case in test_cases:
             # Check if it passed or failed
             pass_fail_filename.append(filename)
             failed = False
-            if (required_distance[0] > min(distance)) or (required_distance[1] < max(distance)):
+            if (x_range[0] > min(drone_position_x)) or (x_range[1] < max(drone_position_x)):
                 failed = True
-            if (required_misalign_x[0] > min(drone1person_misallignment_x)) or (required_misalign_x[1] < max(drone1person_misallignment_x)):
-                failed = True
-            if (required_misalign_y[0] > min(drone1person_misallignment_y)) or (required_misalign_y[1] < max(drone1person_misallignment_y)):
-                failed = True
-            if (required_overshoot_y[0] > min(drone_position_y)) or (required_overshoot_y[1] < max(drone_position_y)):
+            if (y_range[0] > min(drone_position_y)) or (y_range[1] < max(drone_position_y)):
                 failed = True
             pass_fail_list.append(failed)
 
@@ -160,9 +156,8 @@ for case in test_cases:
 
 
     print("Requirements")
-    print("Distance requirement: " + str(required_distance))
-    print("Allignment X requirement: " + str(required_misalign_x))
-    print("Allignment Y requirement: " + str(required_misalign_y))
+    print("X Range: " + str(x_range))
+    print("Y Range: " + str(y_range))
     print("--------------------------------")
 
     for j in range(0, len(pass_fail_filename)):
