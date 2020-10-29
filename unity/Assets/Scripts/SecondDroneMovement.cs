@@ -14,11 +14,13 @@ public class SecondDroneMovement : MonoBehaviour
     [Range(0,60)]
     public int startDelay;
 
-    private float true_speed ;
     private Vector3 takeoff_position;
     private bool takeoff_achieved;
     private double _start_time;
-    private float speed = 0f;
+    private float total_distance = 0f;
+    private float total_time = 0f;
+    private float tilt_speed = 0f;
+    private Vector3 velocity = Vector3.zero;
 
 
     // Start is called before the first frame update
@@ -37,16 +39,18 @@ public class SecondDroneMovement : MonoBehaviour
         {
             if (slow == true)
             {
-                speed = 0.2f;
+                total_time = 5.0f;
+                tilt_speed = 0.01f;
             }
             if (fast == true)
             {
-                speed = 0.4f;
+                total_time = 2.5f;
+                tilt_speed = 0.05f;
             }
         }
 
-        // Compute the speed
-        true_speed = speed / 10.0f;
+        // Compute the total distance
+        total_distance = Vector3.Distance(end_position, takeoff_position);
     }
 
     // Update is called once per frame
@@ -65,9 +69,17 @@ public class SecondDroneMovement : MonoBehaviour
             else
             {
                 takeoff_achieved = true;
-                transform.position = Vector3.Lerp(transform.position, end_position, true_speed);
+                transform.position = Vector3.SmoothDamp(transform.position, end_position, ref velocity, total_time);
+
+                // Tilt the drone based on the distance
+                float max_angle = -15.0f;
+                float current_dist = Vector3.Distance(end_position, transform.position);
+                float desired_angle = max_angle * (current_dist / total_distance);
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(desired_angle, 0, 0), tilt_speed);
             }
         }
+
+
         
     }
 

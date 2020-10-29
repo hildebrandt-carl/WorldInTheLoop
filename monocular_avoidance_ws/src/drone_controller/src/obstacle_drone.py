@@ -54,7 +54,7 @@ class SecondDroneController:
         if self.simulated_param == True:
             self.drone = olympe.Drone(SecondDroneController.SIMULATED_IP)
         else:
-            print(str(rospy.get_name()) + ": UNTESTED FEATURE BEING USED!")
+            print(str(rospy.get_name()) + ": Note you are launching the actual drone!")
             self.drone = olympe.Drone(SecondDroneController.PHYSICAL_IP)
         
         self.drone.connection()
@@ -87,6 +87,12 @@ class SecondDroneController:
 
         previous_state = None
         r = rospy.Rate(self.rate)
+        start_time = 0
+        duration = 0
+        if (not self.fast_param):
+            duration = 6
+        else:
+            duration = 3
 
         while not self._quit:
 
@@ -115,7 +121,11 @@ class SecondDroneController:
                 if previous_state != self._state:
                     self._log("Waypoint Sent")
                     previous_state = self._state
-                self._fly()
+                    start_time = time.time()
+                if (time.time() - start_time < duration):
+                    self._fly(stop=False)
+                else:
+                    self._fly(stop=True)
 
             # Mantain the rate
             r.sleep()
@@ -131,7 +141,7 @@ class SecondDroneController:
     def _land(self):
         self.drone(Landing()).wait()
 
-    def _fly(self):
+    def _fly(self, stop=False):
         
         # Dont move
         front_back = 0
@@ -145,6 +155,10 @@ class SecondDroneController:
                 front_back = 20
             else:
                 front_back = 10
+
+        # If stop we dont want to move
+        if stop:
+            front_back = 0
 
         # Send command
         self.drone.piloting_pcmd(
