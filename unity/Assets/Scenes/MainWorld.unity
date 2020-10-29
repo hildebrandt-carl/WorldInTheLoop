@@ -11618,8 +11618,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290fe0e3f5d203650bb4170554a0e19b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slow: 1
-  fast: 0
+  slow: 0
+  fast: 1
   start_position: {x: 0, y: 0, z: 2.5}
   end_position: {x: 0, y: 1, z: -1}
   startDelay: 20

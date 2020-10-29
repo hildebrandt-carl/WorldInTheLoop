@@ -152,6 +152,7 @@ class SecondDroneController:
         # Only allow movement if the drone's x position is greater than 1
         if self.drone_position[0] > -0.5:
             if self.fast_param:
+                # Set to 30 when operating in the real world, as it slower for some reason
                 front_back = 20
             else:
                 front_back = 10
