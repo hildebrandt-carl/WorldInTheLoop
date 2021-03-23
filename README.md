@@ -434,3 +434,40 @@ Now you can launch your drone using:
 $ sudo systemctl start firmwared.service
 $ sphinx /opt/parrot-sphinx/usr/share/sphinx/drones/anafi4k.drone::stolen_interface=enp0s5:eth0:192.168.42.1/24 /opt/parrot-sphinx/usr/share/sphinx/drones/anafi4k.drone::name=other::stolen_interface=eth10:eth0:192.168.42.1/24::pose="5 0 0.2 0 0 0"::with_front_cam=false
 ```
+
+
+
+
+# Carls Notes:
+
+You can launch unity using:
+```
+$ cd ~/Documents
+$ ./UnityHub.AppImage
+```
+
+Then you can source the environment:
+```zsh
+$ cd ~/Desktop/MixedRealityTesting/monocular_avoidance_ws/
+$ catkin clean -y ; catkin build ; source devel/setup.bash
+$ source ~/code/parrot-groundsdk/olympe_custom_env.sh
+```
+
+Then you need to edit the config file to say how you want it setup. `MixedRealityTesting/monocular_avoidance_ws/src/mixed_reality/config/config.yaml`
+
+The you need to run sphinx and unity
+To run sphinx use the command:
+```
+$ sudo systemctl start firmwared.service
+$ cd /home/autosoft/Desktop/MixedRealityTesting/monocular_avoidance_ws/scripts
+$ ./empty.sh
+```
+
+Wait until everything is initialized
+
+
+Then you need to launch the ros code
+```
+$ roslaunch drone_controller gate.launch sphinx:=true unity:=true physical:=false vicon:=false multiview:=true yaw_debug:=false force_debug:=false save_data:='/home/autosoft/Desktop/test.csv'
+```
+To run unity hit play

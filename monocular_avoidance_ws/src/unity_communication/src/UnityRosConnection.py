@@ -5,6 +5,7 @@ import json
 import cv2
 import math
 import time
+import datetime
 
 import numpy as np
 
@@ -36,6 +37,9 @@ class UnityRosConnection():
         # Set the rate
         self.rate = 100.0
         self.dt = 1.0 / self.rate
+
+        # Keep track of images recieved:
+        self.image_counter = 0
 
         # Declare the drone position
         self.drone_pos = np.zeros(3)
@@ -118,7 +122,8 @@ class UnityRosConnection():
                 "person_orientation_y": 0,
                 "person_orientation_z": 0,
 
-                "image": return_image
+                "image": return_image,
+                "timestamp": ""
             }
 
             # Wait for a message from Unity
@@ -155,6 +160,10 @@ class UnityRosConnection():
                     except CvBridgeError as e:
                         pass
                     # Publish the new image
+                    sent_time = data["timestamp"]
+                    recieved_time = datetime.datetime.now().strftime("%I:%M:%S:%f")
+                    # rospy.logwarn("Image (" + str(self.image_counter) + ") received: " + recieved_time + " - sent:" + sent_time)
+                    self.image_counter += 1
                     self.img_pub.publish(image_message)
 
             # If we want to publish collision information

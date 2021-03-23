@@ -21,6 +21,7 @@ public class TcpConnection : RunAbleThread
     public Vector3 person_position;
     public Vector3 person_orientation;
     public bool collision;
+    public string timestamp;
 
     private bool update_position = true;
 
@@ -41,6 +42,12 @@ public class TcpConnection : RunAbleThread
     public void SetImage(byte[] imcoming_img)
     {
         current_image = imcoming_img.ToArray();
+    }
+
+    // Saves the current image
+    public void SetTimeStamp(string imcoming_img)
+    {
+        timestamp = imcoming_img;
     }
 
     // Main method
@@ -76,6 +83,7 @@ public class TcpConnection : RunAbleThread
                 msg.person_orientation_y    = person_orientation.y;
                 msg.person_orientation_z    = person_orientation.z;
                 msg.collision               = collision;
+                msg.timestamp               = timestamp;
 
                 // Convert the message to JSON
                 string msg_json = JsonUtility.ToJson(msg);

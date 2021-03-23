@@ -26,6 +26,7 @@ public class DroneHandler : MonoBehaviour
 
     // Keep track of the number of collisions
     private int collision_number = 0;
+    private int image_counter = 0;
 
     private void Start()
     {
@@ -117,6 +118,9 @@ public class DroneHandler : MonoBehaviour
         // Encode texture into PNG
         byte[] image_bytes = image.EncodeToPNG();
         // byte[] image_bytes = image.GetRawTextureData();
+        System.DateTime currentTime = System.DateTime.Now;
+        image_counter = image_counter + 1;
+        _tcpConnection.SetTimeStamp("Image sent(" + image_counter.ToString() + "): " + currentTime.ToString("hh:mm:ss.fff tt"));
         _tcpConnection.SetImage(image_bytes);
 
         // Clean up

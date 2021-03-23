@@ -28,4 +28,5 @@ public class RosUnityMsg
 
     // Returns the current image
     public byte[] image = new byte[1] {0};
+    public string timestamp = "";
 }
