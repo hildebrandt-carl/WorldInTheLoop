@@ -2,9 +2,17 @@
 
 Simulation is at the core of validating autonomous systems (AS), enabling the detection of faults at a lower cost and earlier in the development life cycle. However, simulation can only produce an approximation of the real world, leading to a gap between simulation and reality where undesirable system behaviors can go unnoticed. To address that gap, we present a novel approach, world-in-the-loop (WIL) simulation, which integrates sensing data from simulation and the real world to provide the AS with a mixed-reality. The approach executes multiple instances of the AS in parallel, one in the real world and at least one in simulation, performs configurable transformations, filtering, and merging operations on the body of sensed data in order to integrate it, and provides the pipelines to distribute the original sensor data and the integrated sensor data back to the executing AS. We present a study on multiple scenarios and two simulators that demonstrates how WIL reduces the simulation-reality gap and increases the chances of exposing failures before deployment.
 
+![Example](./images/readme/example.gif)
+
 ## Paper
 
 This is the artifact for the [our paper](./paper/WorldInTheLoop.pdf) which was published at [ICRA 2021](https://www.ieee-ras.org/about-ras/ras-calendar/upcoming-ras-events/event/1920-icra-2021).
+
+## Video
+
+We also have a [video](https://www.youtube.com/watch?v=7MFQNq08OJM) which describes our approach, study, and results:
+
+[![Example](./images/readme/video.gif)](https://www.youtube.com/watch?v=7MFQNq08OJM)
 
 
 # Installation
