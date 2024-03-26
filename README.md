@@ -412,9 +412,6 @@ $ export ROS_MASTER_URI=http://<YOURMACHINEIP:11311>
 ```
 ---
 
-# Old instructions
-
-
 
 # Runnning Sphix
 
@@ -450,9 +447,6 @@ Now you can launch your drone using:
 $ sudo systemctl start firmwared.service
 $ sphinx /opt/parrot-sphinx/usr/share/sphinx/drones/anafi4k.drone::stolen_interface=enp0s5:eth0:192.168.42.1/24 /opt/parrot-sphinx/usr/share/sphinx/drones/anafi4k.drone::name=other::stolen_interface=eth10:eth0:192.168.42.1/24::pose="5 0 0.2 0 0 0"::with_front_cam=false
 ```
-
-
-
 
 # Additional Notes:
 
